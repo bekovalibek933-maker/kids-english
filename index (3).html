@@ -1,0 +1,3226 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<meta name="theme-color" content="#4338CA"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-title" content="Kids English"/>
+<title>Kids English — Family and Friends 2</title>
+<link rel="manifest" href="manifest.json"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --p:#4338CA;--pl:#EEF2FF;--p2:#6366F1;
+  --g:#16A34A;--gl:#DCFCE7;
+  --o:#EA580C;--ol:#FFF7ED;
+  --r:#DC2626;--rl:#FEF2F2;
+  --b:#0891B2;--bl:#ECFEFF;
+  --y:#D97706;--yl:#FFFBEB;
+  --pk:#DB2777;--pkl:#FCE7F3;
+  --dark:#1E1B4B;--gray:#6B7280;--border:#E5E7EB;--bg:#F0F4FF;
+  --white:#fff;--radius:14px;--radius-sm:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+body{background:var(--bg);font-family:'Nunito',sans-serif;color:var(--dark);min-height:100vh;overflow-x:hidden;}
+
+/* ── HEADER ── */
+.hdr{background:var(--p);padding:12px 16px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px #4338CA44;}
+.hdr-back{background:#fff2;border:none;border-radius:8px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;font-size:18px;flex-shrink:0;}
+.hdr-title{font-family:'Fredoka One',sans-serif;font-size:18px;color:#fff;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.hdr-star{background:#fff2;border-radius:20px;padding:4px 10px;font-size:12px;font-weight:800;color:#FCD34D;white-space:nowrap;}
+
+/* ── SCREENS ── */
+.screen{display:none;}.screen.active{display:block;}
+.main{padding-bottom:80px;}
+
+/* ── HOME ── */
+.hero{background:linear-gradient(135deg,#4338CA,#7C3AED);padding:22px 16px 28px;text-align:center;position:relative;overflow:hidden;}
+.hero::after{content:'✨';position:absolute;right:16px;top:16px;font-size:40px;opacity:.3;}
+.hero-ico{font-size:52px;display:block;margin-bottom:8px;animation:flt 2s ease-in-out infinite;}
+@keyframes flt{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.hero-t{font-family:'Fredoka One',sans-serif;font-size:24px;color:#fff;margin-bottom:3px;}
+.hero-s{font-size:12px;color:#C7D2FE;margin-bottom:14px;}
+.hero-prog{background:#fff2;border-radius:10px;padding:10px 14px;}
+.prog-lbl{display:flex;justify-content:space-between;font-size:11px;color:#C7D2FE;margin-bottom:5px;}
+.prog-bar{height:8px;background:#fff2;border-radius:4px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,#34D399,#6EE7B7);border-radius:4px;transition:width .6s ease;}
+
+/* ── STREAK ── */
+.streak{background:var(--white);border-radius:var(--radius);padding:12px 14px;display:flex;align-items:center;gap:10px;margin:14px 14px 0;box-shadow:0 2px 8px #0000000a;}
+.streak-ico{font-size:32px;animation:pulse 1s infinite;}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+.streak-n{font-family:'Fredoka One',sans-serif;font-size:22px;color:var(--o);}
+.streak-lbl{font-size:11px;color:var(--gray);}
+.s-days{display:flex;gap:4px;margin-top:5px;}
+.sday{width:28px;height:28px;border-radius:6px;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.sday.done{background:var(--o);color:#fff;}
+.sday.today{background:var(--yl);color:var(--y);border:2px solid var(--y);}
+.sday.empty{background:#F3F4F6;color:#9CA3AF;}
+
+/* ── SECTION ── */
+.section{padding:14px 14px 0;}
+.sec-title{font-family:'Fredoka One',sans-serif;font-size:17px;color:var(--dark);margin-bottom:10px;}
+
+/* ── UNIT CARDS ── */
+.unit-list{display:flex;flex-direction:column;gap:9px;padding:0 14px 14px;}
+.ucard{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:0 2px 8px #0000000a;cursor:pointer;transition:transform .15s;border:2px solid transparent;}
+.ucard:active{transform:scale(.98);}
+.ucard.locked{opacity:.55;cursor:default;}
+.ucard-head{display:flex;align-items:center;gap:10px;padding:12px 14px;}
+.ucard-ico{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.ucard-info{flex:1;min-width:0;}
+.ucard-num{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:1px;}
+.ucard-name{font-family:'Fredoka One',sans-serif;font-size:15px;color:var(--dark);}
+.ucard-meta{font-size:10px;color:var(--gray);margin-top:1px;}
+.ucard-pbar{height:3px;background:#F3F4F6;}
+.ucard-pfill{height:100%;transition:width .4s;}
+
+/* ── LESSON TABS ── */
+.ltabs{display:flex;background:var(--white);gap:0;overflow-x:auto;scrollbar-width:none;position:sticky;top:58px;z-index:50;box-shadow:0 2px 6px #0000000a;border-bottom:2px solid var(--border);}
+.ltabs::-webkit-scrollbar{display:none;}
+.ltab{padding:10px 14px;font-size:11px;font-weight:800;cursor:pointer;white-space:nowrap;border:none;background:transparent;color:var(--gray);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;}
+.ltab.active{color:var(--p);border-bottom-color:var(--p);}
+
+/* ── LESSON CONTENT ── */
+.lcontent{padding:14px;}
+
+/* ── VOCAB ── */
+.vcard{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:0 4px 14px #0000000e;margin-bottom:14px;}
+.vcard-img{width:100%;height:170px;display:flex;align-items:center;justify-content:center;font-size:72px;position:relative;}
+.vcard-body{padding:14px;}
+.vcard-word{font-family:'Fredoka One',sans-serif;font-size:26px;color:var(--dark);margin-bottom:3px;}
+.vcard-uz{font-size:15px;color:var(--gray);margin-bottom:3px;}
+.vcard-pron{font-size:12px;color:#9CA3AF;font-style:italic;margin-bottom:8px;}
+.vcard-sent{font-size:13px;color:var(--gray);background:#F8FAFC;border-radius:8px;padding:9px 11px;border-left:3px solid var(--p);line-height:1.6;}
+.vcard-sent b{color:var(--p);}
+.vcounter{text-align:center;font-size:11px;color:var(--gray);margin-bottom:7px;}
+.vdots{display:flex;gap:4px;justify-content:center;margin-bottom:10px;}
+.vdot{width:7px;height:7px;border-radius:50%;background:var(--border);transition:all .3s;}
+.vdot.active{background:var(--p);transform:scale(1.4);}
+.vbtns{display:flex;gap:8px;}
+.vbtn{flex:1;padding:10px;border-radius:10px;border:none;font-size:12px;font-weight:800;font-family:'Nunito',sans-serif;cursor:pointer;transition:all .15s;}
+.vbtn:active{transform:scale(.97);}
+.vbtn.aud{background:var(--p);color:#fff;}
+.vbtn.aud.playing{background:var(--g);}
+.vbtn.prev{background:var(--pl);color:var(--p);}
+.vbtn.nxt{background:var(--p);color:#fff;}
+
+/* ── WORD LIST ── */
+.wlist{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
+.witem{background:var(--white);border-radius:10px;padding:10px;display:flex;flex-direction:column;align-items:center;gap:4px;box-shadow:0 2px 6px #00000008;cursor:pointer;transition:all .15s;border:2px solid transparent;}
+.witem:active{transform:scale(.96);}
+.witem.done{border-color:var(--g);background:var(--gl);}
+.witem-e{font-size:28px;}
+.witem-w{font-size:12px;font-weight:800;color:var(--dark);}
+.witem-u{font-size:11px;color:var(--gray);}
+
+/* ── DIALOG ── */
+.dialog-panel{background:var(--white);border-radius:var(--radius);padding:14px;box-shadow:0 2px 8px #0000000a;margin-bottom:12px;}
+.dialog-title{font-size:13px;font-weight:800;color:var(--p);margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+.dialog-box{background:#F0F4FF;border-radius:10px;padding:12px;margin-bottom:10px;font-size:13px;line-height:2;color:var(--dark);}
+.dialog-box .sp{font-weight:800;color:var(--p);}
+.dialog-box .line{display:flex;gap:8px;margin-bottom:4px;}
+.dialog-box .bubble{background:var(--white);border-radius:8px;padding:6px 10px;font-size:12px;box-shadow:0 1px 4px #0000000a;}
+.dialog-box .bubble.left{border-bottom-left-radius:2px;}
+.dialog-box .bubble.right{background:var(--pl);border-bottom-right-radius:2px;margin-left:auto;}
+
+/* ── GRAMMAR ── */
+.gram-rule{background:var(--pl);border:2px solid #C7D2FE;border-radius:var(--radius);padding:14px;margin-bottom:12px;}
+.gram-rule-title{font-family:'Fredoka One',sans-serif;font-size:15px;color:var(--p);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.gram-table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:8px;}
+.gram-table th{background:var(--p);color:#fff;padding:7px 10px;text-align:left;font-size:11px;}
+.gram-table td{padding:7px 10px;border-bottom:1px solid #E5E7EB;}
+.gram-table tr:nth-child(even) td{background:#F8FAFC;}
+.gram-table td b{color:var(--p);}
+.gram-examples{font-size:13px;line-height:2;color:var(--dark);}
+.gram-examples .ex{display:flex;align-items:flex-start;gap:6px;margin-bottom:4px;}
+.gram-examples .ex-ico{font-size:14px;margin-top:2px;}
+.gram-examples b{color:var(--p);}
+
+/* ── QUIZ ── */
+.quiz-card{background:var(--white);border-radius:var(--radius);padding:14px;box-shadow:0 2px 8px #0000000a;margin-bottom:10px;}
+.quiz-num{font-size:10px;font-weight:800;color:var(--gray);text-transform:uppercase;margin-bottom:6px;}
+.quiz-q{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:10px;line-height:1.6;}
+.quiz-q .blank{color:var(--p);font-size:17px;font-weight:900;border-bottom:2px solid var(--p);padding:0 4px;}
+.quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
+.qopt{background:#F8FAFC;border:2px solid var(--border);border-radius:9px;padding:10px;font-size:13px;font-weight:700;color:var(--dark);cursor:pointer;text-align:center;transition:all .15s;font-family:'Nunito',sans-serif;}
+.qopt:active{transform:scale(.97);}
+.qopt.correct{border-color:var(--g);background:var(--gl);color:var(--g);}
+.qopt.wrong{border-color:var(--r);background:var(--rl);color:var(--r);}
+.qopt:disabled{cursor:default;}
+.quiz-exp{background:var(--gl);border-radius:8px;padding:9px;font-size:12px;color:var(--g);margin-top:7px;display:none;line-height:1.7;}
+.quiz-exp.show{display:block;animation:fadeUp .3s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── MATCH ── */
+.match-wrap{background:var(--white);border-radius:var(--radius);padding:14px;box-shadow:0 2px 8px #0000000a;margin-bottom:12px;}
+.match-title{font-size:12px;font-weight:800;color:var(--gray);text-transform:uppercase;margin-bottom:10px;}
+.match-row{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.match-word{background:var(--pl);border-radius:8px;padding:8px 12px;font-size:13px;font-weight:700;color:var(--p);min-width:80px;text-align:center;}
+.match-arrow{color:var(--border);font-size:16px;}
+.match-opts{display:flex;flex-wrap:wrap;gap:6px;flex:1;}
+.match-opt{background:#F8FAFC;border:2px solid var(--border);border-radius:7px;padding:7px 10px;font-size:12px;cursor:pointer;font-weight:700;transition:all .15s;}
+.match-opt.selected{border-color:var(--p);background:var(--pl);color:var(--p);}
+.match-opt.correct{border-color:var(--g);background:var(--gl);color:var(--g);}
+.match-opt.wrong{border-color:var(--r);background:var(--rl);color:var(--r);}
+
+/* ── SONG ── */
+.song-card{background:linear-gradient(135deg,var(--pk),#EC4899);border-radius:var(--radius);padding:18px;text-align:center;color:#fff;margin-bottom:12px;}
+.song-note{font-size:44px;display:block;margin-bottom:7px;}
+.song-note.spinning{animation:spin 2s linear infinite;}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.song-t{font-family:'Fredoka One',sans-serif;font-size:18px;margin-bottom:3px;}
+.song-sub{font-size:11px;opacity:.8;margin-bottom:12px;}
+.song-play{background:#fff;border:none;border-radius:10px;padding:10px 20px;font-size:13px;font-weight:800;color:var(--pk);cursor:pointer;transition:all .15s;font-family:'Nunito',sans-serif;}
+.song-play:active{transform:scale(.97);}
+.song-lyrics{background:#ffffff22;border-radius:10px;padding:12px;text-align:left;margin-top:12px;font-size:12px;line-height:2.2;font-style:italic;}
+.song-lyrics .chorus{color:#FFD93D;font-weight:700;font-style:normal;}
+
+/* ── PHONICS ── */
+.phon-header{background:linear-gradient(135deg,var(--y),#F59E0B);border-radius:var(--radius);padding:14px;text-align:center;color:#fff;margin-bottom:12px;}
+.phon-title{font-family:'Fredoka One',sans-serif;font-size:17px;margin-bottom:4px;}
+.phon-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px;}
+.phon-item{background:var(--white);border-radius:10px;padding:10px 6px;text-align:center;cursor:pointer;transition:all .15s;box-shadow:0 2px 6px #00000008;border:2px solid transparent;}
+.phon-item:active{transform:scale(.95);}
+.phon-item.played{border-color:var(--g);background:var(--gl);}
+.phon-e{font-size:26px;display:block;margin-bottom:4px;}
+.phon-letter{font-family:'Fredoka One',sans-serif;font-size:14px;color:var(--p);}
+.phon-word{font-size:10px;color:var(--gray);margin-top:1px;}
+.phon-quiz{background:var(--white);border-radius:var(--radius);padding:14px;box-shadow:0 2px 8px #0000000a;}
+.phon-quiz-title{font-size:12px;font-weight:800;color:var(--gray);text-transform:uppercase;margin-bottom:10px;}
+
+/* ── SKILLS (Reading) ── */
+.reading-text{background:var(--white);border-radius:var(--radius);padding:14px;box-shadow:0 2px 8px #0000000a;margin-bottom:12px;}
+.reading-title{font-family:'Fredoka One',sans-serif;font-size:16px;color:var(--p);margin-bottom:8px;}
+.reading-author{font-size:11px;color:var(--gray);margin-bottom:10px;}
+.reading-body{font-size:13px;line-height:2;color:var(--dark);background:#F8FAFC;border-radius:8px;padding:12px;}
+.reading-body b{color:var(--p);}
+.tf-card{background:var(--white);border-radius:var(--radius);padding:14px;box-shadow:0 2px 8px #0000000a;margin-bottom:10px;}
+.tf-q{font-size:13px;font-weight:700;color:var(--dark);margin-bottom:8px;line-height:1.6;}
+.tf-btns{display:flex;gap:7px;}
+.tf-btn{flex:1;padding:9px;border-radius:8px;border:2px solid var(--border);background:transparent;font-size:13px;font-weight:800;font-family:'Nunito',sans-serif;cursor:pointer;transition:all .15s;}
+.tf-btn.t{color:var(--g);}
+.tf-btn.f{color:var(--r);}
+.tf-btn.sel-t{background:var(--gl);border-color:var(--g);}
+.tf-btn.sel-f{background:var(--rl);border-color:var(--r);}
+
+/* ── WRITING ── */
+.write-task{background:var(--white);border-radius:var(--radius);padding:14px;box-shadow:0 2px 8px #0000000a;margin-bottom:12px;}
+.write-instr{font-size:13px;font-weight:700;color:var(--dark);margin-bottom:10px;}
+.write-input{width:100%;border:2px solid var(--border);border-radius:8px;padding:10px 12px;font-size:14px;font-family:'Nunito',sans-serif;color:var(--dark);outline:none;min-height:70px;resize:none;transition:border-color .2s;}
+.write-input:focus{border-color:var(--p);}
+.write-input.correct{border-color:var(--g);background:var(--gl);}
+.write-input.wrong{border-color:var(--r);background:var(--rl);}
+.fill-inp{width:100%;border:none;border-bottom:2px solid var(--p);background:transparent;font-family:'Nunito',sans-serif;font-size:14px;color:var(--dark);padding:4px 6px;outline:none;display:inline-block;}
+.fill-sent{font-size:14px;line-height:2.4;color:var(--dark);margin-bottom:8px;}
+
+/* ── WORKBOOK ── */
+.wb-section{background:var(--white);border-radius:var(--radius);padding:14px;box-shadow:0 2px 8px #0000000a;margin-bottom:12px;}
+.wb-section-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--gray);margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+.wb-q{font-size:13px;color:var(--dark);margin-bottom:8px;line-height:1.7;font-weight:600;}
+
+/* ── DRAG & DROP ORDER ── */
+.order-slots{display:flex;flex-wrap:wrap;gap:5px;min-height:38px;border:2px dashed var(--border);border-radius:8px;padding:7px;margin-bottom:8px;background:#FAFAFA;}
+.slot-chip{background:var(--p);color:#fff;border-radius:6px;padding:5px 10px;font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;}
+.slot-chip:active{transform:scale(.96);}
+.word-bank{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px;}
+.bank-chip{background:var(--pl);color:var(--p);border-radius:6px;padding:5px 10px;font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;}
+.bank-chip:active{transform:scale(.96);}
+.bank-chip.used{opacity:.3;cursor:default;pointer-events:none;}
+
+/* ── FEEDBACK ── */
+.fb{text-align:center;font-size:12px;font-weight:700;min-height:18px;margin:6px 0;}
+.fb.ok{color:var(--g);}
+.fb.err{color:var(--r);}
+
+/* ── CHECK BTN ── */
+.check-btn{width:100%;padding:12px;background:var(--p);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:800;font-family:'Nunito',sans-serif;cursor:pointer;margin-top:8px;transition:all .15s;}
+.check-btn:active{transform:scale(.98);background:#3730A3;}
+
+/* ── COMPLETE ── */
+.complete{background:linear-gradient(135deg,var(--p),#7C3AED);border-radius:var(--radius);padding:24px 16px;text-align:center;color:#fff;margin-bottom:14px;}
+.complete-e{font-size:52px;display:block;margin-bottom:10px;animation:bounce .8s infinite;}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.complete-t{font-family:'Fredoka One',sans-serif;font-size:22px;margin-bottom:5px;}
+.complete-s{font-size:12px;opacity:.8;margin-bottom:12px;}
+.complete-stars{font-size:26px;letter-spacing:3px;margin-bottom:14px;}
+.home-btn{background:#fff;border:none;border-radius:10px;padding:10px 22px;font-size:13px;font-weight:800;font-family:'Nunito',sans-serif;color:var(--p);cursor:pointer;}
+
+/* ── BOTTOM NAV ── */
+.bnav{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--border);display:flex;padding:8px 0 max(8px,env(safe-area-inset-bottom));z-index:100;}
+.bn{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;padding:3px 0;}
+.bn-ico{font-size:20px;}
+.bn-lbl{font-size:9px;font-weight:700;color:var(--gray);}
+.bn.active .bn-lbl{color:var(--p);}
+
+/* ── PROFILE ── */
+.prof-hero{background:linear-gradient(135deg,#7C3AED,var(--p));padding:24px 14px;text-align:center;}
+.prof-av{font-size:48px;display:block;margin-bottom:7px;}
+.prof-name{font-family:'Fredoka One',sans-serif;font-size:20px;color:#fff;}
+.prof-lvl{font-size:11px;color:#C7D2FE;margin-top:2px;}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;padding:14px;}
+.stat-box{background:var(--white);border-radius:var(--radius-sm);padding:10px;text-align:center;box-shadow:0 2px 6px #00000006;}
+.stat-v{font-family:'Fredoka One',sans-serif;font-size:20px;}
+.stat-l{font-size:10px;color:var(--gray);margin-top:1px;}
+.ach-grid{display:flex;flex-wrap:wrap;gap:7px;padding:0 14px 14px;}
+.ach{background:var(--yl);border-radius:8px;padding:7px 11px;font-size:11px;font-weight:700;color:var(--y);display:flex;align-items:center;gap:5px;}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:88px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--dark);color:#fff;padding:9px 18px;border-radius:18px;font-size:12px;font-weight:700;opacity:0;transition:all .3s;z-index:200;pointer-events:none;white-space:nowrap;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* ── INFO BOX ── */
+.info-box{background:var(--pl);border-left:4px solid var(--p);border-radius:8px;padding:10px 12px;font-size:12px;color:var(--dark);line-height:1.7;margin-bottom:10px;}
+.info-box b{color:var(--p);}
+</style>
+</head>
+<body>
+<div id="toast" class="toast"></div>
+
+<!-- HOME -->
+<div class="screen active" id="screen-home">
+  <div class="hdr">
+    <span style="font-size:22px">📚</span>
+    <div class="hdr-title">Kids English</div>
+    <div class="hdr-star">⭐ <span id="hs">0</span></div>
+  </div>
+  <div class="main">
+    <div class="hero">
+      <span class="hero-ico">🌟</span>
+      <div class="hero-t">Family and Friends 2</div>
+      <div class="hero-s">O'ynab o'rgan — har kuni yangi dars!</div>
+      <div class="hero-prog">
+        <div class="prog-lbl"><span>Umumiy progress</span><span id="hpct">0%</span></div>
+        <div class="prog-bar"><div class="prog-fill" id="hbar" style="width:0%"></div></div>
+      </div>
+    </div>
+    <div class="streak">
+      <div style="font-size:30px;animation:pulse 1s infinite">🔥</div>
+      <div>
+        <div class="streak-n" id="stn">0 kun</div>
+        <div class="streak-lbl">Ketma-ket o'rganmoqdasiz!</div>
+        <div class="s-days">
+          <div class="sday done">Du</div><div class="sday done">Se</div>
+          <div class="sday today">Bu</div><div class="sday empty">Pa</div>
+          <div class="sday empty">Ju</div><div class="sday empty">Sh</div>
+          <div class="sday empty">Ya</div>
+        </div>
+      </div>
+    </div>
+    <div class="section"><div class="sec-title">📖 Barcha darslar</div></div>
+    <div class="unit-list" id="unit-list"></div>
+  </div>
+</div>
+
+<!-- LESSON -->
+<div class="screen" id="screen-lesson">
+  <div class="hdr" id="lhdr">
+    <button class="hdr-back" onclick="goHome()">←</button>
+    <div class="hdr-title" id="ltitle">Dars</div>
+    <div class="hdr-star">⭐ <span id="ls">0</span></div>
+  </div>
+  <div class="ltabs" id="ltabs"></div>
+  <div class="lcontent main" id="lbody"></div>
+</div>
+
+<!-- PROFILE -->
+<div class="screen" id="screen-profile">
+  <div class="hdr"><span style="font-size:22px">👤</span><div class="hdr-title">Mening profilim</div></div>
+  <div class="main">
+    <div class="prof-hero">
+      <span class="prof-av">🦸</span>
+      <div class="prof-name">O'quvchi</div>
+      <div class="prof-lvl">⭐ Daraja <span id="plvl">1</span></div>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box"><div class="stat-v" style="color:var(--o)" id="ps">0</div><div class="stat-l">Yulduz</div></div>
+      <div class="stat-box"><div class="stat-v" style="color:var(--g)" id="pu">0</div><div class="stat-l">Bitirgan</div></div>
+      <div class="stat-box"><div class="stat-v" style="color:var(--p)" id="pk2">0</div><div class="stat-l">🔥 Kun</div></div>
+    </div>
+    <div style="padding:0 14px"><div class="sec-title">🏆 Yutuqlar</div><div class="ach-grid" id="achs"></div></div>
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bnav">
+  <div class="bn active" onclick="showTab('home')" id="bn-home"><div class="bn-ico">🏠</div><div class="bn-lbl">Bosh</div></div>
+  <div class="bn" onclick="showTab('profile')" id="bn-profile"><div class="bn-ico">👤</div><div class="bn-lbl">Profil</div></div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════════════
+//  DATA
+// ══════════════════════════════════════════════════════════════
+const UNITS = [
+ {
+  id:'starter', num:'Starter', name:'Welcome back!', emoji:'👋', color:'#4338CA', colorL:'#EEF2FF',
+  tracks:[1,2,3],
+  lessons:[
+   {
+    id:'words', label:'📖 So\'zlar',
+    words1:[
+      {w:'family',uz:'Oila',e:'👨‍👩‍👧‍👦',s:'Hello! My name\'s Rosy. <b>I\'ve got</b> a big family.'},
+      {w:'hair',uz:'Soch',e:'💇',s:'I\'ve got <b>brown hair</b>.'},
+      {w:'eyes',uz:'Ko\'zlar',e:'👀',s:'He\'s got <b>green eyes</b>.'},
+      {w:'cousin',uz:'Amakivachcha',e:'🧒',s:'This is my <b>cousin</b>, Tim.'},
+      {w:'brother',uz:'Aka/Uka',e:'👦',s:'I\'ve got a little <b>brother</b>.'},
+      {w:'sister',uz:'Opa/Singil',e:'👧',s:'She\'s my <b>sister</b>.'},
+    ],
+    words2:[
+      {w:'grandma',uz:'Buvi',e:'👵',s:'This is my <b>grandma</b>.'},
+      {w:'grandpa',uz:'Bobo',e:'👴',s:'That is my <b>grandpa</b>.'},
+      {w:'mum',uz:'Ona',e:'👩',s:'This is my <b>mum</b>.'},
+      {w:'dad',uz:'Ota',e:'👨',s:'This is my <b>dad</b>.'},
+      {w:'aunt',uz:'Xola/Amma',e:'👩‍🦱',s:'She is my <b>aunt</b>.'},
+      {w:'uncle',uz:'Tog\'a/Amma eri',e:'👨‍🦱',s:'He is my <b>uncle</b>.'},
+    ],
+    dialog:[
+      {sp:'Rosy',t:'Hello. My name\'s Rosy. I\'ve got brown hair.',side:'l'},
+      {sp:'Rosy',t:'This is my cousin, Tim. He\'s got green eyes.',side:'l'},
+      {sp:'Tim',t:'Hello, everyone!',side:'r'},
+      {sp:'Rosy',t:'I\'ve got a little brother. His name\'s Billy. He\'s got curly hair.',side:'l'},
+      {sp:'Rosy',t:'This is Billy\'s bedroom. He\'s got lots of teddy bears.',side:'l'},
+      {sp:'Rosy',t:'Where\'s Billy? Is he under the bed?',side:'l'},
+      {sp:'Tim',t:'No, he isn\'t.',side:'r'},
+      {sp:'Billy',t:'It\'s me! Billy!',side:'r'},
+    ]
+   },
+   {
+    id:'grammar', label:'📝 Grammatika',
+    rules:[
+     {
+      title:"I've got / He's got / She's got",
+      table:[
+        ['Men','I\'ve got','I have got'],
+        ['U (erkak)','He\'s got','He has got'],
+        ['U (ayol)','She\'s got','She has got'],
+      ],
+      examples:[
+        "I've <b>got</b> brown hair.",
+        "He's <b>got</b> green eyes.",
+        "She's <b>got</b> curly hair.",
+        "Billy's <b>got</b> lots of teddy bears.",
+      ],
+      quizzes:[
+        {q:'She ___ brown hair.',opts:["'s got","'ve got","am got","are got"],a:0,exp:"She's got = She has got ✅"},
+        {q:"I ___ a little brother.",opts:["'ve got","'s got","has got","are got"],a:0,exp:"I've got = I have got ✅"},
+        {q:"He ___ green eyes.",opts:["'s got","'ve got","am","are"],a:0,exp:"He's got = He has got ✅"},
+        {q:"My name ___ Billy.",opts:["'s","'ve","am","got"],a:0,exp:"My name's = My name is ✅"},
+      ]
+     },
+     {
+      title:"Where's ...? Is he ... ? No, he isn't.",
+      examples:[
+        "<b>Where's</b> Billy?",
+        "Is he <b>under</b> the bed?",
+        "No, he <b>isn't</b>.",
+        "<b>There are</b> lots of teddy bears.",
+      ],
+      quizzes:[
+        {q:"Where's Billy? ___ under the bed?",opts:['Is he','Are he','He is','Does he'],a:0,exp:"Is he = savol shakli ✅"},
+        {q:"No, he ___.",opts:["isn't","aren't","don't","won't"],a:0,exp:"Isn't = is not. To'g'ri inkor ✅"},
+      ]
+     }
+    ]
+   },
+   {
+    id:'song', label:'🎵 Qo\'shiq',
+    song:{
+      title:'Welcome Song',track:1,
+      lyrics:"Welcome back\nTo all our friends.\nFun and learning\nNever end!\n\n🎵 Welcome back,\nIt's a happy day.\nA day for learning,\nA day for play!\n\nMonday, Tuesday, Wednesday, Jump!\nThursday, Friday, Down with a bump!\nSaturday, Sunday, Let's say 'Hi!'\nDays of the week. Let's say 'Goodbye!'",
+      extra_words:[
+        {w:'ball',uz:'To\'p',e:'⚽'},{w:'car',uz:'Mashina',e:'🚗'},
+        {w:'train',uz:'Poyezd',e:'🚂'},{w:'doll',uz:'Qo\'g\'irchoq',e:'🪆'},
+        {w:'teddy',uz:'Ayiqcha',e:'🧸'},{w:'puzzle',uz:'Pazl',e:'🧩'},
+      ]
+    }
+   },
+   {
+    id:'phonics', label:'🔤 Phonics',
+    phonics:{
+      title:'Alphabet & Initial Sounds',track:3,
+      chant:"A, B, C, D, E, F, G,\nCome and play this game with me.\nH, I, J, K, L, M, N,\nClose your eyes and count to ten.\nO, P, Q, R, S, T,\nTouch your nose and touch your knee.\nU, V, W, X, Y, Z,\nTouch your feet and touch your head.",
+      items:[
+        {l:'Aa',w:'apple',e:'🍎'},{l:'Bb',w:'ball',e:'⚽'},{l:'Cc',w:'cat',e:'🐱'},
+        {l:'Dd',w:'dog',e:'🐶'},{l:'Ee',w:'egg',e:'🥚'},{l:'Ff',w:'fish',e:'🐟'},
+        {l:'Gg',w:'goat',e:'🐐'},{l:'Hh',w:'hat',e:'🎩'},{l:'Ii',w:'ink',e:'✒️'},
+        {l:'Jj',w:'jug',e:'🏺'},{l:'Kk',w:'kite',e:'🪁'},{l:'Ll',w:'lion',e:'🦁'},
+        {l:'Mm',w:'mop',e:'🧹'},{l:'Nn',w:'net',e:'🥅'},{l:'Oo',w:'orange',e:'🍊'},
+        {l:'Pp',w:'pencil',e:'✏️'},{l:'Qq',w:'queen',e:'👸'},{l:'Rr',w:'ruler',e:'📏'},
+        {l:'Ss',w:'sun',e:'☀️'},{l:'Tt',w:'table',e:'🪑'},{l:'Uu',w:'umbrella',e:'☂️'},
+        {l:'Vv',w:'van',e:'🚐'},{l:'Ww',w:'window',e:'🪟'},{l:'Xx',w:'box',e:'📦'},
+      ],
+      quiz:[
+        {q:'Pencil qaysi harf bilan boshlanadi?',opts:['P','B','D','F'],a:0},
+        {q:'Apple qaysi harf bilan boshlanadi?',opts:['A','E','O','I'],a:0},
+        {q:'Dog qaysi harf bilan boshlanadi?',opts:['D','G','B','P'],a:0},
+        {q:'Fish qaysi harf bilan boshlanadi?',opts:['F','V','H','S'],a:0},
+        {q:'Goat qaysi harf bilan boshlanadi?',opts:['G','J','C','K'],a:0},
+        {q:'Hat qaysi harf bilan boshlanadi?',opts:['H','A','N','M'],a:0},
+      ]
+    }
+   },
+   {
+    id:'skills', label:'📖 Skills Time',
+    reading:{
+      title:'My name\'s Peter',
+      text:"My name's Peter. I go to Orange Park School. Look at these pictures of my school.\n\nOur <b>classroom</b> is upstairs. It's very big and bright.\n\nI'm in class 3C. There are <b>12 girls</b> and <b>14 boys</b> in my class. Our teacher is Mrs Cooper.\n\nThere are lots of <b>pictures and posters</b> on the wall. We sit at tables. I sit with my friend Henry.\n\nThere is a <b>swimming pool</b>, too. I love my school!",
+      questions:[
+        {q:'Where is Peter\'s classroom?',opts:['upstairs','downstairs'],a:0},
+        {q:'How many boys are in Peter\'s class?',opts:['14','12'],a:0},
+        {q:'What is on the wall?',opts:['pictures and posters','tables and chairs'],a:0},
+        {q:'Is there a swimming pool?',opts:['Yes, there is.','No, there isn\'t.'],a:0},
+        {q:'What is Peter\'s teacher\'s name?',opts:['Mrs Cooper','Miss Jones'],a:0},
+      ]
+    },
+    listening:{
+      title:'Listening — Listen and number',
+      instruction:'Quyidagi so\'zlarni eshiting va to\'g\'ri variantni tanlang:',
+      items:[
+        {q:'How many girls are there?',opts:['2','3','4','5'],a:0,hint:'There are two girls.'},
+        {q:'What colour is his hair?',opts:['brown','black','blond','red'],a:0,hint:"It's brown."},
+      ]
+    },
+    writing:{
+      title:'Writing — Capital letters',
+      instruction:'Gaplarni to\'g\'ri yozing (bosh harflarni ishlatishni unutmang):',
+      tasks:[
+        {sentence:"my name's peter.",correct:"My name's Peter.",hint:"Ism bosh harf bilan boshlanadi!"},
+        {sentence:"this is my school.",correct:"This is my school.",hint:"Gap bosh harf bilan boshlanadi!"},
+        {sentence:"our teacher is mrs cooper.",correct:"Our teacher is Mrs Cooper.",hint:"Ism-shariflar bosh harf bilan yoziladi!"},
+      ]
+    }
+   },
+   {
+    id:'workbook', label:'✏️ Mashqlar',
+    exercises:[
+     {
+      type:'fill_blanks',title:'1-mashq: Bo\'shliqlarni to\'ldiring',
+      instruction:"She's got / He's got / I've got so\'zlarini to\'g\'ri joyiga qo\'ying:",
+      items:[
+        {sent:"___ brown hair. (Rosy)",blanks:["She's got"],answer:"She's got"},
+        {sent:"___ green eyes. (Tim)",blanks:["He's got"],answer:"He's got"},
+        {sent:"___ a little brother. (Men)",blanks:["I've got"],answer:"I've got"},
+        {sent:"___ curly hair. (Billy)",blanks:["He's got"],answer:"He's got"},
+      ]
+     },
+     {
+      type:'match',title:'2-mashq: Moslashtiring',
+      instruction:"Inglizcha so'zlarni o'zbekcha tarjimasiga moslashtiring:",
+      pairs:[
+        ['mum','Ona'],['dad','Ota'],['grandma','Buvi'],
+        ['grandpa','Bobo'],['cousin','Amakivachcha'],['brother','Aka/Uka'],
+      ]
+     },
+     {
+      type:'true_false',title:'3-mashq: To\'g\'ri yoki Noto\'g\'ri?',
+      items:[
+        {q:"Rosy's got brown hair.",a:true,exp:"To'g'ri! Rosy's got brown hair ✅"},
+        {q:"Billy is Rosy's cousin.",a:false,exp:"Noto'g'ri! Billy is Rosy's BROTHER ❌"},
+        {q:"Tim's got green eyes.",a:true,exp:"To'g'ri! He's got green eyes ✅"},
+        {q:"There are 10 teddy bears.",a:false,exp:"Noto'g'ri! 'lots of teddy bears' deyilgan, 10 emas ❌"},
+      ]
+     },
+     {
+      type:'order',title:'4-mashq: So\'zlarni tartibga soling',
+      instruction:"So'zlarni to'g'ri tartibda joylashtiring:",
+      items:[
+        {words:["is","This","Rosy's","mum","."],answer:"This is Rosy's mum ."},
+        {words:["got","I've","a","brother","little","."],answer:"I've got a little brother ."},
+        {words:["He's","curly","got","hair","."],answer:"He's got curly hair ."},
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  id:'unit1', num:'Unit 1', name:'Our new things', emoji:'🏫', color:'#16A34A', colorL:'#DCFCE7',
+  tracks:[4,5,6],
+  lessons:[
+   {
+    id:'words', label:'📖 So\'zlar',
+    words1:[
+      {w:'classroom',uz:'Sinf xonasi',e:'🏫',s:"Look at our new <b>classroom</b>!"},
+      {w:'table',uz:'Stol/Parta',e:'🪑',s:"These are your new <b>tables</b>."},
+      {w:'computer',uz:'Kompyuter',e:'💻',s:"This is the new <b>computer</b>. Look!"},
+      {w:'peg',uz:'Qoqmoq/Ilgich',e:'🪝',s:"Those are your new <b>pegs</b>. Animal pegs!"},
+      {w:'pencil case',uz:'Qalamdon',e:'🖊️',s:"This is my new <b>pencil case</b>."},
+      {w:'board',uz:'Doska',e:'📋',s:"That is our new <b>whiteboard</b>."},
+    ],
+    words2:[
+      {w:'poster',uz:'Plakat',e:'🖼️',s:"There are <b>posters</b> on the wall."},
+      {w:'picture',uz:'Rasm',e:'🎨',s:"There are <b>pictures</b> on the wall."},
+      {w:'drawers',uz:'Tortma',e:'🗄️',s:"There are <b>drawers</b> in the classroom."},
+      {w:'cupboard',uz:'Shkaf',e:'🚪',s:"There is a <b>cupboard</b> in the corner."},
+      {w:'CD player',uz:'CD pleer',e:'📻',s:"We've got a new <b>CD player</b>!"},
+      {w:'chair',uz:'Stul',e:'💺',s:"Sit on your <b>chair</b>, please."},
+    ],
+    dialog:[
+      {sp:'Teacher',t:'Look at the classroom. These are your new tables and chairs.',side:'l'},
+      {sp:'Teacher',t:'Those are your new pegs. Animal pegs!',side:'l'},
+      {sp:'Pupil',t:'Wow!',side:'r'},
+      {sp:'Teacher',t:'That is our new whiteboard. And this is the new computer.',side:'l'},
+      {sp:'Teacher',t:'Do you like our new things?',side:'l'},
+      {sp:'Pupils',t:'Yes, we do!',side:'r'},
+      {sp:'Tim',t:'And is this a new teddy, Rosy?',side:'r'},
+      {sp:'Rosy',t:'No! This is my new pencil case. Look, new pencils and pens!',side:'l'},
+    ]
+   },
+   {
+    id:'grammar', label:'📝 Grammatika',
+    rules:[
+     {
+      title:'This / That / These / Those',
+      table:[
+        ['This is','Yaqin, bitta','This is the new computer.'],
+        ['That is','Uzoq, bitta','That is our new whiteboard.'],
+        ['These are','Yaqin, ko\'p','These are your new tables.'],
+        ['Those are','Uzoq, ko\'p','Those are your new pegs.'],
+      ],
+      examples:[
+        "<b>This is</b> the new computer. (yaqin, bitta)",
+        "<b>That is</b> a new board. (uzoq, bitta)",
+        "<b>These are</b> new tables. (yaqin, ko'p)",
+        "<b>Those are</b> new pegs. (uzoq, ko'p)",
+      ],
+      quizzes:[
+        {q:'___ are your new pegs. (uzoq, ko\'p)',opts:['Those','These','This','That'],a:0,exp:"Those = uzoqdagi ko'p narsalar ✅"},
+        {q:'___ is the new computer. (yaqin, bitta)',opts:['This','That','These','Those'],a:0,exp:"This = yaqindagi bitta narsa ✅"},
+        {q:'___ are new tables. (yaqin, ko\'p)',opts:['These','Those','This','That'],a:0,exp:"These = yaqindagi ko'p narsalar ✅"},
+        {q:'___ is a new board. (uzoq, bitta)',opts:['That','This','Those','These'],a:0,exp:"That = uzoqdagi bitta narsa ✅"},
+        {q:'___ are bags. (yaqin, ko\'p)',opts:['These','Those','That','This'],a:0,exp:"These = yaqindagi ko'p narsalar ✅"},
+        {q:'___ is a ruler. (uzoq, bitta)',opts:['That','This','These','Those'],a:0,exp:"That = uzoqdagi bitta narsa ✅"},
+      ]
+     },
+     {
+      title:'There is / There are',
+      examples:[
+        "<b>There is</b> a board in the classroom. (bitta)",
+        "<b>There are</b> 12 girls in my class. (ko'p)",
+        "<b>How many</b> girls are there?",
+        "There <b>is</b> a swimming pool.",
+      ],
+      quizzes:[
+        {q:'There ___ 14 boys in my class.',opts:['are','is','am','be'],a:0,exp:"There are = ko'p (plural) uchun ✅"},
+        {q:'There ___ a new computer.',opts:['is','are','am','be'],a:0,exp:"There is = bitta (singular) uchun ✅"},
+      ]
+     }
+    ]
+   },
+   {
+    id:'song', label:'🎵 Qo\'shiq',
+    song:{
+      title:"What's in the classroom?",track:4,
+      lyrics:"What's in the classroom?\nLet's have a look!\nPosters and pictures,\nAnd work in a book.\n\n🎵 What's in the classroom?\nWhat can you see?\nDrawers and a cupboard\nFor you and for me.\n\nWhat's in the classroom?\nWhat's over there?\nA door and a window,\nA table and chair.\n\n🎵 What's in the classroom?\nWhat can you see?\nA board and pegs\nFor you and for me.",
+      extra_words:[
+        {w:'poster',uz:'Plakat',e:'🖼️'},{w:'picture',uz:'Rasm',e:'🎨'},
+        {w:'drawers',uz:'Tortma',e:'🗄️'},{w:'cupboard',uz:'Shkaf',e:'🚪'},
+        {w:'door',uz:'Eshik',e:'🚪'},{w:'window',uz:'Deraza',e:'🪟'},
+      ]
+    }
+   },
+   {
+    id:'phonics', label:'🔤 Phonics',
+    phonics:{
+      title:'Alphabet Review — Initial Sounds',track:6,
+      chant:"A, B, C, D, E, F, G,\nCome and play this game with me.\nH, I, J, K, L, M, N,\nClose your eyes and count to ten.\nO, P, Q, R, S, T,\nTouch your nose and touch your knee.",
+      items:[
+        {l:'Mm',w:'mop',e:'🧹'},{l:'Nn',w:'net',e:'🥅'},{l:'Oo',w:'orange',e:'🍊'},
+        {l:'Pp',w:'pencil',e:'✏️'},{l:'Qq',w:'queen',e:'👸'},{l:'Rr',w:'ruler',e:'📏'},
+        {l:'Ss',w:'school',e:'🏫'},{l:'Tt',w:'table',e:'🪑'},{l:'Uu',w:'umbrella',e:'☂️'},
+        {l:'Vv',w:'van',e:'🚐'},{l:'Ww',w:'window',e:'🪟'},{l:'Xx',w:'box',e:'📦'},
+        {l:'Yy',w:'yellow',e:'💛'},{l:'Zz',w:'zebra',e:'🦓'},{l:'Aa',w:'apple',e:'🍎'},
+        {l:'Bb',w:'board',e:'📋'},{l:'Cc',w:'computer',e:'💻'},{l:'Dd',w:'door',e:'🚪'},
+      ],
+      quiz:[
+        {q:'Marker (pen) qaysi tovush bilan boshlanadi?',opts:['p','m','b','d'],a:0},
+        {q:'Ruler qaysi harf bilan boshlanadi?',opts:['r','l','u','n'],a:0},
+        {q:'School qaysi harf bilan boshlanadi?',opts:['s','c','h','k'],a:0},
+        {q:'Dog qaysi harf bilan boshlanadi?',opts:['d','b','g','p'],a:0},
+        {q:'Lion qaysi harf bilan boshlanadi?',opts:['l','i','n','r'],a:0},
+        {q:'Apple qaysi harf bilan boshlanadi?',opts:['a','e','p','o'],a:0},
+      ]
+    }
+   },
+   {
+    id:'skills', label:'📖 Skills Time',
+    reading:{
+      title:"My School — Peter's description",
+      text:"My name's Peter. I go to <b>Orange Park School</b>. Look at these pictures of my school.\n\nOur classroom is <b>upstairs</b>. It's very big and bright.\n\nI'm in class <b>3C</b>. There are <b>12 girls</b> and <b>14 boys</b> in my class. Our teacher is <b>Mrs Cooper</b>.\n\nThere are lots of pictures and posters on the wall. We sit at tables. I sit with my friend <b>Henry</b>.\n\nThere is a <b>swimming pool</b>, too. I love my school!",
+      questions:[
+        {q:'Peter\'s classroom is ...',opts:['upstairs','downstairs'],a:0},
+        {q:'There are ___ boys in Peter\'s class.',opts:['14','12'],a:0},
+        {q:'Peter sits with his friend ...',opts:['Henry','Tim'],a:0},
+        {q:'Is there a swimming pool?',opts:['Yes, there is.','No, there isn\'t.'],a:0},
+        {q:'Peter\'s teacher is ...',opts:['Mrs Cooper','Miss Jones'],a:0},
+      ]
+    },
+    listening:{
+      title:'Listening — Look and say',
+      instruction:'Rasmga qarang va to\'g\'ri javobni tanlang:',
+      items:[
+        {q:'How many girls are there in the picture?',opts:['2','3','4','1'],a:0,hint:'There are two girls.'},
+        {q:'What colour is the teacher\'s dress?',opts:['blue','red','green','yellow'],a:0,hint:"It's blue."},
+        {q:'Where is the alphabet?',opts:['on the wall','on the desk','in the cupboard','on the floor'],a:0,hint:'It\'s on the wall.'},
+      ]
+    },
+    writing:{
+      title:'Writing — Capital letters',
+      instruction:'Gapni to\'g\'ri yozing — bosh harflarni to\'g\'ri joylashtiring:',
+      tasks:[
+        {sentence:"we've got a new cd player.",correct:"We've got a new CD player.",hint:"Gap va CD bosh harf bilan!"},
+        {sentence:"our teacher is mrs cooper.",correct:"Our teacher is Mrs Cooper.",hint:"Our va ism-shariflar bosh harf!"},
+        {sentence:"those are your new pegs, rosy.",correct:"Those are your new pegs, Rosy.",hint:"Gap boshi va ism bosh harf!"},
+      ]
+    }
+   },
+   {
+    id:'workbook', label:'✏️ Mashqlar',
+    exercises:[
+     {
+      type:'match',title:'1-mashq: Moslashtiring (Match)',
+      instruction:"This/That/These/Those bilan to'g'ri fe'lni moslashtiring:",
+      pairs:[['This','is'],['That','is'],['These','are'],['Those','are']]
+     },
+     {
+      type:'fill_blanks',title:'2-mashq: To\'ldiring (Write)',
+      instruction:"This is / That is / These are / Those are — to'g'ri variantni yozing:",
+      items:[
+        {sent:"___ tables and chairs. (yaqin, ko'p)",answer:'These are'},
+        {sent:"___ pegs. (uzoq, ko'p)",answer:'Those are'},
+        {sent:"___ a computer. (yaqin, bitta)",answer:'This is'},
+        {sent:"___ a board. (uzoq, bitta)",answer:'That is'},
+      ]
+     },
+     {
+      type:'true_false',title:'3-mashq: To\'g\'ri / Noto\'g\'ri (T/F)',
+      items:[
+        {q:"There are 12 girls and 14 boys in Peter's class.",a:true,exp:"To'g'ri! 12 girls + 14 boys ✅"},
+        {q:"Peter's classroom is downstairs.",a:false,exp:"Noto'g'ri! It's UPSTAIRS ❌"},
+        {q:"There is a swimming pool at Peter's school.",a:true,exp:"To'g'ri! There is a swimming pool ✅"},
+        {q:"Peter's teacher is Miss Jones.",a:false,exp:"Noto'g'ri! The teacher is MRS COOPER ❌"},
+      ]
+     },
+     {
+      type:'order',title:'4-mashq: Tartibga soling',
+      instruction:"So'zlarni to'g'ri tartibda joylashtiring:",
+      items:[
+        {words:['are','These','and','tables','chairs','.'],answer:'These are tables and chairs .'},
+        {words:['is','That','whiteboard','our','new','.'],answer:'That is our new whiteboard .'},
+        {words:['new','a','is','swimming','there','pool','.'],answer:'there is a new swimming pool .'},
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  id:'unit2',num:'Unit 2',name:"They're happy now!",emoji:'😊',color:'#DB2777',colorL:'#FCE7F3',
+  tracks:[7,8,9],locked:true,
+  lessons:[
+   {id:'words',label:'📖 So\'zlar',
+    words1:[
+      {w:'happy',uz:'Xursand',e:'😊',s:"She's <b>happy</b> today!"},
+      {w:'sad',uz:'Xafa',e:'😢',s:"He's <b>sad</b>. Don't be sad!"},
+      {w:'angry',uz:'G\'azablangan',e:'😠',s:"Are you <b>angry</b>?"},
+      {w:'tired',uz:'Charchagan',e:'😴',s:"I'm <b>tired</b> now."},
+      {w:'scared',uz:'Qo\'rqqan',e:'😨',s:"He's <b>scared</b> of spiders."},
+      {w:'surprised',uz:'Hayron',e:'😲',s:"She's <b>surprised</b>!"},
+    ],
+    words2:[
+      {w:'excited',uz:'Hayajonlangan',e:'🤩',s:"They're <b>excited</b> about the party!"},
+      {w:'bored',uz:'Zerikkan',e:'😑',s:"She's <b>bored</b> in the lesson."},
+      {w:'hot',uz:'Issiq',e:'🥵',s:"I'm <b>hot</b>. Open the window!"},
+      {w:'cold',uz:'Sovuq',e:'🥶',s:"They're <b>cold</b> outside."},
+      {w:'hungry',uz:'Och',e:'🍽️',s:"He's <b>hungry</b>. Let's eat!"},
+      {w:'thirsty',uz:'Chanqagan',e:'🥤',s:"I'm <b>thirsty</b>. I need water."},
+    ],
+    dialog:[
+      {sp:'Rosy',t:"They're happy now! Look at them!",side:'l'},
+      {sp:'Tim',t:"Is he sad? No, he isn't. He's happy!",side:'r'},
+      {sp:'Rosy',t:"Are they tired? Yes, they are.",side:'l'},
+      {sp:'Tim',t:"She's scared! Look — a spider!",side:'r'},
+      {sp:'Rosy',t:"We're surprised! Wow!",side:'l'},
+    ]
+   },
+   {id:'grammar',label:'📝 Grammatika',
+    rules:[
+     {
+      title:"We're / They're ... Are they ...?",
+      table:[
+        ['We\'re','We are','We\'re happy!'],
+        ['They\'re','They are','They\'re tired.'],
+        ['Are they...?','Savol shakli','Are they sad?'],
+        ['Yes/No','Javob','Yes, they are. / No, they aren\'t.'],
+      ],
+      examples:[
+        "<b>We're</b> happy now!",
+        "<b>They're</b> tired.",
+        "<b>Are they</b> sad? No, they <b>aren't</b>.",
+        "Is he <b>angry</b>? Yes, he <b>is</b>.",
+      ],
+      quizzes:[
+        {q:"___ happy now!",opts:["We're","I'm","He's","She's"],a:0,exp:"We're = We are ✅"},
+        {q:"Are they sad? No, they ___.",opts:["aren't","isn't","am not","wasn't"],a:0,exp:"They aren't = They are not ✅"},
+        {q:"Is she ___? Yes, she is.",opts:['happy','happys','happiing','happyed'],a:0,exp:"Sifat o'zgarmaydi! She is happy ✅"},
+        {q:"___ tired. (Ular)",opts:["They're","We're","I'm","She's"],a:0,exp:"They're = They are ✅"},
+      ]
+     }
+    ]
+   },
+   {id:'song',label:'🎵 Qo\'shiq',
+    song:{title:"My feelings poem",track:7,
+      lyrics:"R is for READING,\nA poem: 'My feelings'\n\nHappy, happy, I'm so happy,\nSmiling, laughing, clap, clap, clap!\nSad, sad, I'm a little sad,\nCrying, frowning — that's too bad!\n\n🎵 Are we happy? Yes, we are!\nAre we tired? Yes, we are!\nAre you angry? No, we're not!\nWe're surprised! Give it all you've got!",
+      extra_words:[
+        {w:'smile',uz:'Tabassum',e:'😊'},{w:'frown',uz:'Ajin',e:'😟'},
+        {w:'cry',uz:'Yig\'lash',e:'😢'},{w:'laugh',uz:'Kulish',e:'😂'},
+      ]
+    }
+   },
+   {id:'phonics',label:'🔤 Phonics',
+    phonics:{title:'ch, sh, th — Digraphs',track:9,
+      chant:"Ch, ch, ch — chair and teacher!\nSh, sh, sh — shoes and fish!\nTh, th, th — thumb and bath!\nListen carefully and repeat!",
+      items:[
+        {l:'ch',w:'chair',e:'💺'},{l:'ch',w:'teacher',e:'👨‍🏫'},{l:'ch',w:'cheese',e:'🧀'},
+        {l:'sh',w:'shoes',e:'👟'},{l:'sh',w:'fish',e:'🐟'},{l:'sh',w:'shirt',e:'👕'},
+        {l:'th',w:'thumb',e:'👍'},{l:'th',w:'bath',e:'🛁'},{l:'th',w:'three',e:'3️⃣'},
+      ],
+      quiz:[
+        {q:"Chair qaysi tovush bilan boshlanadi?",opts:['ch','sh','th','wh'],a:0},
+        {q:"Shoes qaysi tovush bilan boshlanadi?",opts:['sh','ch','th','ph'],a:0},
+        {q:"Thumb qaysi tovush bilan boshlanadi?",opts:['th','sh','ch','ph'],a:0},
+        {q:"Fish qaysi tovush bilan tugaydi?",opts:['sh','ch','th','ph'],a:0},
+      ]
+    }
+   },
+   {id:'skills',label:'📖 Skills Time',
+    reading:{
+      title:"Long and short forms",
+      text:"Look at these sentences. Find the <b>long</b> and <b>short</b> forms:\n\n• Is he sad? <b>No, he isn't.</b> = No, he is not.\n• <b>She's</b> happy. = She is happy.\n• <b>We're</b> tired. = We are tired.\n• <b>They're</b> surprised. = They are surprised.\n• <b>It's</b> fun! = It is fun!\n\nShort forms are used in <b>spoken English</b> and informal writing.",
+      questions:[
+        {q:"She's = ...",opts:['She is','She was','She has','She does'],a:0},
+        {q:"They're = ...",opts:['They are','They were','They have','They do'],a:0},
+        {q:"Isn't = ...",opts:['is not','was not','are not','has not'],a:0},
+        {q:"We're = ...",opts:['We are','We were','We have','We do'],a:0},
+      ]
+    },
+    listening:{title:'Listening',instruction:'To\'g\'ri javobni tanlang:',
+      items:[
+        {q:"Is she happy?",opts:['Yes, she is.','No, she isn\'t.'],a:0,hint:'She\'s happy!'},
+        {q:"Are they tired?",opts:['Yes, they are.','No, they aren\'t.'],a:1,hint:"They aren't tired, they're excited!"},
+      ]
+    },
+    writing:{title:'Writing — Long and short forms',instruction:'Qisqa shakldan uzun shaklni yozing:',
+      tasks:[
+        {sentence:"She's happy.",correct:"She is happy.",hint:"She's = She is"},
+        {sentence:"They're tired.",correct:"They are tired.",hint:"They're = They are"},
+        {sentence:"He isn't sad.",correct:"He is not sad.",hint:"Isn't = is not"},
+      ]
+    }
+   },
+   {id:'workbook',label:'✏️ Mashqlar',
+    exercises:[
+     {type:'fill_blanks',title:'1-mashq: Bo\'shliqlarni to\'ldiring',instruction:"We're / They're / I'm — to'g'ri variantini yozing:",
+      items:[
+        {sent:"___ happy now! (Biz)",answer:"We're"},
+        {sent:"___ tired. (Ular)",answer:"They're"},
+        {sent:"___ surprised! (Men)",answer:"I'm"},
+        {sent:"___ sad. (Ular)",answer:"They're"},
+      ]
+     },
+     {type:'true_false',title:'2-mashq: T/F',
+      items:[
+        {q:"We're = We are",a:true,exp:"To'g'ri! We're = We are ✅"},
+        {q:"They aren't = They are",a:false,exp:"Noto'g'ri! They aren't = They are NOT ❌"},
+        {q:"Is she happy? Yes, she is. — bu to'g'ri gap.",a:true,exp:"To'g'ri! ✅"},
+        {q:"Scared = Xursand",a:false,exp:"Noto'g'ri! Scared = Qo'rqqan ❌"},
+      ]
+     },
+     {type:'order',title:'3-mashq: Tartibga soling',instruction:"",
+      items:[
+        {words:["happy","We're","now","!"],answer:"We're happy now !"},
+        {words:["they","Are","sad","?"],answer:"Are they sad ?"},
+        {words:["they","No,","aren't","."],answer:"No, they aren't ."},
+      ]
+     }
+    ]
+   }
+  ]
+ }
+];
+
+// ══════════════════════════════════════════════════════════════
+//  STATE
+// ══════════════════════════════════════════════════════════════
+let ST = {
+  stars: +localStorage.getItem('ke_stars')||0,
+  streak: +localStorage.getItem('ke_streak')||2,
+  progress: JSON.parse(localStorage.getItem('ke_progress')||'{}'),
+  unit: null, tabIdx:0, vocabIdx:0, vocabSet:1
+};
+function save(){
+  localStorage.setItem('ke_stars',ST.stars);
+  localStorage.setItem('ke_streak',ST.streak);
+  localStorage.setItem('ke_progress',JSON.stringify(ST.progress));
+}
+
+// ══════════════════════════════════════════════════════════════
+//  NAVIGATION
+// ══════════════════════════════════════════════════════════════
+function showTab(n){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.bn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('screen-'+n).classList.add('active');
+  document.getElementById('bn-'+n)?.classList.add('active');
+  if(n==='profile') renderProfile();
+}
+function goHome(){showTab('home'); renderHome();}
+
+// ══════════════════════════════════════════════════════════════
+//  HOME
+// ══════════════════════════════════════════════════════════════
+function renderHome(){
+  document.getElementById('hs').textContent = ST.stars;
+  document.getElementById('stn').textContent = ST.streak+' kun';
+  const done = UNITS.filter(u=>ST.progress[u.id]?.done).length;
+  const pct = Math.round(done/UNITS.length*100);
+  document.getElementById('hpct').textContent = pct+'%';
+  document.getElementById('hbar').style.width = pct+'%';
+
+  const list = document.getElementById('unit-list');
+  list.innerHTML = '';
+  UNITS.forEach(u=>{
+    const pr = ST.progress[u.id];
+    const pct2 = pr ? Math.round((pr.tabs||0)/u.lessons.length*100) : 0;
+    const locked = u.locked && !pr;
+    const d = document.createElement('div');
+    d.className = 'ucard'+(locked?' locked':'');
+    d.innerHTML = `
+      <div class="ucard-head">
+        <div class="ucard-ico" style="background:${u.colorL}">${u.emoji}</div>
+        <div class="ucard-info">
+          <div class="ucard-num" style="color:${u.color}">${u.num} ${locked?'🔒':''}</div>
+          <div class="ucard-name">${u.name}</div>
+          <div class="ucard-meta">🎵 Track ${u.tracks[0]}–${u.tracks[2]} ${pct2>0?'• '+pct2+'% bajarildi':''} • ${u.lessons.length} dars</div>
+        </div>
+        <div style="font-size:20px;color:var(--border)">${locked?'':'›'}</div>
+      </div>
+      <div class="ucard-pbar"><div class="ucard-pfill" style="width:${pct2}%;background:${u.color}"></div></div>`;
+    if(!locked) d.onclick=()=>openUnit(u);
+    list.appendChild(d);
+  });
+}
+
+// ══════════════════════════════════════════════════════════════
+//  OPEN UNIT
+// ══════════════════════════════════════════════════════════════
+function openUnit(unit){
+  ST.unit=unit; ST.vocabIdx=0; ST.vocabSet=1;
+  document.getElementById('ltitle').textContent=unit.name;
+  document.getElementById('ls').textContent=ST.stars;
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-lesson').classList.add('active');
+  buildTabs(unit); showLesson(0);
+}
+
+function buildTabs(unit){
+  const tabs = document.getElementById('ltabs');
+  tabs.innerHTML='';
+  unit.lessons.forEach((l,i)=>{
+    const btn=document.createElement('button');
+    btn.className='ltab'+(i===0?' active':'');
+    btn.textContent=l.label;
+    btn.onclick=()=>{
+      document.querySelectorAll('.ltab').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      showLesson(i);
+    };
+    tabs.appendChild(btn);
+  });
+}
+
+function showLesson(idx){
+  ST.tabIdx=idx;
+  const unit=ST.unit;
+  const lesson=unit.lessons[idx];
+  const body=document.getElementById('lbody');
+  body.innerHTML='';
+  ST.vocabIdx=0; ST.vocabSet=1;
+
+  if(lesson.id==='words') renderWords(lesson,body,unit);
+  else if(lesson.id==='grammar') renderGrammar(lesson,body);
+  else if(lesson.id==='song') renderSong(lesson,body);
+  else if(lesson.id==='phonics') renderPhonics(lesson,body);
+  else if(lesson.id==='skills') renderSkills(lesson,body);
+  else if(lesson.id==='workbook') renderWorkbook(lesson,body,unit);
+
+  // Track progress
+  if(!ST.progress[unit.id]) ST.progress[unit.id]={tabs:0};
+  if((ST.progress[unit.id].tabs||0)<idx+1) ST.progress[unit.id].tabs=idx+1;
+  save();
+}
+
+// ══════════════════════════════════════════════════════════════
+//  WORDS
+// ══════════════════════════════════════════════════════════════
+function renderWords(lesson,body,unit){
+  // Set selector
+  const setBar=document.createElement('div');
+  setBar.style.cssText='display:flex;gap:8px;margin-bottom:12px;';
+  ['1-ro\'yxat','2-ro\'yxat'].forEach((lbl,si)=>{
+    const btn=document.createElement('button');
+    btn.className='check-btn';
+    btn.style.cssText=`flex:1;margin:0;padding:8px;font-size:12px;background:${ST.vocabSet===si+1?unit.color:'var(--border)'};color:${ST.vocabSet===si+1?'#fff':'var(--gray)'};`;
+    btn.textContent=lbl;
+    btn.onclick=()=>{ST.vocabSet=si+1;ST.vocabIdx=0;renderWords(lesson,body,unit);};
+    setBar.appendChild(btn);
+  });
+  body.appendChild(setBar);
+
+  const words=ST.vocabSet===1?lesson.words1:lesson.words2;
+
+  // Word grid
+  const gridTitle=document.createElement('div');
+  gridTitle.className='sec-title';
+  gridTitle.textContent='📋 Barcha so\'zlar';
+  body.appendChild(gridTitle);
+
+  const grid=document.createElement('div');
+  grid.className='wlist';
+  words.forEach((w,i)=>{
+    const item=document.createElement('div');
+    item.className='witem';
+    item.id='wi-'+i;
+    item.innerHTML=`<div class="witem-e">${w.e}</div><div class="witem-w">${w.w}</div><div class="witem-u">${w.uz}</div>`;
+    item.onclick=()=>{speak(w.w);item.classList.add('done');toast('🔊 '+w.w);};
+    grid.appendChild(item);
+  });
+  body.appendChild(grid);
+
+  // Flashcard
+  const fcTitle=document.createElement('div');
+  fcTitle.className='sec-title';
+  fcTitle.textContent='🃏 Karta';
+  body.appendChild(fcTitle);
+
+  function renderCard(){
+    const old=document.getElementById('vcard-wrap');
+    if(old) old.remove();
+    const wrap=document.createElement('div');
+    wrap.id='vcard-wrap';
+    const w=words[ST.vocabIdx];
+    const bg=`linear-gradient(135deg,${unit.color}22,${unit.color}44)`;
+    wrap.innerHTML=`
+      <div class="vcounter">${ST.vocabIdx+1} / ${words.length} so'z</div>
+      <div class="vdots">${words.map((_,i)=>`<div class="vdot${i===ST.vocabIdx?' active':''}"></div>`).join('')}</div>
+      <div class="vcard">
+        <div class="vcard-img" style="background:${bg}">${w.e}</div>
+        <div class="vcard-body">
+          <div class="vcard-word">${w.w}</div>
+          <div class="vcard-uz">🇺🇿 ${w.uz}</div>
+          <div class="vcard-sent">${w.s}</div>
+          <div style="display:flex;gap:8px;margin-top:10px;">
+            <button class="vbtn aud" id="vaud" onclick="speak('${w.w}',document.getElementById('vaud'))">🔊 So'zni eshit</button>
+          </div>
+          <div class="vbtns" style="margin-top:8px;">
+            <button class="vbtn prev" onclick="moveVocab(-1,${words.length})">← Oldingi</button>
+            <button class="vbtn nxt" onclick="moveVocab(1,${words.length})">Keyingi →</button>
+          </div>
+        </div>
+      </div>`;
+    const before=document.getElementById('vdialog');
+    if(before) body.insertBefore(wrap,before);
+    else body.appendChild(wrap);
+  }
+  renderCard();
+
+  window.moveVocab=(dir,total)=>{
+    ST.vocabIdx=Math.max(0,Math.min(total-1,ST.vocabIdx+dir));
+    if(dir>0&&ST.vocabIdx===total-1){addStars(1);toast('🌟 So\'zlar tugadi! +1 yulduz');}
+    renderCard();
+  };
+
+  // Dialog
+  if(lesson.dialog){
+    const dTitle=document.createElement('div');
+    dTitle.className='sec-title';
+    dTitle.id='vdialog';
+    dTitle.style.marginTop='14px';
+    dTitle.textContent='💬 Hikoya';
+    body.appendChild(dTitle);
+
+    const dpanel=document.createElement('div');
+    dpanel.className='dialog-panel';
+    dpanel.innerHTML=`<div class="dialog-title" style="display:flex;align-items:center;justify-content:space-between;">
+        <span>📖 Listen and read — Track ${unit.tracks[0]}</span>
+        <button onclick="playTrack(${unit.tracks[0]},this)" style="background:var(--p);border:none;border-radius:6px;padding:5px 10px;font-size:11px;font-weight:700;color:#fff;cursor:pointer;font-family:Nunito,sans-serif;">▶ Eshit</button>
+      </div>
+      <div class="dialog-box">${lesson.dialog.map(d=>
+        `<div class="line">
+          <div class="bubble ${d.side}" style="max-width:85%">
+            <span style="font-size:10px;font-weight:800;color:var(--p)">${d.sp}: </span>${d.t}
+          </div>
+        </div>`).join('')}
+      </div>`;
+    body.appendChild(dpanel);
+  }
+}
+
+// ══════════════════════════════════════════════════════════════
+//  GRAMMAR
+// ══════════════════════════════════════════════════════════════
+function renderGrammar(lesson,body){
+  lesson.rules.forEach((rule,ri)=>{
+    // Rule box
+    const rbox=document.createElement('div');
+    rbox.className='gram-rule';
+    let tableHtml='';
+    if(rule.table){
+      tableHtml=`<table class="gram-table">
+        <tr>${Object.keys(rule.table[0]).length>2?'<th>O\'zbek</th><th>Ingliz</th><th>Misol</th>':'<th>O\'zbek</th><th>Ingliz</th><th>Misol</th>'}</tr>
+        ${rule.table.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('')}
+      </table>`;
+    }
+    rbox.innerHTML=`
+      <div class="gram-rule-title">📐 ${rule.title}</div>
+      ${tableHtml}
+      <div class="gram-examples">${rule.examples.map(e=>`<div class="ex"><span class="ex-ico">▸</span><span>${e}</span></div>`).join('')}</div>`;
+    body.appendChild(rbox);
+
+    // Quizzes
+    const qTitle=document.createElement('div');
+    qTitle.className='sec-title';
+    qTitle.style.marginTop='12px';
+    qTitle.textContent='📝 Mashqlar';
+    body.appendChild(qTitle);
+
+    rule.quizzes.forEach((q,qi)=>{
+      const qcard=document.createElement('div');
+      qcard.className='quiz-card';
+      const expId=`qe-${ri}-${qi}`;
+      qcard.innerHTML=`
+        <div class="quiz-num">Savol ${qi+1}</div>
+        <div class="quiz-q">${q.q.replace('___','<span class="blank">___</span>')}</div>
+        <div class="quiz-opts">${q.opts.map((o,oi)=>
+          `<button class="qopt" onclick="checkQ(this,${oi},${q.a},'${esc(q.exp)}','${expId}')">${o}</button>`).join('')}
+        </div>
+        <div class="quiz-exp" id="${expId}"></div>`;
+      body.appendChild(qcard);
+    });
+  });
+}
+
+// ══════════════════════════════════════════════════════════════
+//  SONG
+// ══════════════════════════════════════════════════════════════
+function renderSong(lesson,body){
+  const s=lesson.song;
+  let playing=false;
+
+  const scard=document.createElement('div');
+  scard.className='song-card';
+  scard.innerHTML=`
+    <span class="song-note" id="snote">🎵</span>
+    <div class="song-t">${s.title}</div>
+    <div class="song-sub">Track ${s.track} — Eshitib, kuylab ko'ring!</div>
+    <button class="song-play" id="spbtn" onclick="toggleSong()">▶ Boshlash</button>
+    <div class="song-lyrics">${s.lyrics.replace(/\n/g,'<br>').replace(/🎵/g,'<span class="chorus">🎵</span>')}</div>`;
+  body.appendChild(scard);
+
+  let audioEl = null;
+  window.toggleSong=()=>{
+    playing=!playing;
+    document.getElementById('snote').classList.toggle('spinning',playing);
+    document.getElementById('spbtn').textContent=playing?'⏸ To\'xtatish':'▶ Boshlash';
+    if(playing){
+      const trackNum = String(s.track).padStart(2,'0');
+      const audioSrc = `audio/track${trackNum}.mp3`;
+      if(!audioEl){ audioEl = new Audio(); }
+      audioEl.src = audioSrc;
+      audioEl.play().catch(()=>{
+        toast('🎵 Audio yuklanmoqda...');
+      });
+      audioEl.onended = ()=>{
+        playing=false;
+        document.getElementById('snote')?.classList.remove('spinning');
+        document.getElementById('spbtn').textContent='▶ Boshlash';
+      };
+      addStars(1); toast('🎵 Qo\'shiq boshlandi! +1 yulduz');
+    } else {
+      if(audioEl){ audioEl.pause(); audioEl.currentTime=0; }
+    }
+  };
+
+  // Extra words
+  if(s.extra_words){
+    const ewt=document.createElement('div');
+    ewt.className='sec-title';
+    ewt.style.marginTop='14px';
+    ewt.textContent='📚 Qo\'shiqdagi yangi so\'zlar';
+    body.appendChild(ewt);
+    const ew=document.createElement('div');
+    ew.className='wlist';
+    s.extra_words.forEach(w=>{
+      const item=document.createElement('div');
+      item.className='witem';
+      item.innerHTML=`<div class="witem-e">${w.e}</div><div class="witem-w">${w.w}</div><div class="witem-u">${w.uz}</div>`;
+      item.onclick=()=>{speak(w.w);item.classList.add('done');toast('🔊 '+w.w);};
+      ew.appendChild(item);
+    });
+    body.appendChild(ew);
+  }
+}
+
+// ══════════════════════════════════════════════════════════════
+//  PHONICS
+// ══════════════════════════════════════════════════════════════
+function renderPhonics(lesson,body){
+  const p=lesson.phonics;
+
+  const hdr=document.createElement('div');
+  hdr.className='phon-header';
+  hdr.innerHTML=`<div class="phon-title">🔤 ${p.title}</div><div style="font-size:11px;opacity:.8">Track ${lesson.phonics.track}</div>
+      <button onclick="playTrack(${lesson.phonics.track},this)" style="background:#fff;border:none;border-radius:8px;padding:6px 14px;font-size:12px;font-weight:700;color:var(--y);margin-top:8px;cursor:pointer;font-family:Nunito,sans-serif;">
+        🔊 Audio eshitish (Track ${lesson.phonics.track})
+      </button>`;
+  body.appendChild(hdr);
+
+  // Chant
+  const chant=document.createElement('div');
+  chant.className='wb-section';
+  chant.innerHTML=`<div class="wb-section-title">🎵 Chant</div>
+    <div style="background:#FFFBEB;border-radius:8px;padding:12px;font-size:13px;line-height:2.2;font-style:italic;color:var(--dark)">${p.chant.replace(/\n/g,'<br>')}</div>`;
+  body.appendChild(chant);
+
+  // Letters grid
+  const lt=document.createElement('div');
+  lt.className='sec-title';
+  lt.textContent='🔤 Harflar va so\'zlar';
+  body.appendChild(lt);
+
+  const grid=document.createElement('div');
+  grid.className='phon-grid';
+  p.items.forEach(item=>{
+    const d=document.createElement('div');
+    d.className='phon-item';
+    d.innerHTML=`<span class="phon-e">${item.e}</span><div class="phon-letter">${item.l}</div><div class="phon-word">${item.w}</div>`;
+    d.onclick=()=>{speak(item.w);d.classList.add('played');toast('🔊 '+item.l+' — '+item.w);};
+    grid.appendChild(d);
+  });
+  body.appendChild(grid);
+
+  // Quiz
+  const qt=document.createElement('div');
+  qt.className='sec-title';
+  qt.textContent='🎮 O\'yin — To\'g\'ri harfni toping';
+  body.appendChild(qt);
+
+  let pqIdx=0;
+  const pqContainer=document.createElement('div');
+  pqContainer.className='phon-quiz';
+  body.appendChild(pqContainer);
+
+  function renderPQ(){
+    if(pqIdx>=p.quiz.length){
+      pqContainer.innerHTML=`<div style="text-align:center;padding:16px;font-size:14px;font-weight:700;color:var(--g)">🎉 Barcha savollar bajarildi! Zo'r!</div>`;
+      return;
+    }
+    const q=p.quiz[pqIdx];
+    pqContainer.innerHTML=`
+      <div class="quiz-num">Savol ${pqIdx+1}/${p.quiz.length}</div>
+      <div class="quiz-q">${q.q}</div>
+      <div class="quiz-opts">${q.opts.map((o,i)=>
+        `<button class="qopt" onclick="checkPQ(this,${i},${q.a},pqContainer)">${o}</button>`).join('')}
+      </div>`;
+  }
+  window.checkPQ=(btn,chosen,ans,el)=>{
+    el.querySelectorAll('.qopt').forEach(b=>b.disabled=true);
+    if(chosen===ans){btn.classList.add('correct');addStars(1);toast('✅ To\'g\'ri! +1 yulduz');setTimeout(()=>{pqIdx++;renderPQ();},1000);}
+    else{btn.classList.add('wrong');el.querySelectorAll('.qopt')[ans].classList.add('correct');toast('❌ Noto\'g\'ri!');setTimeout(()=>{pqIdx++;renderPQ();},1500);}
+  };
+  renderPQ();
+}
+
+// ══════════════════════════════════════════════════════════════
+//  SKILLS
+// ══════════════════════════════════════════════════════════════
+function renderSkills(lesson,body){
+  // Reading
+  if(lesson.reading){
+    const rt=document.createElement('div');
+    rt.className='sec-title';
+    rt.textContent='📖 Reading';
+    body.appendChild(rt);
+
+    const rbox=document.createElement('div');
+    rbox.className='reading-text';
+    rbox.innerHTML=`<div class="reading-title">${lesson.reading.title}</div>
+      <div class="reading-body">${lesson.reading.text.replace(/\n/g,'<br>')}</div>`;
+    body.appendChild(rbox);
+
+    const cqt=document.createElement('div');
+    cqt.className='sec-title';
+    cqt.textContent='❓ Tushunish savollari';
+    body.appendChild(cqt);
+
+    lesson.reading.questions.forEach((q,i)=>{
+      const qc=document.createElement('div');
+      qc.className='quiz-card';
+      const eid=`rq-${i}`;
+      qc.innerHTML=`
+        <div class="quiz-num">Savol ${i+1}</div>
+        <div class="quiz-q">${q.q}</div>
+        <div class="quiz-opts">${q.opts.map((o,oi)=>
+          `<button class="qopt" onclick="checkQ(this,${oi},${q.a},'','${eid}')">${o}</button>`).join('')}
+        </div>
+        <div class="quiz-exp" id="${eid}"></div>`;
+      body.appendChild(qc);
+    });
+  }
+
+  // Listening
+  if(lesson.listening){
+    const lt=document.createElement('div');
+    lt.className='sec-title';
+    lt.style.marginTop='14px';
+    lt.textContent='🎧 Listening';
+    body.appendChild(lt);
+
+    const lb=document.createElement('div');
+    lb.className='wb-section';
+    lb.innerHTML=`<div class="wb-section-title">${lesson.listening.title}</div>
+      <div class="info-box">${lesson.listening.instruction}</div>`;
+    lesson.listening.items.forEach((item,i)=>{
+      const eid=`li-${i}`;
+      lb.innerHTML+=`
+        <div class="quiz-card" style="margin-bottom:8px;">
+          <div class="quiz-q">${item.q}</div>
+          <div class="quiz-opts">${item.opts.map((o,oi)=>
+            `<button class="qopt" onclick="checkQ(this,${oi},${item.a},'💡 ${esc(item.hint)}','${eid}')">${o}</button>`).join('')}
+          </div>
+          <div class="quiz-exp" id="${eid}"></div>
+        </div>`;
+    });
+    body.appendChild(lb);
+  }
+
+  // Writing
+  if(lesson.writing){
+    const wt=document.createElement('div');
+    wt.className='sec-title';
+    wt.style.marginTop='14px';
+    wt.textContent='✍️ Writing';
+    body.appendChild(wt);
+
+    const wb=document.createElement('div');
+    wb.className='write-task';
+    wb.innerHTML=`<div class="write-instr">${lesson.writing.instruction}</div>`;
+    lesson.writing.tasks.forEach((task,i)=>{
+      wb.innerHTML+=`
+        <div style="background:#F8FAFC;border-radius:8px;padding:10px;margin-bottom:8px;">
+          <div style="font-size:12px;color:var(--gray);margin-bottom:4px;">Savol ${i+1}:</div>
+          <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:6px;">${task.sentence}</div>
+          <input id="wi-${i}" type="text" class="write-input" style="min-height:auto;" placeholder="To'g'ri variantini yozing..." />
+          <div class="fb" id="wf-${i}"></div>
+        </div>`;
+    });
+    wb.innerHTML+=`<button class="check-btn" onclick="checkWriting(${lesson.writing.tasks.length})">✅ Tekshirish</button>`;
+    body.appendChild(wb);
+
+    window.checkWriting=(n)=>{
+      lesson.writing.tasks.forEach((task,i)=>{
+        const inp=document.getElementById('wi-'+i);
+        const fb=document.getElementById('wf-'+i);
+        const val=inp.value.trim();
+        if(val.toLowerCase()===task.correct.toLowerCase()||val===task.correct){
+          inp.className='write-input correct';
+          fb.className='fb ok'; fb.textContent='✅ To\'g\'ri!';
+          addStars(1);
+        } else if(val){
+          inp.className='write-input wrong';
+          fb.className='fb err'; fb.textContent='❌ '+task.hint;
+        }
+      });
+    };
+  }
+}
+
+// ══════════════════════════════════════════════════════════════
+//  WORKBOOK
+// ══════════════════════════════════════════════════════════════
+function renderWorkbook(lesson,body,unit){
+  const info=document.createElement('div');
+  info.className='info-box';
+  info.innerHTML=`<b>✏️ Workbook mashqlari</b> — Bu mashqlar darslik workbook (${unit.num}) dan olingan.`;
+  body.appendChild(info);
+
+  lesson.exercises.forEach((ex,ei)=>{
+    const sec=document.createElement('div');
+    sec.className='wb-section';
+
+    if(ex.type==='fill_blanks'){
+      sec.innerHTML=`<div class="wb-section-title">${ex.title}</div>
+        <div class="info-box">${ex.instruction}</div>`;
+      ex.items.forEach((item,i)=>{
+        sec.innerHTML+=`
+          <div style="margin-bottom:10px;">
+            <div class="wb-q">${i+1}. ${item.sent}</div>
+            <input id="fb-${ei}-${i}" type="text" style="width:100%;border:2px solid var(--border);border-radius:8px;padding:8px 10px;font-family:'Nunito',sans-serif;font-size:13px;outline:none;" placeholder="Javobingiz..."/>
+            <div class="fb" id="fbf-${ei}-${i}"></div>
+          </div>`;
+      });
+      sec.innerHTML+=`<button class="check-btn" onclick="checkFills(${ei},${ex.items.length})">✅ Tekshirish</button>`;
+      body.appendChild(sec);
+      ex.items.forEach((item,i)=>{
+        const el=document.getElementById(`fb-${ei}-${i}`);
+        if(el) el.addEventListener('focus',()=>el.style.borderColor='var(--p)');
+      });
+      window[`checkFills`]=window[`checkFills`]||{};
+      window.checkFills=(ei2,n)=>{
+        const exData=lesson.exercises[ei2];
+        exData.items.forEach((item2,i)=>{
+          const el=document.getElementById(`fb-${ei2}-${i}`);
+          const fb=document.getElementById(`fbf-${ei2}-${i}`);
+          if(!el||!fb)return;
+          if(el.value.trim().toLowerCase()===item2.answer.toLowerCase()){
+            el.style.borderColor='var(--g)';el.style.background='var(--gl)';
+            fb.className='fb ok';fb.textContent='✅ To\'g\'ri!';addStars(1);
+          }else if(el.value.trim()){
+            el.style.borderColor='var(--r)';el.style.background='var(--rl)';
+            fb.className='fb err';fb.textContent='❌ To\'g\'ri: '+item2.answer;
+          }
+        });
+        toast('✅ Tekshirildi!');
+      };
+    }
+
+    else if(ex.type==='match'){
+      sec.innerHTML=`<div class="wb-section-title">${ex.title}</div>
+        <div class="info-box">${ex.instruction}</div>`;
+      const pairs=ex.pairs;
+      const leftWords=pairs.map(p=>p[0]);
+      const rightWords=[...pairs.map(p=>p[1])].sort(()=>Math.random()-.5);
+      const selState={left:null,matched:{}};
+
+      const matchWrap=document.createElement('div');
+      matchWrap.style.cssText='display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;';
+
+      const leftCol=document.createElement('div');
+      leftCol.style.cssText='display:flex;flex-direction:column;gap:6px;';
+      const rightCol=document.createElement('div');
+      rightCol.style.cssText='display:flex;flex-direction:column;gap:6px;';
+
+      leftWords.forEach((w,i)=>{
+        const btn=document.createElement('button');
+        btn.id=`ml-${ei}-${i}`;
+        btn.style.cssText='background:var(--pl);border:2px solid var(--p);border-radius:8px;padding:8px 10px;font-size:12px;font-weight:700;color:var(--p);cursor:pointer;font-family:Nunito,sans-serif;text-align:left;';
+        btn.textContent=w;
+        btn.onclick=()=>{
+          if(selState.matched[i]) return;
+          document.querySelectorAll('[id^="ml-'+ei+'"]').forEach(b=>b.style.background='var(--pl)');
+          selState.left=i;
+          btn.style.background='#C7D2FE';
+        };
+        leftCol.appendChild(btn);
+      });
+
+      rightWords.forEach((w,i)=>{
+        const btn=document.createElement('button');
+        btn.id=`mr-${ei}-${i}`;
+        btn.style.cssText='background:#F8FAFC;border:2px solid var(--border);border-radius:8px;padding:8px 10px;font-size:12px;font-weight:700;color:var(--dark);cursor:pointer;font-family:Nunito,sans-serif;text-align:left;';
+        btn.textContent=w;
+        btn.onclick=()=>{
+          if(selState.left===null) return;
+          const li=selState.left;
+          const correctRight=pairs[li][1];
+          if(w===correctRight){
+            document.getElementById(`ml-${ei}-${li}`).style.cssText+=';background:var(--gl);border-color:var(--g);color:var(--g);';
+            btn.style.cssText+=';background:var(--gl);border-color:var(--g);color:var(--g);';
+            selState.matched[li]=true;
+            addStars(1); toast('✅ To\'g\'ri!');
+          } else {
+            toast('❌ Mos emas, qayta urinib ko\'ring!');
+          }
+          selState.left=null;
+          document.querySelectorAll('[id^="ml-'+ei+'"]').forEach(b=>{if(!selState.matched[Object.keys(selState.matched).find(k=>leftWords[k]===b.textContent)])b.style.background='var(--pl)';});
+        };
+        rightCol.appendChild(btn);
+      });
+
+      matchWrap.appendChild(leftCol);
+      matchWrap.appendChild(rightCol);
+      sec.appendChild(matchWrap);
+      body.appendChild(sec);
+    }
+
+    else if(ex.type==='true_false'){
+      sec.innerHTML=`<div class="wb-section-title">${ex.title}</div>`;
+      ex.items.forEach((item,i)=>{
+        const eid=`tf-${ei}-${i}`;
+        const tfc=document.createElement('div');
+        tfc.className='tf-card';
+        tfc.innerHTML=`
+          <div class="tf-q">${i+1}. ${item.q}</div>
+          <div class="tf-btns">
+            <button class="tf-btn t" onclick="checkTF2(this,'t',${item.a},'${esc(item.exp)}','${eid}')">✅ To'g'ri</button>
+            <button class="tf-btn f" onclick="checkTF2(this,'f',${item.a},'${esc(item.exp)}','${eid}')">❌ Noto'g'ri</button>
+          </div>
+          <div class="fb" id="${eid}"></div>`;
+        sec.appendChild(tfc);
+      });
+      body.appendChild(sec);
+    }
+
+    else if(ex.type==='order'){
+      sec.innerHTML=`<div class="wb-section-title">${ex.title}</div>`;
+      if(ex.instruction) sec.innerHTML+=`<div class="info-box">${ex.instruction}</div>`;
+      ex.items.forEach((item,i)=>{
+        const shuffled=[...item.words].sort(()=>Math.random()-.5);
+        const oid=`ord-${ei}-${i}`;
+        sec.innerHTML+=`
+          <div style="margin-bottom:14px;">
+            <div style="font-size:12px;color:var(--gray);margin-bottom:6px;">Jumla ${i+1}:</div>
+            <div class="order-slots" id="${oid}-slots"></div>
+            <div class="word-bank" id="${oid}-bank">
+              ${shuffled.map((w,wi)=>`<div class="bank-chip" id="${oid}-w${wi}" onclick="addToOrder('${oid}',this,'${w}')">${w}</div>`).join('')}
+            </div>
+            <div class="fb" id="${oid}-fb"></div>
+            <button class="check-btn" style="margin-top:4px;" onclick="checkOrder2('${oid}','${item.answer}')">✅ Tekshirish</button>
+          </div>`;
+      });
+      body.appendChild(sec);
+
+      window.addToOrder=(oid,chip,word)=>{
+        if(chip.classList.contains('used')) return;
+        chip.classList.add('used');
+        const slots=document.getElementById(oid+'-slots');
+        const sc=document.createElement('div');
+        sc.className='slot-chip'; sc.textContent=word;
+        sc.onclick=()=>{sc.remove(); chip.classList.remove('used');};
+        slots.appendChild(sc);
+      };
+      window.checkOrder2=(oid,ans)=>{
+        const slots=document.getElementById(oid+'-slots');
+        const result=Array.from(slots.querySelectorAll('.slot-chip')).map(c=>c.textContent).join(' ');
+        const fb=document.getElementById(oid+'-fb');
+        if(result===ans){
+          fb.className='fb ok'; fb.textContent='✅ To\'g\'ri tartib! Ajoyib!';
+          addStars(2); toast('✅ Zo\'r! +2 yulduz');
+        } else {
+          fb.className='fb err'; fb.textContent="❌ Qayta urinib ko'ring!";
+        }
+      };
+    }
+  });
+
+  // Complete button
+  const comp=document.createElement('button');
+  comp.className='check-btn';
+  comp.style.cssText=`background:${unit.color};margin-top:8px;`;
+  comp.textContent='🏆 Unitni tugatish!';
+  comp.onclick=()=>completeUnit(unit);
+  body.appendChild(comp);
+}
+
+// ══════════════════════════════════════════════════════════════
+//  HELPERS
+// ══════════════════════════════════════════════════════════════
+window.checkQ=(btn,chosen,ans,exp,expId)=>{
+  btn.closest('.quiz-opts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);
+  if(chosen===ans){
+    btn.classList.add('correct'); addStars(1); toast('✅ To\'g\'ri! +1 yulduz');
+  } else {
+    btn.classList.add('wrong');
+    btn.closest('.quiz-opts').querySelectorAll('.qopt')[ans].classList.add('correct');
+    toast('❌ Noto\'g\'ri!');
+  }
+  if(expId){
+    const el=document.getElementById(expId);
+    if(el){el.innerHTML=exp||''; el.classList.add('show');}
+  }
+};
+
+window.checkTF2=(btn,chosen,ans,exp,eid)=>{
+  const par=btn.closest('.tf-btns');
+  par.querySelectorAll('.tf-btn').forEach(b=>b.disabled=true);
+  const correct=(chosen==='t')===ans;
+  btn.classList.add(correct?(chosen==='t'?'sel-t':'sel-f'):(chosen==='t'?'sel-t':'sel-f'));
+  if(!correct) btn.style.cssText+=';background:var(--rl);border-color:var(--r);';
+  const fb=document.getElementById(eid);
+  if(fb){fb.className='fb '+(correct?'ok':'err'); fb.textContent=exp;}
+  if(correct){addStars(1);toast('✅ To\'g\'ri! +1 yulduz');}
+  else toast('❌ Noto\'g\'ri!');
+};
+
+function speak(word,btn){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(word);
+  u.lang='en-US'; u.rate=0.75; u.pitch=1.1;
+  if(btn){
+    const orig=btn.textContent;
+    btn.textContent='🔊...';
+    u.onend=()=>btn.textContent=orig;
+  }
+  speechSynthesis.speak(u);
+}
+
+function playTrack(trackNum, btn){
+  const src = `audio/track${String(trackNum).padStart(2,'0')}.mp3`;
+  const audio = new Audio(src);
+  if(btn){ 
+    const orig = btn.textContent;
+    btn.textContent = '🔊 ...';
+    btn.disabled = true;
+    audio.onended = ()=>{ btn.textContent=orig; btn.disabled=false; };
+    audio.onerror = ()=>{ btn.textContent=orig; btn.disabled=false; speak(btn.dataset.word||''); };
+  }
+  audio.play().catch(()=>{ if(btn){btn.textContent=btn.dataset.orig||'🔊'; btn.disabled=false;} });
+}
+
+function addStars(n){
+  ST.stars+=n;
+  document.getElementById('hs').textContent=ST.stars;
+  document.getElementById('ls').textContent=ST.stars;
+  save();
+}
+
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2000);
+}
+
+function esc(s){return (s||'').replace(/'/g,"\\'").replace(/"/g,'&quot;');}
+
+function completeUnit(unit){
+  if(!ST.progress[unit.id]) ST.progress[unit.id]={};
+  ST.progress[unit.id].done=true;
+  ST.progress[unit.id].tabs=unit.lessons.length;
+  addStars(5); save();
+  const body=document.getElementById('lbody');
+  body.innerHTML=`
+    <div class="complete">
+      <span class="complete-e">🏆</span>
+      <div class="complete-t">${unit.name}</div>
+      <div class="complete-s">Tabriklaymiz! Siz bu unitni muvaffaqiyatli bajardingiz!</div>
+      <div class="complete-stars">⭐⭐⭐⭐⭐</div>
+      <button class="home-btn" onclick="goHome()">🏠 Bosh sahifaga</button>
+    </div>`;
+  toast('🎉 Unit tugadi! +5 yulduz!');
+}
+
+function renderProfile(){
+  document.getElementById('ps').textContent=ST.stars;
+  document.getElementById('pu').textContent=UNITS.filter(u=>ST.progress[u.id]?.done).length;
+  document.getElementById('pk2').textContent=ST.streak;
+  document.getElementById('plvl').textContent=Math.floor(ST.stars/25)+1;
+  const ach=document.getElementById('achs');
+  const list=[];
+  if(ST.stars>=1) list.push({e:'⭐',t:'Birinchi yulduz'});
+  if(ST.stars>=10) list.push({e:'🌟',t:'10 yulduz'});
+  if(ST.stars>=25) list.push({e:'🏅',t:'25 yulduz'});
+  if(ST.streak>=2) list.push({e:'🔥',t:'2 kun streak'});
+  if(UNITS.filter(u=>ST.progress[u.id]?.done).length>=1) list.push({e:'🏆',t:'1-Unit bitirdi'});
+  ach.innerHTML=list.map(a=>`<div class="ach"><span>${a.e}</span>${a.t}</div>`).join('');
+}
+
+
+// ══ UNITS 3-15 ══
+const EXTRA=[
+ {id:'unit3',num:'Unit 3',name:'I can ride a bike!',emoji:'🚲',color:'#7C3AED',colorL:'#EDE9FE',tracks:[10,11,12],
+  lessons:[
+   {id:'words',label:"📖 So'zlar",
+    words1:[
+      {w:'ride a bike',uz:'Velosiped minish',e:'🚲',s:"I <b>can't ride a bike</b>. Can you teach me?"},
+      {w:'ride a horse',uz:'Ot minish',e:'🐴',s:"Can she <b>ride a horse</b>? Yes, she can."},
+      {w:'skate',uz:'Konki uchish',e:'⛸️',s:"I <b>can skate</b>. And I can swim."},
+      {w:'skateboard',uz:'Skeytbord',e:'🛹',s:"I <b>can't skateboard</b>."},
+      {w:'play tennis',uz:"Tennis o'ynash",e:'🎾',s:"Can she <b>play tennis</b>? Yes, she can."},
+      {w:'play football',uz:"Futbol o'ynash",e:'⚽',s:"They <b>can play football</b> very well."},
+    ],
+    words2:[
+      {w:'behind',uz:'Orqasida',e:'🔙',s:"I'm here, <b>behind</b> you."},
+      {w:'in front of',uz:'Oldida',e:'▶️',s:"The skateboard is <b>in front of</b> the table."},
+      {w:'next to',uz:'Yonida',e:'↔️',s:"It's <b>next to</b> the big toy box."},
+      {w:'between',uz:"O'rtasida",e:'↕️',s:"Look <b>between</b> the bed and chair."},
+      {w:'swim',uz:'Suzish',e:'🏊',s:"I can <b>swim</b> fast!"},
+      {w:'brave',uz:'Jasur',e:'💪',s:"Be <b>brave</b>! I'm here, behind you."},
+    ],
+    dialog:[
+      {sp:'Tim',t:"I can skate. I can swim. And I can skateboard.",side:'l'},
+      {sp:'Tim',t:"But I can't ride a bike. Can you teach me, Grandpa?",side:'l'},
+      {sp:'Grandpa',t:"Yes, of course.",side:'r'},
+      {sp:'Tim',t:"I'm scared, Grandpa.",side:'l'},
+      {sp:'Grandpa',t:"Be brave. I'm here, behind you.",side:'r'},
+      {sp:'Tim',t:"Look. You can ride a bike now!",side:'l'},
+      {sp:'Grandpa',t:"Wow! Thanks Grandpa!",side:'r'},
+    ]
+   },
+   {id:'grammar',label:'📝 Grammatika',
+    rules:[{title:"can / can't",
+      table:[['I can skate.','Men konki ucha olaman.'],["I can't skateboard.",'Men skeytbord mina olmayman.'],['Can she play tennis?',"Tennis o'ynay oladimi?"],['Yes, she can.','Ha, u o\'ynay oladi.'],["No, he can't.",'Yo\'q, u mina olmaydi.']],
+      examples:["I <b>can</b> skate. ✅","I <b>can't</b> skateboard. ❌","<b>Can</b> she play tennis? <b>Yes, she can.</b>","<b>Can</b> he ride a bike? <b>No, he can't.</b>"],
+      quizzes:[
+        {q:"She ___ play tennis. (uddalaydi)",opts:['can',"can't",'is','are'],a:0,exp:"Can = uddalaydi ✅"},
+        {q:"He ___ ride a bike. (udday olmaydi)",opts:["can't",'can','is',"isn't"],a:0,exp:"Can't = cannot ✅"},
+        {q:"___ she swim? Yes, she can.",opts:['Can','Is','Are','Does'],a:0,exp:"Can = savol shaklida birinchi keladi ✅"},
+        {q:"They ___ play football very well.",opts:['can',"can't",'is','are'],a:0,exp:"Can = uddalashadi ✅"},
+      ]},{title:"behind / in front of / next to / between",
+      examples:["The teddy is <b>behind</b> the door.","It's <b>in front of</b> the sofa.","It's <b>next to</b> the toy box.","Look <b>between</b> the bed and chair."],
+      quizzes:[
+        {q:"The ball is ___ the chair. (orqasida)",opts:['behind','next to','in front of','between'],a:0,exp:"Behind = orqasida ✅"},
+        {q:"She's ___ the desk. (oldida)",opts:['in front of','behind','between','next to'],a:0,exp:"In front of = oldida ✅"},
+      ]}
+    ]
+   },
+   {id:'song',label:"🎵 Qo'shiq",song:{title:'Where is my teddy bear?',track:10,
+      lyrics:"Where is my teddy bear?\nWhere is he?\nI can't find him anywhere!\n\n🎵 Look <b>behind</b> the bedroom door.\nIs he hiding there?\n\nLook <b>in front of</b> the sofa.\nIs he hiding there?\n\nLook <b>between</b> the bed and chair.\nIs he hiding there?\n\nLook <b>next to</b> the big toy box.\nYes, my teddy's hiding there!",
+      extra_words:[{w:'hiding',uz:'Yashiringan',e:'🙈'},{w:'anywhere',uz:'Hech qaerda',e:'🗺️'},{w:'sofa',uz:'Divan',e:'🛋️'}]}
+   },
+   {id:'phonics',label:'🔤 Phonics',phonics:{title:'CVC words — a, e, i, o, u',track:12,
+      chant:"A cat, cat, cat is in a van, van, van.\nA peg, peg, peg is by my bed, bed, bed.\nA fig, fig, fig is in the bin, bin, bin.\nA dog, dog, dog has got a mop, mop, mop.\nA mum, mum, mum is on the bus, bus, bus.",
+      items:[
+        {l:'a',w:'cat',e:'🐱'},{l:'a',w:'van',e:'🚐'},{l:'a',w:'hat',e:'🎩'},
+        {l:'e',w:'peg',e:'🪝'},{l:'e',w:'bed',e:'🛏️'},{l:'e',w:'hen',e:'🐔'},
+        {l:'i',w:'bin',e:'🗑️'},{l:'i',w:'fig',e:'🌿'},{l:'i',w:'pig',e:'🐷'},
+        {l:'o',w:'mop',e:'🧹'},{l:'o',w:'dog',e:'🐶'},{l:'o',w:'pot',e:'🪣'},
+        {l:'u',w:'bus',e:'🚌'},{l:'u',w:'jug',e:'🏺'},{l:'u',w:'sun',e:'☀️'},
+      ],
+      quiz:[
+        {q:"CAT — o'rtadagi unli?",opts:['a','e','i','o'],a:0},
+        {q:"PEG — o'rtadagi unli?",opts:['e','a','i','o'],a:0},
+        {q:"BIN — o'rtadagi unli?",opts:['i','e','a','u'],a:0},
+        {q:"MOP — o'rtadagi unli?",opts:['o','u','e','a'],a:0},
+        {q:"BUS — o'rtadagi unli?",opts:['u','o','i','e'],a:0},
+      ]}
+   },
+   {id:'skills',label:'📖 Skills Time',
+    reading:{title:'Outdoor Toys — Web page',
+      text:"<b>Outdoor Toys</b>\n\nThis is a perfect <b>bike</b> for children aged 7 to 10. It has got big wheels. You can ride it on grass or sand.\n\n<b>Scooters</b> are really good fun. This scooter is fast and easy to ride. It has two small wheels.\n\nThese <b>skates</b> have four wheels on each skate — easy and safe for new skaters!\n\nThis <b>swing</b> is perfect for fun in your garden. Two children can play together.",
+      questions:[
+        {q:'The bike is for children aged ...',opts:['7 to 10','5 to 8'],a:0},
+        {q:'The scooter has ___ wheels.',opts:['two small','four big'],a:0},
+        {q:'The skates have ___ wheels.',opts:['four','two'],a:0},
+        {q:'___ children can use the swing.',opts:['Two','Three'],a:0},
+      ]
+    },
+    listening:{title:'Listening',instruction:"To'g'ri javobni tanlang:",
+      items:[
+        {q:"Where's the skateboard?",opts:["It's in front of the table.","It's behind the chair."],a:0,hint:"In front of the table!"},
+        {q:"Where are the skates?",opts:["Next to the bag.","Between the chairs."],a:0,hint:"Next to the bag!"},
+      ]
+    },
+    writing:{title:'Writing — a or an',instruction:"Unli harf oldidan AN, boshqalar oldidan A yozing:",
+      tasks:[
+        {sentence:"It is ___ orange bike.",correct:"It is an orange bike.",hint:"Orange — unli → AN!"},
+        {sentence:"This is ___ skateboard.",correct:"This is a skateboard.",hint:"Skateboard — s → A!"},
+        {sentence:"I've got ___ umbrella.",correct:"I've got an umbrella.",hint:"Umbrella — unli → AN!"},
+      ]
+    }
+   },
+   {id:'workbook',label:'✏️ Mashqlar',
+    exercises:[
+     {type:'fill_blanks',title:"1-mashq: can / can't",instruction:"To'g'ri variantni yozing:",
+      items:[
+        {sent:"He ___ ride a bike. ✅",answer:'can'},
+        {sent:"She ___ skateboard. ❌",answer:"can't"},
+        {sent:"___ they play football?",answer:'Can'},
+        {sent:"I ___ swim fast. ✅",answer:'can'},
+      ]
+     },
+     {type:'true_false',title:'2-mashq: T/F',
+      items:[
+        {q:"I can skate = Men konki ucha olaman.",a:true,exp:"To'g'ri! ✅"},
+        {q:"Can't = can.",a:false,exp:"Noto'g'ri! Can't = CANNOT ❌"},
+        {q:"Behind = orqasida",a:true,exp:"To'g'ri! ✅"},
+        {q:"In front of = yonida",a:false,exp:"Noto'g'ri! In front of = OLDIDA ❌"},
+      ]
+     },
+     {type:'order',title:'3-mashq: Tartibga soling',instruction:"",
+      items:[
+        {words:['can','I','bike','a','ride','.'],answer:'I can ride a bike .'},
+        {words:["can't","She","tennis","play",'.'],answer:"She can't play tennis ."},
+        {words:['he','Can','skate','?'],answer:'Can he skate ?'},
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {id:'unit4',num:'Unit 4',name:'Have you got a milkshake?',emoji:'🥤',color:'#EA580C',colorL:'#FFF7ED',tracks:[13,14,15],
+  lessons:[
+   {id:'words',label:"📖 So'zlar",
+    words1:[
+      {w:'milkshake',uz:'Milk-sheyk',e:'🥤',s:"<b>Have you got</b> a milkshake? Yes, I have."},
+      {w:'fries',uz:'Kartoshka fri',e:'🍟',s:"<b>Have you got</b> fries? No, I haven't."},
+      {w:'cheese sandwich',uz:'Pishloqli sendvich',e:'🥪',s:"<b>Has he got</b> a cheese sandwich? Yes, he has."},
+      {w:'pizza',uz:'Pizza',e:'🍕',s:"<b>Has she got</b> a pizza? No, she hasn't."},
+      {w:'salad',uz:'Salat',e:'🥗',s:"I've got a fresh <b>salad</b>."},
+      {w:'chicken',uz:"Tovuq go'shti",e:'🍗',s:"She's got <b>chicken</b> and rice."},
+    ],
+    words2:[
+      {w:'twenty',uz:'Yigirma',e:'2️⃣0️⃣',s:"She's got <b>twenty</b> stickers."},
+      {w:'thirty',uz:"O'ttiz",e:'3️⃣0️⃣',s:"He's got <b>thirty</b> marbles."},
+      {w:'forty',uz:'Qirq',e:'4️⃣0️⃣',s:"There are <b>forty</b> children."},
+      {w:'fifty',uz:'Ellik',e:'5️⃣0️⃣',s:"Grandpa is <b>fifty</b> years old."},
+      {w:'sixty',uz:'Oltmish',e:'6️⃣0️⃣',s:"There are <b>sixty</b> pages."},
+      {w:'one hundred',uz:'Yuz',e:'💯',s:"Let's count to <b>one hundred</b>!"},
+    ],
+    dialog:[
+      {sp:'Waitress',t:"Have you got a milkshake?",side:'l'},
+      {sp:'Tim',t:"Yes, I have.",side:'r'},
+      {sp:'Waitress',t:"Have you got fries?",side:'l'},
+      {sp:'Tim',t:"No, I haven't.",side:'r'},
+      {sp:'Waitress',t:"Has he got a cheese sandwich?",side:'l'},
+      {sp:'Rosy',t:"Yes, he has.",side:'r'},
+      {sp:'Waitress',t:"Has she got a pizza?",side:'l'},
+      {sp:'Rosy',t:"No, she hasn't. She's got salad.",side:'r'},
+    ]
+   },
+   {id:'grammar',label:'📝 Grammatika',
+    rules:[{title:"Have you got...? Has he/she got...?",
+      table:[
+        ['Have you got...?','Senda bormi?','Have you got a milkshake?'],
+        ['Yes, I have.','Ha, menda bor.','Yes, I have.'],
+        ["No, I haven't.",'Yo\'q, menda yo\'q.',"No, I haven't."],
+        ['Has he/she got...?','Unda bormi?','Has he got a sandwich?'],
+        ['Yes, he/she has.','Ha, unda bor.','Yes, he has.'],
+        ["No, he/she hasn't.",'Yo\'q, unda yo\'q.',"No, she hasn't."],
+      ],
+      examples:[
+        "<b>Have</b> you got a milkshake? Yes, I <b>have</b>.",
+        "<b>Have</b> you got fries? No, I <b>haven't</b>.",
+        "<b>Has</b> he got a sandwich? Yes, he <b>has</b>.",
+        "<b>Has</b> she got a pizza? No, she <b>hasn't</b>.",
+      ],
+      quizzes:[
+        {q:"Have you got a sandwich? Yes, I ___.",opts:['have',"haven't",'has',"hasn't"],a:0,exp:"Yes, I have. ✅"},
+        {q:"___ he got a milkshake?",opts:['Has','Have','Is','Are'],a:0,exp:"He/She/It bilan HAS ✅"},
+        {q:"She ___ got any cake.",opts:["hasn't","haven't","isn't","aren't"],a:0,exp:"She hasn't got = has not got ✅"},
+        {q:"Have you got salad? No, I ___.",opts:["haven't",'have',"hasn't",'has'],a:0,exp:"No, I haven't. ✅"},
+      ]}
+    ]
+   },
+   {id:'song',label:"🎵 Qo'shiq",song:{title:"Let's count to one hundred!",track:13,
+      lyrics:"Let's count to one hundred.\nIt's time to start.\n10, 20, 30 ...\nYes, good start!\n\n🎵 40, 50, 60 ...\nYes, clever you!\n\n70, 80 ...\nThe numbers are high.\n\n🎵 90, 100.\nCounting is fun!",
+      extra_words:[{w:'seventy',uz:'Yetmish',e:'7️⃣0️⃣'},{w:'eighty',uz:'Sakson',e:'8️⃣0️⃣'},{w:'ninety',uz:"To'qson",e:'9️⃣0️⃣'}]}
+   },
+   {id:'phonics',label:'🔤 Phonics',phonics:{title:'Consonant blends: gr, br, fr',track:15,
+      chant:"There are grapes and bread,\nAnd juice in a glass.\nFriends together,\nIn the green, green grass.\nPlay with a frisbee, play football.",
+      items:[
+        {l:'gr',w:'grass',e:'🌿'},{l:'gr',w:'grapes',e:'🍇'},{l:'gr',w:'green',e:'💚'},
+        {l:'br',w:'brush',e:'🪥'},{l:'br',w:'bread',e:'🍞'},{l:'br',w:'brown',e:'🟤'},
+        {l:'fr',w:'frog',e:'🐸'},{l:'fr',w:'frisbee',e:'🥏'},{l:'fr',w:'fruit',e:'🍎'},
+      ],
+      quiz:[
+        {q:'GRapes — boshidagi tovush?',opts:['gr','br','fr','tr'],a:0},
+        {q:'BRead — boshidagi tovush?',opts:['br','gr','fr','dr'],a:0},
+        {q:'FRog — boshidagi tovush?',opts:['fr','gr','br','pr'],a:0},
+        {q:'GReen — boshidagi tovush?',opts:['gr','gl','cr','pr'],a:0},
+      ]}
+   },
+   {id:'skills',label:'📖 Skills Time',
+    reading:{title:"My lunch",
+      text:"Look at my lunch!\nI've got a <b>cheese sandwich</b>. It's delicious!\nI've got some <b>grapes</b> — they are green and fresh.\nFor my drink, I've got <b>apple juice</b>.\nHave you got apples? Yes, we have!\nI haven't got any <b>chocolate</b>.",
+      questions:[
+        {q:'What sandwich has she got?',opts:['cheese sandwich','chicken sandwich'],a:0},
+        {q:'What colour are the grapes?',opts:['green','red'],a:0},
+        {q:'What drink has she got?',opts:['apple juice','milkshake'],a:0},
+        {q:"Has she got any chocolate?",opts:["No, she hasn't.",'Yes, she has.'],a:0},
+      ]
+    },
+    listening:{title:'Listening',instruction:"To'g'ri javobni tanlang:",
+      items:[
+        {q:"Has he got a milkshake?",opts:['Yes, he has.',"No, he hasn't."],a:0,hint:'Yes, he has!'},
+        {q:"Have you got fries?",opts:["No, I haven't.",'Yes, I have.'],a:0,hint:"No, I haven't!"},
+      ]
+    },
+    writing:{title:'Writing — ? or .',instruction:"Savol (?) yoki nuqta (.) qo'ying:",
+      tasks:[
+        {sentence:"Have you got a milkshake _",correct:"Have you got a milkshake?",hint:"Savol → ?"},
+        {sentence:"Yes, I have _",correct:"Yes, I have.",hint:"Javob → ."},
+        {sentence:"Has she got a pizza _",correct:"Has she got a pizza?",hint:"Savol → ?"},
+      ]
+    }
+   },
+   {id:'workbook',label:'✏️ Mashqlar',
+    exercises:[
+     {type:'fill_blanks',title:"1-mashq: have/has/haven't/hasn't",instruction:"To'g'ri variantni yozing:",
+      items:[
+        {sent:"Have you got a sandwich? Yes, I ___.",answer:'have'},
+        {sent:"___ she got a pizza?",answer:'Has'},
+        {sent:"He ___ got any fries.",answer:"hasn't"},
+        {sent:"Have you got salad? No, I ___.",answer:"haven't"},
+      ]
+     },
+     {type:'true_false',title:'2-mashq: T/F',
+      items:[
+        {q:"Have you got...? = Senda bormi?",a:true,exp:"To'g'ri! ✅"},
+        {q:"HAS = HAVE (bir xil)",a:false,exp:"Noto'g'ri! HAS = he/she/it, HAVE = I/you/we/they ❌"},
+        {q:"Haven't = have not",a:true,exp:"To'g'ri! ✅"},
+        {q:"Twenty = 30",a:false,exp:"Noto'g'ri! Twenty = 20 ❌"},
+      ]
+     },
+     {type:'order',title:'3-mashq: Tartibga soling',instruction:"",
+      items:[
+        {words:['you','Have','a','got','milkshake','?'],answer:'Have you got a milkshake ?'},
+        {words:['I','Yes,','have','.'],answer:'Yes, I have .'},
+        {words:["hasn't","She","pizza","got","any",'.'],answer:"She hasn't got any pizza ."},
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {id:'unit5',num:'Unit 5',name:"We've got English!",emoji:'📚',color:'#0891B2',colorL:'#ECFEFF',tracks:[16,17,18],
+  lessons:[
+   {id:'words',label:"📖 So'zlar",
+    words1:[
+      {w:'English',uz:'Ingliz tili',e:'🇬🇧',s:"We've got <b>English</b> on Monday."},
+      {w:'maths',uz:'Matematika',e:'🔢',s:"We've got <b>maths</b> today!"},
+      {w:'science',uz:'Tabiatshunoslik',e:'🔬',s:"I love <b>science</b> lessons."},
+      {w:'art',uz:"Tasviriy san'at",e:'🎨',s:"We've got <b>art</b> on Wednesday."},
+      {w:'music',uz:'Musiqa',e:'🎵',s:"<b>Music</b> is my favourite subject."},
+      {w:'PE',uz:'Jismoniy tarbiya',e:'⚽',s:"When have we got <b>PE</b>? On Thursday."},
+    ],
+    words2:[
+      {w:'our',uz:'Bizning',e:'👥',s:"These are <b>our</b> PE bags."},
+      {w:'their',uz:'Ularning',e:'👪',s:"You can wear <b>their</b> clothes."},
+      {w:'gym',uz:'Gimnastika zali',e:'🏋️',s:"We've got a big <b>gym</b>."},
+      {w:'library',uz:'Kutubxona',e:'📚',s:"There's a <b>library</b> upstairs."},
+      {w:'art room',uz:"San'at xonasi",e:'🎨',s:"What have we got in the <b>art room</b>?"},
+      {w:'school trip',uz:'Maktab sayohati',e:'🚌',s:"We've got a <b>school trip</b> on Friday!"},
+    ],
+    dialog:[
+      {sp:'Teacher',t:"What have we got on Monday?",side:'l'},
+      {sp:'Pupils',t:"We've got English!",side:'r'},
+      {sp:'Teacher',t:"When have we got PE?",side:'l'},
+      {sp:'Tim',t:"We've got PE on Thursday.",side:'r'},
+      {sp:'Teacher',t:"These are our PE bags.",side:'l'},
+      {sp:'Rosy',t:"You can wear their clothes.",side:'r'},
+    ]
+   },
+   {id:'grammar',label:'📝 Grammatika',
+    rules:[{title:"What / When have we got? We've got...",
+      table:[
+        ["What have we got?","Bizda nima bor?","What have we got on Monday?"],
+        ["We've got English.","Bizda ingliz tili bor.","We've got English on Monday."],
+        ["When have we got PE?","Qachon JT darsimiz?","When have we got PE?"],
+        ["We've got PE on Thursday.","Payshanba JT.","We've got PE on Thursday."],
+      ],
+      examples:[
+        "<b>What have we got</b> on Monday?",
+        "<b>We've got</b> English.",
+        "<b>When have we got</b> PE?",
+        "We've got PE <b>on</b> Thursday.",
+      ],
+      quizzes:[
+        {q:"What ___ we got on Tuesday?",opts:['have','has','are','is'],a:0,exp:"What have we got? ✅"},
+        {q:"We've got maths ___ Monday.",opts:['on','in','at','of'],a:0,exp:"On + kun nomi ✅"},
+        {q:"___ have we got PE?",opts:['When','What','Where','Who'],a:0,exp:"When = qachon ✅"},
+      ]},{title:"our / their",
+      examples:[
+        "These are <b>our</b> PE bags. (bizning)",
+        "You can wear <b>their</b> clothes. (ularning)",
+      ],
+      quizzes:[
+        {q:"These are ___ PE bags. (bizning)",opts:['our','their','my','his'],a:0,exp:"Our = bizning ✅"},
+        {q:"Those are ___ T-shirts. (ularning)",opts:['their','our','my','her'],a:0,exp:"Their = ularning ✅"},
+      ]}
+    ]
+   },
+   {id:'song',label:"🎵 Qo'shiq",song:{title:"We've got English!",track:16,
+      lyrics:"Monday, we've got English.\nTuesday, we've got science.\nWednesday, we've got art.\nAnd on Thursday, PE!\n\n🎵 We've got English!\nWe've got maths!\nWe've got music!\nWe love that!\n\nWhat have we got on Monday?\nWe've got English today!",
+      extra_words:[{w:'Monday',uz:'Dushanba',e:'1️⃣'},{w:'Tuesday',uz:'Seshanba',e:'2️⃣'},{w:'Wednesday',uz:'Chorshanba',e:'3️⃣'},{w:'Thursday',uz:'Payshanba',e:'4️⃣'}]}
+   },
+   {id:'phonics',label:'🔤 Phonics',phonics:{title:'Consonant blends: dr, tr, cr',track:18,
+      chant:"dr: drum, dress!\ntr: truck, tree!\ncr: crayon, crab!\ndr, tr, cr!",
+      items:[
+        {l:'dr',w:'drum',e:'🥁'},{l:'dr',w:'dress',e:'👗'},{l:'dr',w:'dragon',e:'🐉'},
+        {l:'tr',w:'truck',e:'🚚'},{l:'tr',w:'tree',e:'🌳'},{l:'tr',w:'train',e:'🚆'},
+        {l:'cr',w:'crayon',e:'🖍️'},{l:'cr',w:'crab',e:'🦀'},{l:'cr',w:'crown',e:'👑'},
+      ],
+      quiz:[
+        {q:'DRum — boshidagi tovush?',opts:['dr','tr','cr','br'],a:0},
+        {q:'TRee — boshidagi tovush?',opts:['tr','dr','cr','gr'],a:0},
+        {q:'CRayon — boshidagi tovush?',opts:['cr','tr','dr','br'],a:0},
+        {q:'TRain — boshidagi tovush?',opts:['tr','dr','cr','fr'],a:0},
+      ]}
+   },
+   {id:'skills',label:'📖 Skills Time',
+    reading:{title:"Our school — web page",
+      text:"Welcome to <b>Green Park School</b>!\n\nWe've got a great <b>art room</b> with big windows and lots of paint.\n\nOur <b>gym</b> is fantastic! We've got PE equipment and a climbing wall.\n\nWe've got a wonderful <b>library</b> with over 2000 books!\n\n<b>Monday:</b> English and maths\n<b>Tuesday:</b> Science\n<b>Wednesday:</b> Art\n<b>Thursday:</b> Music and PE",
+      questions:[
+        {q:"What's in the art room?",opts:['paint, paper and brushes','drums and guitars'],a:0},
+        {q:"How many books in the library?",opts:['over 2000','over 200'],a:0},
+        {q:"When do they have science?",opts:['Tuesdays','Mondays'],a:0},
+        {q:"What have they got on Thursdays?",opts:['Music and PE','Art and maths'],a:0},
+      ]
+    },
+    listening:{title:'Listening',instruction:"To'g'ri javobni tanlang:",
+      items:[
+        {q:"What have we got on Wednesday?",opts:["We've got art.","We've got PE."],a:0,hint:"Art on Wednesday!"},
+        {q:"Are these our bags?",opts:['Yes, our bags.','No, their bags.'],a:0,hint:"These are our bags!"},
+      ]
+    },
+    writing:{title:'Writing — capital letters',instruction:"To'g'ri yozing:",
+      tasks:[
+        {sentence:"we've got english on monday.",correct:"We've got English on Monday.",hint:"English, Monday — bosh harf!"},
+        {sentence:"i love maths and science.",correct:"I love maths and science.",hint:"I — har doim bosh harf!"},
+      ]
+    }
+   },
+   {id:'workbook',label:'✏️ Mashqlar',
+    exercises:[
+     {type:'fill_blanks',title:"1-mashq: our / their",instruction:"To'g'ri variantni yozing:",
+      items:[
+        {sent:"These are ___ PE bags. (bizning)",answer:'our'},
+        {sent:"You can wear ___ clothes. (ularning)",answer:'their'},
+        {sent:"___ classroom is big. (bizning)",answer:'Our'},
+        {sent:"Those are ___ books. (ularning)",answer:'their'},
+      ]
+     },
+     {type:'true_false',title:'2-mashq: T/F',
+      items:[
+        {q:"We've got = We have got",a:true,exp:"To'g'ri! ✅"},
+        {q:"ON Monday — to'g'ri.",a:true,exp:"To'g'ri! On + kun ✅"},
+        {q:"Our = ularning",a:false,exp:"Noto'g'ri! Our = BIZning ❌"},
+        {q:"Music = Matematika",a:false,exp:"Noto'g'ri! Music = Musiqa ❌"},
+      ]
+     },
+     {type:'order',title:'3-mashq: Tartibga soling',instruction:"",
+      items:[
+        {words:['got','What','on','we','Monday','have','?'],answer:'What have we got on Monday ?'},
+        {words:["got","We've","Tuesday","on","science",'.'],answer:"We've got science on Tuesday ."},
+        {words:['are','These','bags','our','PE','.'],answer:'These are our PE bags .'},
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {id:'unit6',num:'Unit 6',name:"Let's play after school!",emoji:'🎮',color:'#059669',colorL:'#ECFDF5',tracks:[19,20,21],
+  lessons:[
+   {id:'words',label:"📖 So'zlar",
+    words1:[
+      {w:'visit my grandma',uz:'Buvinikiga borish',e:'👵',s:"I <b>visit my grandma</b> every Tuesday."},
+      {w:'go swimming',uz:'Suzgani borish',e:'🏊',s:"I <b>go swimming</b> every Thursday."},
+      {w:"don't watch TV",uz:"TV ko'rmayman",e:'📺',s:"I <b>don't watch</b> TV."},
+      {w:'read a book',uz:"Kitob o'qish",e:'📖',s:"I <b>read a book</b> after school."},
+      {w:'do homework',uz:'Uy vazifasi',e:'📝',s:"I <b>do my homework</b> at 4 o'clock."},
+      {w:'ride my bike',uz:'Velosipedda yurish',e:'🚲',s:"I <b>ride my bike</b> after school."},
+    ],
+    words2:[
+      {w:'listen to music',uz:'Musiqa tinglash',e:'🎧',s:"I <b>listen to music</b> after school."},
+      {w:'play with friends',uz:"Do'stlar bilan o'ynash",e:'👫',s:"I <b>play with friends</b>."},
+      {w:'write an email',uz:'Email yozish',e:'✉️',s:"I <b>write an email</b>."},
+      {w:'help my mum',uz:'Oyimga yordam',e:'👩‍🍳',s:"I <b>help my mum</b> cook dinner."},
+      {w:'go to the park',uz:'Parkga borish',e:'🌳',s:"I <b>go to the park</b> on Saturdays."},
+      {w:'have a music lesson',uz:'Musiqa darsi',e:'🎵',s:"I <b>have a music lesson</b> on Mondays."},
+    ],
+    dialog:[
+      {sp:'Rosy',t:"I visit my grandma every Tuesday.",side:'l'},
+      {sp:'Tim',t:"I don't have a music lesson on Mondays.",side:'r'},
+      {sp:'Rosy',t:"I go swimming every Thursday.",side:'l'},
+      {sp:'Tim',t:"I don't watch TV. I read a book.",side:'r'},
+    ]
+   },
+   {id:'grammar',label:'📝 Grammatika',
+    rules:[{title:"I visit... / I don't... (Simple Present)",
+      table:[
+        ["I visit","Men boraman","I visit my grandma every Tuesday."],
+        ["I don't have","Men ega emasman","I don't have a music lesson."],
+        ["I go","Men boraman","I go swimming every Thursday."],
+        ["I don't watch","Men ko'rmayman","I don't watch TV."],
+      ],
+      examples:[
+        "I <b>visit</b> my grandma every Tuesday. ✅",
+        "I <b>don't have</b> a music lesson. ❌",
+        "I <b>go swimming</b> every Thursday. ✅",
+        "I <b>don't watch</b> TV. ❌",
+      ],
+      quizzes:[
+        {q:"I ___ TV. (ko'rmayman)",opts:["don't watch",'watch','visits',"doesn't"],a:0,exp:"Don't watch ✅"},
+        {q:"I ___ my homework every day.",opts:['do',"don't",'does',"doesn't"],a:0,exp:"I do ✅"},
+        {q:"I ___ swimming on Thursdays.",opts:['go',"don't go",'goes','going'],a:0,exp:"I go ✅"},
+        {q:"I ___ a music lesson. (yo'q)",opts:["don't have",'have','has',"doesn't have"],a:0,exp:"I don't have ✅"},
+      ]}
+    ]
+   },
+   {id:'song',label:"🎵 Qo'shiq",song:{title:'After school',track:19,
+      lyrics:"After school,\nThere's a lot to do.\nI do my homework,\nI help my mum.\nThen I play with friends,\nAnd we have fun.\n\n🎵 After school...\nI write an email,\nI read a book.\nI listen to music,\nI help to cook.\nAfter school...",
+      extra_words:[{w:'homework',uz:'Uy vazifasi',e:'📝'},{w:'cook',uz:'Ovqat pishirish',e:'🍳'}]}
+   },
+   {id:'phonics',label:'🔤 Phonics',phonics:{title:'Consonant blends: fl, pl, bl',track:21,
+      chant:"FLower, FLat!\nPLum, PLate!\nBLanket, BLue!\nfl, pl, bl!",
+      items:[
+        {l:'fl',w:'flower',e:'🌸'},{l:'fl',w:'flat',e:'🏠'},{l:'fl',w:'flag',e:'🚩'},
+        {l:'pl',w:'plum',e:'🫐'},{l:'pl',w:'plate',e:'🍽️'},{l:'pl',w:'plane',e:'✈️'},
+        {l:'bl',w:'blanket',e:'🛏️'},{l:'bl',w:'blue',e:'🔵'},{l:'bl',w:'block',e:'🧱'},
+      ],
+      quiz:[
+        {q:'FLower — boshidagi tovush?',opts:['fl','pl','bl','cl'],a:0},
+        {q:'PLum — boshidagi tovush?',opts:['pl','fl','bl','sl'],a:0},
+        {q:'BLue — boshidagi tovush?',opts:['bl','fl','pl','gl'],a:0},
+        {q:'FLag — boshidagi tovush?',opts:['fl','bl','pl','sl'],a:0},
+      ]}
+   },
+   {id:'skills',label:'📖 Skills Time',
+    reading:{title:"My after-school activities",
+      text:"My name is Sam.\n\n<b>Mondays:</b> I visit my grandma. I don't go swimming.\n<b>Tuesdays:</b> I have a music lesson. I don't watch TV.\n<b>Wednesdays:</b> I go swimming. I don't ride my bike.\n<b>Thursdays:</b> I read a book.\n<b>Fridays:</b> I play with friends. I love Fridays!",
+      questions:[
+        {q:'When does Sam visit grandma?',opts:['on Mondays','on Tuesdays'],a:0},
+        {q:'What does Sam do on Wednesdays?',opts:['go swimming','ride a bike'],a:0},
+        {q:'Does Sam do homework on Fridays?',opts:["No, he doesn't.",'Yes, he does.'],a:0},
+        {q:'What does Sam do on Thursdays?',opts:['read a book','listen to music'],a:0},
+      ]
+    },
+    listening:{title:'Listening',instruction:"To'g'ri javobni tanlang:",
+      items:[
+        {q:"Does she go swimming?",opts:['Yes, she does.',"No, she doesn't."],a:0,hint:'Yes, every Thursday!'},
+        {q:"Does he watch TV?",opts:["No, he doesn't.",'Yes, he does.'],a:0,hint:"No, he reads a book."},
+      ]
+    },
+    writing:{title:"Writing — using 'and'",instruction:"'and' bilan birlashtiring:",
+      tasks:[
+        {sentence:"I read a book. I listen to music.",correct:"I read a book and listen to music.",hint:"'and' bilan birlashtiring!"},
+        {sentence:"I visit my grandma. I help my mum.",correct:"I visit my grandma and help my mum.",hint:"'and' bilan birlashtiring!"},
+      ]
+    }
+   },
+   {id:'workbook',label:'✏️ Mashqlar',
+    exercises:[
+     {type:'fill_blanks',title:"1-mashq: I ... / I don't ...",instruction:"To'g'ri variantni yozing:",
+      items:[
+        {sent:"I ___ my grandma every Tuesday.",answer:'visit'},
+        {sent:"I ___ TV.",answer:"don't watch"},
+        {sent:"I ___ swimming.",answer:'go'},
+        {sent:"I ___ a music lesson.",answer:"don't have"},
+      ]
+     },
+     {type:'true_false',title:'2-mashq: T/F',
+      items:[
+        {q:"I visit = Men boraman (odatda)",a:true,exp:"To'g'ri! ✅"},
+        {q:"I don't = Men bajardim",a:false,exp:"Noto'g'ri! I don't = BAJARMAYAMAN ❌"},
+        {q:"Go swimming = Suzgani borish",a:true,exp:"To'g'ri! ✅"},
+        {q:"After school = Maktabdan oldin",a:false,exp:"Noto'g'ri! After = KEYIN ❌"},
+      ]
+     },
+     {type:'order',title:'3-mashq: Tartibga soling',instruction:"",
+      items:[
+        {words:['grandma','I','visit','my','Tuesday','on','.'],answer:'I visit my grandma on Tuesday .'},
+        {words:["don't","I","TV","watch",'.'],answer:"I don't watch TV ."},
+        {words:['I','music','and','a','book','read','listen','to','.'],answer:'I read a book and listen to music .'},
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {id:'unit7',num:'Unit 7',name:"Let's buy presents!",emoji:'🎁',color:'#BE185D',colorL:'#FDF2F8',tracks:[22,23,24],
+  lessons:[
+   {id:'words',label:"📖 So'zlar",
+    words1:[
+      {w:'like',uz:'Yoqtirish',e:'❤️',s:"What <b>do</b> you <b>like</b>? I <b>like</b> balloons."},
+      {w:"don't like",uz:'Yoqtirmaslik',e:'💔',s:"I <b>don't like</b> sweets."},
+      {w:'likes',uz:'Yoqtiradi (u)',e:'😊',s:"He <b>likes</b> chocolate."},
+      {w:"doesn't like",uz:'Yoqtirmaydi (u)',e:'😞',s:"He <b>doesn't like</b> balloons."},
+      {w:'balloons',uz:'Sharlar',e:'🎈',s:"She loves <b>balloons</b>!"},
+      {w:'sweets',uz:'Konfetlar',e:'🍬',s:"I don't like <b>sweets</b>."},
+    ],
+    words2:[
+      {w:'chocolate',uz:'Shokolad',e:'🍫',s:"He likes <b>chocolate</b>."},
+      {w:'presents',uz:"Sovg'alar",e:'🎁',s:"She likes <b>presents</b>!"},
+      {w:'cake',uz:'Tort',e:'🎂',s:"Do you like <b>cake</b>? Yes, I do!"},
+      {w:'birthday',uz:"Tug'ilgan kun",e:'🎂',s:"Happy <b>birthday</b>!"},
+      {w:'party',uz:'Bayram',e:'🎉',s:"We're having a <b>party</b>!"},
+      {w:'special days',uz:'Maxsus kunlar',e:'📅',s:"Birthdays are <b>special days</b>."},
+    ],
+    dialog:[
+      {sp:'',t:"What do you like?",side:'l'},
+      {sp:'',t:"I like balloons. I don't like sweets.",side:'r'},
+      {sp:'',t:"What does he like?",side:'l'},
+      {sp:'',t:"He likes chocolate. He doesn't like balloons.",side:'r'},
+      {sp:'',t:"What does she like?",side:'l'},
+      {sp:'',t:"She likes presents! She doesn't like cake.",side:'r'},
+    ]
+   },
+   {id:'grammar',label:'📝 Grammatika',
+    rules:[{title:"What do you like? / What does he/she like?",
+      table:[
+        ["I like / I don't like","Men / yoqtirmayman","I like balloons."],
+        ["He likes / He doesn't like","U / yoqtirmaydi","He likes chocolate."],
+        ["What do you like?","Sen nimani yoqtirasan?","What do you like?"],
+        ["What does he like?","U nimani yoqtiradi?","What does he like?"],
+      ],
+      examples:[
+        "I <b>like</b> balloons. I <b>don't like</b> sweets.",
+        "He <b>likes</b> chocolate. (he/she + likes)",
+        "He <b>doesn't like</b> balloons.",
+        "<b>What do</b> you like? <b>What does</b> he like?",
+      ],
+      quizzes:[
+        {q:"What ___ she like?",opts:['does','do','is','has'],a:0,exp:"Does = He/She/It ✅"},
+        {q:"He ___ chocolate.",opts:['likes','like','is like','do like'],a:0,exp:"He likes (s qo'shiladi) ✅"},
+        {q:"She ___ sweets. (yoqtirmaydi)",opts:["doesn't like","don't like",'not like','likes not'],a:0,exp:"Doesn't like ✅"},
+        {q:"What ___ you like?",opts:['do','does','is','are'],a:0,exp:"I/You/We/They bilan DO ✅"},
+      ]}
+    ]
+   },
+   {id:'song',label:"🎵 Qo'shiq",song:{title:"What does he like?",track:22,
+      lyrics:"What does he like?\nHe likes tennis!\nWhat does she like?\nShe likes swimming!\n\n🎵 Do you like football?\nYes, I do!\nDo you like dancing?\nYes, me too!\n\nHappy birthday,\nHappy birthday, you!",
+      extra_words:[{w:'tennis',uz:'Tennis',e:'🎾'},{w:'swimming',uz:'Suzish',e:'🏊'},{w:'dancing',uz:'Raqs tushish',e:'💃'}]}
+   },
+   {id:'phonics',label:'🔤 Phonics',phonics:{title:'Consonant blends: cl, gl, sl',track:24,
+      chant:"I take off my slippers,\nI put on my gloves,\nAnd I play on the slide.\nI look at the clock.",
+      items:[
+        {l:'cl',w:'cloud',e:'☁️'},{l:'cl',w:'clock',e:'🕰️'},{l:'cl',w:'clap',e:'👏'},
+        {l:'gl',w:'gloves',e:'🧤'},{l:'gl',w:'glue',e:'🧴'},{l:'gl',w:'glad',e:'😊'},
+        {l:'sl',w:'slide',e:'🛝'},{l:'sl',w:'slippers',e:'🥿'},{l:'sl',w:'slow',e:'🐢'},
+      ],
+      quiz:[
+        {q:'CLoud — boshidagi tovush?',opts:['cl','gl','sl','bl'],a:0},
+        {q:'GLoves — boshidagi tovush?',opts:['gl','cl','sl','pl'],a:0},
+        {q:'SLide — boshidagi tovush?',opts:['sl','cl','gl','fl'],a:0},
+        {q:'CLock — boshidagi tovush?',opts:['cl','gl','sl','bl'],a:0},
+      ]}
+   },
+   {id:'skills',label:'📖 Skills Time',
+    reading:{title:"Mum's birthday — instructions",
+      text:"It's my mum's birthday on Saturday!\n\n1. <b>Make a birthday card</b> — I need paper and pens.\n2. <b>Buy a present</b> — My mum likes flowers.\n3. <b>Bake a cake</b> — flour, eggs, butter, chocolate.\n4. <b>Invite her friends</b> — write emails.\n5. <b>Decorate</b> with balloons!",
+      questions:[
+        {q:"When is mum's birthday?",opts:['on Saturday','on Sunday'],a:0},
+        {q:"What does mum like?",opts:['flowers','sweets'],a:0},
+        {q:"What for the cake?",opts:['flour, eggs, butter','paper, pens'],a:0},
+        {q:"How to invite friends?",opts:['write emails','phone calls'],a:0},
+      ]
+    },
+    listening:{title:'Listening',instruction:"To'g'ri javobni tanlang:",
+      items:[
+        {q:"Does she like tennis?",opts:['Yes, she does.',"No, she doesn't."],a:0,hint:'Yes, she likes tennis!'},
+        {q:"What does he like?",opts:['He likes chocolate.','He likes sweets.'],a:0,hint:'He likes chocolate!'},
+      ]
+    },
+    writing:{title:"Writing — doesn't / don't",instruction:"To'liq shaklini yozing:",
+      tasks:[
+        {sentence:"He doesn't like balloons.",correct:"He does not like balloons.",hint:"Doesn't = does not"},
+        {sentence:"I don't like sweets.",correct:"I do not like sweets.",hint:"Don't = do not"},
+      ]
+    }
+   },
+   {id:'workbook',label:'✏️ Mashqlar',
+    exercises:[
+     {type:'fill_blanks',title:"1-mashq: like/likes/don't like/doesn't like",instruction:"To'g'ri variantni yozing:",
+      items:[
+        {sent:"He ___ chocolate. (u yoqtiradi)",answer:'likes'},
+        {sent:"I ___ sweets. (yoqtirmayman)",answer:"don't like"},
+        {sent:"She ___ balloons. (u yoqtirmaydi)",answer:"doesn't like"},
+        {sent:"What ___ she like?",answer:'does'},
+      ]
+     },
+     {type:'true_false',title:'2-mashq: T/F',
+      items:[
+        {q:"He likes (s qo'shiladi)",a:true,exp:"To'g'ri! He/She/It + LIKES ✅"},
+        {q:"I likes chocolate — to'g'ri.",a:false,exp:"Noto'g'ri! I LIKE (s yo'q) ❌"},
+        {q:"What does she like? = U nimani yoqtiradi?",a:true,exp:"To'g'ri! ✅"},
+        {q:"Doesn't = do not",a:false,exp:"Noto'g'ri! Doesn't = DOES NOT ❌"},
+      ]
+     },
+     {type:'order',title:'3-mashq: Tartibga soling',instruction:"",
+      items:[
+        {words:['does','What','like','she','?'],answer:'What does she like ?'},
+        {words:['likes','He','chocolate','.'],answer:'He likes chocolate .'},
+        {words:["doesn't","She","like","sweets",'.'],answer:"She doesn't like sweets ."},
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {id:'unit8',num:'Unit 8',name:"What's the time?",emoji:'🕐',color:'#B45309',colorL:'#FFFBEB',tracks:[25,26,27],
+  lessons:[
+   {id:'words',label:"📖 So'zlar",
+    words1:[
+      {w:'get up',uz:'Turish',e:'🌅',s:"He <b>gets up</b> at six o'clock."},
+      {w:'have breakfast',uz:'Nonushta',e:'🍳',s:"She <b>has breakfast</b> at seven."},
+      {w:'go to school',uz:'Maktabga borish',e:'🎒',s:"He <b>goes to school</b> at eight."},
+      {w:'have lunch',uz:'Tushlik',e:'🥗',s:"I <b>have lunch</b> at one."},
+      {w:'go home',uz:'Uyga borish',e:'🏠',s:"She <b>goes home</b> at three."},
+      {w:'go to bed',uz:'Yotish',e:'🛏️',s:"He <b>goes to bed</b> at nine."},
+    ],
+    words2:[
+      {w:'in the morning',uz:'Ertalab',e:'🌅',s:"I get up <b>in the morning</b>."},
+      {w:'in the afternoon',uz:'Tushdan keyin',e:'🌞',s:"I have lunch <b>in the afternoon</b>."},
+      {w:'in the evening',uz:'Kechqurun',e:'🌆',s:"I do homework <b>in the evening</b>."},
+      {w:'at night',uz:'Kechasi',e:'🌙',s:"I go to bed <b>at night</b>."},
+      {w:'have dinner',uz:'Kechki ovqat',e:'🍽️',s:"He <b>has dinner</b> at seven."},
+      {w:"o'clock",uz:'Soat (aniq)',e:'🕐',s:"It's seven <b>o'clock</b>."},
+    ],
+    dialog:[
+      {sp:'',t:"What's the time? It's seven o'clock.",side:'l'},
+      {sp:'',t:"He gets up at six o'clock.",side:'r'},
+      {sp:'',t:"She goes to bed at nine o'clock.",side:'l'},
+      {sp:'',t:"What do you do in the morning?",side:'r'},
+      {sp:'',t:"I get up, I have breakfast, I go to school!",side:'l'},
+    ]
+   },
+   {id:'grammar',label:'📝 Grammatika',
+    rules:[{title:"What's the time? It's ... o'clock",
+      table:[
+        ["What's the time?","Soat necha?","What's the time?"],
+        ["It's 7 o'clock.","Soat 7.","It's seven o'clock."],
+        ["He gets up at 6.","U 6 da turadi.","He gets up at six."],
+        ["in the morning","ertalab","in the morning"],
+        ["at night","kechasi","at night"],
+      ],
+      examples:[
+        "<b>What's the time?</b> It's <b>7 o'clock</b>.",
+        "He gets up <b>at</b> six o'clock.",
+        "I have breakfast <b>in the morning</b>.",
+        "He goes to bed <b>at night</b>.",
+      ],
+      quizzes:[
+        {q:"What's the time? ___ 6 o'clock.",opts:["It's","He's","She's","They're"],a:0,exp:"It's = vaqt uchun IT ✅"},
+        {q:"I get up ___ 7 o'clock.",opts:['at','in','on','of'],a:0,exp:"AT + aniq vaqt ✅"},
+        {q:"I have breakfast ___ the morning.",opts:['in','at','on','of'],a:0,exp:"IN + vaqt qismi ✅"},
+        {q:"He goes to bed ___ night.",opts:['at','in','on','of'],a:0,exp:"AT night ✅"},
+      ]}
+    ]
+   },
+   {id:'song',label:"🎵 Qo'shiq",song:{title:"What do you do in the morning?",track:25,
+      lyrics:"What do you do in the morning?\nI get up, I have breakfast, I go to school.\nThat's what I do in the morning!\n\n🎵 What do you do in the afternoon?\nI have my lunch, I go home.\nThat's what I do in the afternoon!\n\nWhat do you do at night?\nI say goodnight, I brush my teeth, I go to bed.\nThat's what I do at night!",
+      extra_words:[{w:'brush teeth',uz:'Tish yuvish',e:'🦷'},{w:'goodnight',uz:'Xayrli tun',e:'🌙'}]}
+   },
+   {id:'phonics',label:'🔤 Phonics',phonics:{title:'Consonant blends: sm, sn, st, sk',track:27,
+      chant:"sm: smile, small!\nsn: snow, snake!\nst: stairs, star!\nsk: sky, skates!",
+      items:[
+        {l:'sm',w:'smile',e:'😊'},{l:'sm',w:'small',e:'🔹'},{l:'sm',w:'smooth',e:'✨'},
+        {l:'sn',w:'snow',e:'❄️'},{l:'sn',w:'snake',e:'🐍'},{l:'sn',w:'snack',e:'🍎'},
+        {l:'st',w:'stairs',e:'🪜'},{l:'st',w:'star',e:'⭐'},{l:'st',w:'stop',e:'🛑'},
+        {l:'sk',w:'sky',e:'🌤️'},{l:'sk',w:'skates',e:'⛸️'},{l:'sk',w:'skip',e:'🪢'},
+      ],
+      quiz:[
+        {q:'SMile — boshidagi tovush?',opts:['sm','sn','st','sk'],a:0},
+        {q:'SNow — boshidagi tovush?',opts:['sn','sm','st','sk'],a:0},
+        {q:'STar — boshidagi tovush?',opts:['st','sm','sn','sk'],a:0},
+        {q:'SKy — boshidagi tovush?',opts:['sk','st','sn','sm'],a:0},
+      ]}
+   },
+   {id:'skills',label:'📖 Skills Time',
+    reading:{title:"Sam's day",
+      text:"This is Sam. He is 8 years old.\n\nSam <b>gets up</b> at six in the morning. He has cereal and orange juice for breakfast.\n\nHe <b>goes to school</b> at half past eight. He has <b>lunch</b> at one o'clock.\n\nSam <b>goes home</b> at three. In <b>the afternoon</b>, he does homework.\n\nIn <b>the evening</b>, Sam watches TV. He has <b>dinner</b> at six.\n\nSam <b>goes to bed</b> at nine. Goodnight!",
+      questions:[
+        {q:"What time does Sam get up?",opts:["At six.",'At seven.'],a:0},
+        {q:"What does Sam have for breakfast?",opts:['cereal and juice','toast and milk'],a:0},
+        {q:"When does Sam do homework?",opts:['in the afternoon','in the evening'],a:0},
+        {q:"What time does Sam go to bed?",opts:["At nine.",'At eight.'],a:0},
+      ]
+    },
+    listening:{title:'Listening',instruction:"To'g'ri javobni tanlang:",
+      items:[
+        {q:"What time does he get up?",opts:["At six.",'At seven.'],a:0,hint:"He gets up at six!"},
+        {q:"When does she have lunch?",opts:['in the afternoon','in the morning'],a:0,hint:'In the afternoon!'},
+      ]
+    },
+    writing:{title:"Writing — Wh- questions",instruction:"Savol yozing:",
+      tasks:[
+        {sentence:"He gets up at seven. → ___ does he get up?",correct:"What time does he get up?",hint:"What time = qaysi vaqtda?"},
+        {sentence:"She has breakfast in the morning. → ___ does she have breakfast?",correct:"When does she have breakfast?",hint:"When = qachon?"},
+      ]
+    }
+   },
+   {id:'workbook',label:'✏️ Mashqlar',
+    exercises:[
+     {type:'fill_blanks',title:"1-mashq: at / in",instruction:"To'g'ri old ko'makchini yozing:",
+      items:[
+        {sent:"I get up ___ 7 o'clock.",answer:'at'},
+        {sent:"I have breakfast ___ the morning.",answer:'in'},
+        {sent:"I go to bed ___ night.",answer:'at'},
+        {sent:"I have lunch ___ the afternoon.",answer:'in'},
+      ]
+     },
+     {type:'true_false',title:'2-mashq: T/F',
+      items:[
+        {q:"It's 7 o'clock = Soat 7.",a:true,exp:"To'g'ri! ✅"},
+        {q:"In the morning = kechasi",a:false,exp:"Noto'g'ri! In the morning = ERTALAB ❌"},
+        {q:"Go to bed = yotish",a:true,exp:"To'g'ri! ✅"},
+        {q:"Have lunch = Nonushta",a:false,exp:"Noto'g'ri! Have lunch = TUSHLIK ❌"},
+      ]
+     },
+     {type:'order',title:'3-mashq: Tartibga soling',instruction:"",
+      items:[
+        {words:["What's","the","time","?"],answer:"What's the time ?"},
+        {words:["It's","seven","o'clock",'.'],answer:"It's seven o'clock ."},
+        {words:['He','up','at','six','gets','.'],answer:'He gets up at six .'},
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {id:'unit9',num:'Unit 9',name:'Where does she work?',emoji:'🏢',color:'#6D28D9',colorL:'#EDE9FE',tracks:[28,29,30],
+  lessons:[
+   {id:'words',label:"📖 So'zlar",
+    words1:[
+      {w:'police station',uz:"Militsiya bo'limi",e:'🚔',s:"He works in a <b>police station</b>."},
+      {w:'hospital',uz:'Shifoxona',e:'🏥',s:"She works in a <b>hospital</b>."},
+      {w:'airport',uz:'Aeroport',e:'✈️',s:"Does your mum work in an <b>airport</b>?"},
+      {w:'shop',uz:"Do'kon",e:'🏪',s:"Does she work in a <b>shop</b>? Yes, she does."},
+      {w:'school',uz:'Maktab',e:'🏫',s:"He works in a <b>school</b>."},
+      {w:'fire station',uz:"O't o'chirish",e:'🚒',s:"Does he work in a <b>fire station</b>?"},
+    ],
+    words2:[
+      {w:'monkeys',uz:'Maymunlar',e:'🐒',s:"What are Peter's favourite animals? <b>Monkeys</b>!"},
+      {w:'favourite',uz:'Sevimli',e:'❤️',s:"What are your <b>favourite</b> animals?"},
+      {w:'dentist',uz:'Tish shifokori',e:'🦷',s:"She's a <b>dentist</b>."},
+      {w:'farmer',uz:"Dehqon/Fermer",e:'🌾',s:"He's a <b>farmer</b>."},
+      {w:'interview',uz:'Intervyu',e:'🎤',s:"This is a magazine <b>interview</b>."},
+      {w:'magazine',uz:'Jurnal',e:'📰',s:"I read a <b>magazine</b>."},
+    ],
+    dialog:[
+      {sp:'Reporter',t:"Where does he work?",side:'l'},
+      {sp:'',t:"He works in a police station.",side:'r'},
+      {sp:'Reporter',t:"Does your mum work in an airport?",side:'l'},
+      {sp:'',t:"No, she doesn't.",side:'r'},
+      {sp:'Reporter',t:"Does she work in a shop?",side:'l'},
+      {sp:'',t:"Yes, she does.",side:'r'},
+    ]
+   },
+   {id:'grammar',label:'📝 Grammatika',
+    rules:[{title:"Where does he/she work?",
+      table:[
+        ["Where does he work?","U qayerda ishlaydi?","Where does he work?"],
+        ["He works in a school.","Maktabda ishlaydi.","He works in a school."],
+        ["Does she work in a hospital?","Shifoxonada ishlaydimi?","Does she work here?"],
+        ["Yes, she does.","Ha.","Yes, she does."],
+        ["No, she doesn't.","Yo'q.","No, she doesn't."],
+      ],
+      examples:[
+        "<b>Where does</b> he work? He <b>works in</b> a school.",
+        "<b>Does she work</b> in a hospital? Yes, she <b>does</b>.",
+        "<b>Does he work</b> in a shop? No, he <b>doesn't</b>.",
+      ],
+      quizzes:[
+        {q:"Where ___ she work?",opts:['does','do','is','has'],a:0,exp:"Does = He/She/It ✅"},
+        {q:"He works ___ a hospital.",opts:['in','on','at','of'],a:0,exp:"Works IN a building ✅"},
+        {q:"Does he work in a school? No, he ___.",opts:["doesn't","don't","isn't","aren't"],a:0,exp:"Doesn't ✅"},
+        {q:"___ your mum work in an airport?",opts:['Does','Do','Is','Has'],a:0,exp:"Does = She uchun ✅"},
+      ]}
+    ]
+   },
+   {id:'song',label:"🎵 Qo'shiq",song:{title:"Where does he work?",track:28,
+      lyrics:"Where does he work?\nHe works in a school!\nWhere does she work?\nShe works in a shop!\n\n🎵 Teachers work in schools,\nDoctors work in hospitals,\nFarmers work on farms,\nFirefighters at fire stations!",
+      extra_words:[{w:'teacher',uz:"O'qituvchi",e:'👨‍🏫'},{w:'doctor',uz:'Shifokor',e:'👨‍⚕️'},{w:'firefighter',uz:"O't o'chiruvchi",e:'🧑‍🚒'}]}
+   },
+   {id:'phonics',label:'🔤 Phonics',phonics:{title:'Long vowels: a + magic e',track:30,
+      chant:"lake, face, gate, plane!\na_e, a_e, say the name!",
+      items:[
+        {l:'a_e',w:'lake',e:'🏞️'},{l:'a_e',w:'face',e:'😊'},{l:'a_e',w:'gate',e:'🚪'},
+        {l:'a_e',w:'plane',e:'✈️'},{l:'a_e',w:'name',e:'🏷️'},{l:'a_e',w:'cake',e:'🎂'},
+        {l:'a_e',w:'game',e:'🎮'},{l:'a_e',w:'wave',e:'🌊'},{l:'a_e',w:'late',e:'⏰'},
+      ],
+      quiz:[
+        {q:'LAKE — qaysi unli?',opts:['a (uzun)','a (qisqa)','e','i'],a:0},
+        {q:'CAKE — qoidasi?',opts:['a + magic e','aa','ay','ea'],a:0},
+        {q:'GATE — talaffuz?',opts:['geyt','gat','get','gut'],a:0},
+        {q:'PLANE — unli?',opts:['a (uzun)','a (qisqa)','e','i'],a:0},
+      ]}
+   },
+   {id:'skills',label:'📖 Skills Time',
+    reading:{title:"Magazine interview",
+      text:"<b>Our favourite things</b>\n\nReporter: What are your favourite animals?\nPeter: <b>Monkeys</b>! They're so funny!\n\nReporter: Where does your mum work?\nPeter: She works in a <b>school</b>. She's a teacher.\n\nReporter: And your dad?\nPeter: He works in a <b>hospital</b>. He's a doctor.\n\nReporter: What's your favourite subject?\nPeter: <b>Science</b>! I love learning about animals.",
+      questions:[
+        {q:"What are Peter's favourite animals?",opts:['monkeys','elephants'],a:0},
+        {q:"Where does Peter's mum work?",opts:['in a school','in a hospital'],a:0},
+        {q:"What does Peter's dad do?",opts:["He's a doctor.",'He\'s a teacher.'],a:0},
+        {q:"What's Peter's favourite subject?",opts:['Science','Art'],a:0},
+      ]
+    },
+    listening:{title:'Listening',instruction:"To'g'ri javobni tanlang:",
+      items:[
+        {q:"Does he work in a hospital?",opts:["No, he doesn't.",'Yes, he does.'],a:0,hint:"No, police station!"},
+        {q:"Where does she work?",opts:['In a shop.','In a school.'],a:0,hint:'In a shop!'},
+      ]
+    },
+    writing:{title:'Writing — commas in lists',instruction:"Vergul to'g'ri joylashtir:",
+      tasks:[
+        {sentence:"Peter likes monkeys elephants and tigers.",correct:"Peter likes monkeys, elephants and tigers.",hint:"Ro'yxatda vergul!"},
+        {sentence:"She works on Mondays Tuesdays and Wednesdays.",correct:"She works on Mondays, Tuesdays and Wednesdays.",hint:"Kunlar orasida vergul!"},
+      ]
+    }
+   },
+   {id:'workbook',label:'✏️ Mashqlar',
+    exercises:[
+     {type:'fill_blanks',title:"1-mashq: does/doesn't/works",instruction:"To'g'ri variantni yozing:",
+      items:[
+        {sent:"Where ___ she work?",answer:'does'},
+        {sent:"He ___ in a school.",answer:'works'},
+        {sent:"Does she work in an airport? No, she ___.",answer:"doesn't"},
+        {sent:"___ he work in a hospital?",answer:'Does'},
+      ]
+     },
+     {type:'true_false',title:'2-mashq: T/F',
+      items:[
+        {q:"Police station = Militsiya bo'limi",a:true,exp:"To'g'ri! ✅"},
+        {q:"He work in a school — to'g'ri.",a:false,exp:"Noto'g'ri! He WORKS (s qo'shiladi) ❌"},
+        {q:"Hospital = Shifoxona",a:true,exp:"To'g'ri! ✅"},
+        {q:"Hospital = Do'kon",a:false,exp:"Noto'g'ri! Hospital = Shifoxona. Shop = Do'kon ❌"},
+      ]
+     },
+     {type:'order',title:'3-mashq: Tartibga soling',instruction:"",
+      items:[
+        {words:['she','Where','work','does','?'],answer:'Where does she work ?'},
+        {words:['works','He','a','in','hospital','.'],answer:'He works in a hospital .'},
+        {words:["doesn't","She","in","work","an","airport",'.'],answer:"She doesn't work in an airport ."},
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {id:'unit10',num:'Unit 10',name:"It's hot today!",emoji:'☀️',color:'#DC2626',colorL:'#FEF2F2',tracks:[31,32,33],
+  lessons:[
+   {id:'words',label:"📖 So'zlar",
+    words1:[
+      {w:'windy',uz:'Shamolли',e:'🌬️',s:"It's <b>windy</b>. Let's fly a kite!"},
+      {w:'raining',uz:"Yomg'ir yog'yap",e:'🌧️',s:"It's <b>raining</b>. Take your umbrella!"},
+      {w:'hot',uz:'Issiq',e:'🔥',s:"It's very <b>hot</b> today!"},
+      {w:'cold',uz:'Sovuq',e:'🥶',s:"It's <b>cold</b> outside."},
+      {w:'snowing',uz:"Qor yog'yap",e:'❄️',s:"It's <b>snowing</b>! Let's make a snowman!"},
+      {w:'sunny',uz:'Quyoshli',e:'☀️',s:"It's <b>sunny</b>. Wear your hat!"},
+    ],
+    words2:[
+      {w:'put on',uz:'Kiyib olish',e:'👕',s:"<b>Put on</b> your sun hat."},
+      {w:"don't put on",uz:'Kiyma',e:'🚫',s:"<b>Don't put on</b> your coat."},
+      {w:'fly a kite',uz:'Varrak uchirish',e:'🪁',s:"It's windy. Let's <b>fly a kite</b>!"},
+      {w:'make a snowman',uz:"Qo'g'irchoq yasash",e:'⛄',s:"Let's <b>make a snowman</b>!"},
+      {w:'wear coats',uz:'Palto kiyish',e:'🧥',s:"It's cold. <b>Wear your coats</b>!"},
+      {w:'go outside',uz:'Tashqariga chiqish',e:'🚶',s:"It's sunny. Let's <b>go outside</b>!"},
+    ],
+    dialog:[
+      {sp:'',t:"What's the weather like?",side:'l'},
+      {sp:'',t:"It's windy.",side:'r'},
+      {sp:'',t:"It's raining. Put on your coat.",side:'l'},
+      {sp:'',t:"It's sunny. Don't put on your coat!",side:'r'},
+      {sp:'',t:"It's hot today!",side:'l'},
+      {sp:'',t:"It's snowing! Let's make a snowman!",side:'r'},
+    ]
+   },
+   {id:'grammar',label:'📝 Grammatika',
+    rules:[{title:"What's the weather like? It's... Put on / Don't put on",
+      table:[
+        ["What's the weather like?","Ob-havo qanday?","What's the weather like?"],
+        ["It's windy/sunny...","Ob-havo","It's hot and sunny."],
+        ["Put on!","Kiy!","Put on your coat!"],
+        ["Don't put on!","Kiyma!","Don't put on your hat!"],
+      ],
+      examples:[
+        "<b>What's the weather like?</b> It's <b>windy</b>.",
+        "It's <b>raining</b>. <b>Put on</b> your coat!",
+        "It's <b>sunny</b>. <b>Don't put on</b> your coat!",
+      ],
+      quizzes:[
+        {q:"What's the weather ___?",opts:['like','look','as','is'],a:0,exp:"LIKE ✅"},
+        {q:"___ cold and windy today.",opts:["It's","He's","There's","That's"],a:0,exp:"It's ✅"},
+        {q:"___ on your coat! (kiy)",opts:['Put','Don\'t put','Take','Wear'],a:0,exp:"Put on ✅"},
+        {q:"It's sunny. ___ put on your coat.",opts:["Don't",'Do','Put','Take'],a:0,exp:"Don't put on ✅"},
+      ]}
+    ]
+   },
+   {id:'song',label:"🎵 Qo'shiq",song:{title:"What's the weather like today?",track:31,
+      lyrics:"What's the weather, what's the weather,\nWhat's the weather like today?\nIs it cold or is it sunny?\nCan we go outside to play?\n\n🎵 When it's windy,\nWe fly our kite!\nWhen it's snowing,\nWe make a snowman!\nWhen it's sunny,\nWe wear our hats and go outside!",
+      extra_words:[{w:'weather',uz:'Ob-havo',e:'🌤️'},{w:'kite',uz:'Varrak',e:'🪁'},{w:'snowman',uz:'Qor adam',e:'⛄'}]}
+   },
+   {id:'phonics',label:'🔤 Phonics',phonics:{title:'Long vowels: i + magic e',track:33,
+      chant:"bike, white, kite, line!\ni_e, i_e, so divine!",
+      items:[
+        {l:'i_e',w:'bike',e:'🚲'},{l:'i_e',w:'white',e:'⬜'},{l:'i_e',w:'kite',e:'🪁'},
+        {l:'i_e',w:'line',e:'〰️'},{l:'i_e',w:'nine',e:'9️⃣'},{l:'i_e',w:'five',e:'5️⃣'},
+        {l:'i_e',w:'ride',e:'🚴'},{l:'i_e',w:'smile',e:'😊'},{l:'i_e',w:'time',e:'⏰'},
+      ],
+      quiz:[
+        {q:'BIKE — unli tovush?',opts:['i (uzun)','i (qisqa)','e','a'],a:0},
+        {q:'KITE — talaffuz?',opts:['kayt','kit','ket','kut'],a:0},
+        {q:'NINE — qoidasi?',opts:['i + magic e','in','ee','ie'],a:0},
+        {q:'SMILE — unli?',opts:['i (uzun)','i (qisqa)','e','a'],a:0},
+      ]}
+   },
+   {id:'skills',label:'📖 Skills Time',
+    reading:{title:"Weather report",
+      text:"<b>Monday:</b> Cold and windy. Put on your coat and scarf!\n\n<b>Tuesday:</b> Snowing! Make a snowman. Don't forget boots.\n\n<b>Wednesday:</b> Sunny and warm. Go outside and play!\n\n<b>Thursday:</b> Hot! Drink lots of water.\n\n<b>Friday:</b> Raining. Take your umbrella!",
+      questions:[
+        {q:"Monday weather?",opts:['cold and windy','sunny and warm'],a:0},
+        {q:"What to wear Tuesday?",opts:['boots','sun hat'],a:0},
+        {q:"Hot day advice?",opts:['drink lots of water','make a snowman'],a:0},
+        {q:"What to take Friday?",opts:['umbrella','gloves'],a:0},
+      ]
+    },
+    listening:{title:'Listening',instruction:"To'g'ri javobni tanlang:",
+      items:[
+        {q:"What's the weather like?",opts:["It's windy.",'It\'s sunny.'],a:0,hint:"It's windy!"},
+        {q:"Should she put on a coat?",opts:['Yes!','No!'],a:0,hint:"Yes, it's cold!"},
+      ]
+    },
+    writing:{title:'Writing — imperatives',instruction:"Gaplarni to'ldiring:",
+      tasks:[
+        {sentence:"It's cold. ___ on your coat.",correct:"It's cold. Put on your coat.",hint:"Put on = kiyib olish"},
+        {sentence:"It's sunny. ___ put on your raincoat.",correct:"It's sunny. Don't put on your raincoat.",hint:"Don't put on = kiyma"},
+      ]
+    }
+   },
+   {id:'workbook',label:'✏️ Mashqlar',
+    exercises:[
+     {type:'fill_blanks',title:"1-mashq: It's / Put on / Don't put on",instruction:"To'g'ri variantni yozing:",
+      items:[
+        {sent:"What's the weather ___?",answer:'like'},
+        {sent:"___ windy today.",answer:"It's"},
+        {sent:"It's cold. ___ on your coat.",answer:'Put'},
+        {sent:"It's sunny. ___ put on your coat.",answer:"Don't"},
+      ]
+     },
+     {type:'true_false',title:'2-mashq: T/F',
+      items:[
+        {q:"It's = It is",a:true,exp:"To'g'ri! ✅"},
+        {q:"Put on = echmoq",a:false,exp:"Noto'g'ri! Put on = KIYIB OLISH ❌"},
+        {q:"Windy = Shamolли",a:true,exp:"To'g'ri! ✅"},
+        {q:"Snowing = Yomg'ir",a:false,exp:"Noto'g'ri! Snowing = QOR. Raining = yomg'ir ❌"},
+      ]
+     },
+     {type:'order',title:'3-mashq: Tartibga soling',instruction:"",
+      items:[
+        {words:["What's","weather","the","like","?"],answer:"What's the weather like ?"},
+        {words:["It's","windy","today",'.'],answer:"It's windy today ."},
+        {words:['on','Put','coat','your','.'],answer:'Put on your coat .'},
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {id:'unit11',num:'Unit 11',name:'What are you wearing?',emoji:'👕',color:'#0891B2',colorL:'#ECFEFF',tracks:[34,35,36],
+  lessons:[
+   {id:'words',label:"📖 So'zlar",
+    words1:[
+      {w:'skirt',uz:'Yubka',e:'👗',s:"I'm wearing a blue <b>skirt</b>."},
+      {w:'shirt',uz:"Ko'ylak (erkak)",e:'👔',s:"He's wearing a yellow <b>shirt</b>."},
+      {w:'trousers',uz:'Shim',e:'👖',s:"She's wearing red <b>trousers</b>."},
+      {w:'jeans',uz:'Jins shim',e:'🧥',s:"He's wearing blue <b>jeans</b>."},
+      {w:'boots',uz:'Etik',e:'🥾',s:"She's wearing brown <b>boots</b>."},
+      {w:'gloves',uz:"Qo'lqop",e:'🧤',s:"He's wearing green <b>gloves</b>."},
+    ],
+    words2:[
+      {w:'jacket',uz:'Kurtka',e:'🧥',s:"She's wearing a red <b>jacket</b>."},
+      {w:'coat',uz:'Palto',e:'🧥',s:"Put on your <b>coat</b>!"},
+      {w:'scarf',uz:'Sharf',e:'🧣',s:"He's wearing a warm <b>scarf</b>."},
+      {w:'hat',uz:'Shlyapa',e:'🎩',s:"She's wearing a red <b>hat</b>."},
+      {w:'dress',uz:"Ko'ylak (ayol)",e:'👗',s:"She's wearing a white <b>dress</b>."},
+      {w:'T-shirt',uz:'Futbolka',e:'👕',s:"He's wearing a blue <b>T-shirt</b>."},
+    ],
+    dialog:[
+      {sp:'',t:"What are you wearing?",side:'l'},
+      {sp:'',t:"I'm wearing a blue skirt.",side:'r'},
+      {sp:'',t:"What's he wearing?",side:'l'},
+      {sp:'',t:"He's wearing a yellow shirt.",side:'r'},
+      {sp:'',t:"What's she wearing?",side:'l'},
+      {sp:'',t:"She's wearing red trousers.",side:'r'},
+    ]
+   },
+   {id:'grammar',label:'📝 Grammatika',
+    rules:[{title:"Present Continuous: wearing...",
+      table:[
+        ["I'm wearing","Men kiyib turibman","I'm wearing a blue skirt."],
+        ["He's wearing","U (erkak)","He's wearing a yellow shirt."],
+        ["She's wearing","U (ayol)","She's wearing red trousers."],
+        ["What are you wearing?","Nima kiyib turibsiz?","What are you wearing?"],
+        ["What's he/she wearing?","U nima kiyib turibdi?","What's he wearing?"],
+      ],
+      examples:[
+        "What are you <b>wearing</b>? I'm <b>wearing</b> a blue skirt.",
+        "What's he <b>wearing</b>? He's <b>wearing</b> a yellow shirt.",
+        "<b>wear → wearing</b> (-ing qo'shiladi)",
+      ],
+      quizzes:[
+        {q:"What are you ___?",opts:['wearing','wear','wears','wore'],a:0,exp:"Are + wearing ✅"},
+        {q:"She's ___ a beautiful dress.",opts:['wearing','wears','wear','worn'],a:0,exp:"She's wearing ✅"},
+        {q:"What ___ he wearing?",opts:["'s",'are','am','were'],a:0,exp:"He's = He is ✅"},
+        {q:"I ___ a blue T-shirt.",opts:["'m wearing","'s wearing","are wearing","wearing"],a:0,exp:"I'm wearing ✅"},
+      ]}
+    ]
+   },
+   {id:'song',label:"🎵 Qo'shiq",song:{title:"What are you wearing?",track:34,
+      lyrics:"What are you wearing?\nI'm wearing a blue skirt!\nWhat's he wearing?\nHe's wearing a yellow shirt!\n\n🎵 Blue skirt, yellow shirt,\nRed jacket, green scarf!\nI'm wearing my best clothes today!",
+      extra_words:[{w:'uniform',uz:'Forma',e:'🎽'},{w:'best',uz:'Eng yaxshi',e:'🌟'}]}
+   },
+   {id:'phonics',label:'🔤 Phonics',phonics:{title:'Long vowels: o + magic e',track:36,
+      chant:"nose, bone, rope, home!\no_e, o_e, all alone!",
+      items:[
+        {l:'o_e',w:'nose',e:'👃'},{l:'o_e',w:'bone',e:'🦴'},{l:'o_e',w:'rope',e:'🪢'},
+        {l:'o_e',w:'home',e:'🏠'},{l:'o_e',w:'stone',e:'🪨'},{l:'o_e',w:'phone',e:'📱'},
+        {l:'o_e',w:'note',e:'📝'},{l:'o_e',w:'globe',e:'🌍'},{l:'o_e',w:'hole',e:'🕳️'},
+      ],
+      quiz:[
+        {q:'NOSE — unli tovush?',opts:['o (uzun)','o (qisqa)','e','u'],a:0},
+        {q:'BONE — talaffuz?',opts:['bown','bon','ben','bun'],a:0},
+        {q:'HOME — qoidasi?',opts:['o + magic e','oo','ow','ou'],a:0},
+        {q:'PHONE — unli?',opts:['o (uzun)','o (qisqa)','u','a'],a:0},
+      ]}
+   },
+   {id:'skills',label:'📖 Skills Time',
+    reading:{title:"At the airport — poem",
+      text:"<b>At the airport</b>\n\nLook at all the people here!\nWhat's she wearing? Let me see—\nShe's wearing a red coat and hat.\n\nHe's wearing blue jeans and a scarf.\nShe's wearing a yellow dress so bright.\n\nThey're wearing school uniforms today,\nOff to France for a holiday!\nBlue skirt, white shirt, so very neat!",
+      questions:[
+        {q:"What colour coat?",opts:['red','blue'],a:0},
+        {q:"What's she wearing?",opts:['yellow dress','red skirt'],a:0},
+        {q:"Where are the children going?",opts:['to France','to England'],a:0},
+        {q:"What uniforms?",opts:['blue skirt, white shirt','red coat, hat'],a:0},
+      ]
+    },
+    listening:{title:'Listening',instruction:"To'g'ri javobni tanlang:",
+      items:[
+        {q:"What's she wearing?",opts:["Blue skirt.","Red trousers."],a:0,hint:"Blue skirt!"},
+        {q:"What's he wearing?",opts:["Yellow shirt.","Green jacket."],a:0,hint:"Yellow shirt!"},
+      ]
+    },
+    writing:{title:'Writing — describing',instruction:"Gap yozing:",
+      tasks:[
+        {sentence:"He / yellow shirt / jeans",correct:"He's wearing a yellow shirt and jeans.",hint:"He's wearing + kiyim"},
+        {sentence:"She / red dress / white boots",correct:"She's wearing a red dress and white boots.",hint:"She's wearing + kiyim"},
+      ]
+    }
+   },
+   {id:'workbook',label:'✏️ Mashqlar',
+    exercises:[
+     {type:'fill_blanks',title:"1-mashq: am/is/are wearing",instruction:"To'g'ri variantni yozing:",
+      items:[
+        {sent:"I ___ wearing a blue skirt.",answer:"'m"},
+        {sent:"She ___ wearing red trousers.",answer:"'s"},
+        {sent:"What ___ he wearing?",answer:"'s"},
+        {sent:"They ___ wearing uniforms.",answer:"'re"},
+      ]
+     },
+     {type:'true_false',title:'2-mashq: T/F',
+      items:[
+        {q:"I'm wearing = I am wearing",a:true,exp:"To'g'ri! ✅"},
+        {q:"Trousers = Futbolka",a:false,exp:"Noto'g'ri! Trousers = SHIM ❌"},
+        {q:"What's he wearing? = U nima kiyib turibdi?",a:true,exp:"To'g'ri! ✅"},
+        {q:"Skirt = Erkak kiyimi",a:false,exp:"Noto'g'ri! Skirt = YUBKA (ayol) ❌"},
+      ]
+     },
+     {type:'order',title:'3-mashq: Tartibga soling',instruction:"",
+      items:[
+        {words:['are','What','you','wearing','?'],answer:'What are you wearing ?'},
+        {words:["I'm","a","wearing","blue","skirt",'.'],answer:"I'm wearing a blue skirt ."},
+        {words:["He's","yellow","a","wearing","shirt",'.'],answer:"He's wearing a yellow shirt ."},
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {id:'unit12',num:'Unit 12',name:"You're sleeping!",emoji:'🎉',color:'#7C3AED',colorL:'#EDE9FE',tracks:[37,38,39],
+  lessons:[
+   {id:'words',label:"📖 So'zlar",
+    words1:[
+      {w:'dancing',uz:'Raqs tushish',e:'💃',s:"I'm <b>dancing</b> with friends."},
+      {w:'watching a video',uz:"Video ko'rish",e:'📺',s:"We're <b>watching a video</b>."},
+      {w:'eating the cake',uz:'Tort yeyish',e:'🎂',s:"She's <b>eating the cake</b>."},
+      {w:'talking',uz:'Gaplashish',e:'💬',s:"They're <b>talking</b>."},
+      {w:'sleeping',uz:'Uxlash',e:'😴',s:"You're <b>sleeping</b>! Wake up!"},
+      {w:'singing',uz:"Qo'shiq aytish",e:'🎤',s:"She's <b>singing</b>!"},
+    ],
+    words2:[
+      {w:'getting ready',uz:'Tayorlanish',e:'🪞',s:"I'm <b>getting ready</b> for the party!"},
+      {w:'running',uz:'Yugurish',e:'🏃',s:"He's <b>running</b>!"},
+      {w:'jumping',uz:'Sakrash',e:'🦘',s:"They're <b>jumping</b>!"},
+      {w:'playing music',uz:'Musiqa chalish',e:'🎸',s:"They're <b>playing music</b>."},
+      {w:'reading',uz:"O'qish",e:'📖',s:"She's <b>reading</b> an invitation."},
+      {w:'wearing',uz:'Kiyib turish',e:'👗',s:"She's <b>wearing</b> a white dress."},
+    ],
+    dialog:[
+      {sp:'',t:"What are you doing?",side:'l'},
+      {sp:'',t:"I'm dancing with friends.",side:'r'},
+      {sp:'',t:"What are you doing?",side:'l'},
+      {sp:'',t:"We're watching a video.",side:'r'},
+      {sp:'',t:"What's she doing?",side:'l'},
+      {sp:'',t:"She's eating the cake.",side:'r'},
+    ]
+   },
+   {id:'grammar',label:'📝 Grammatika',
+    rules:[{title:"Present Continuous: What are you/they doing?",
+      table:[
+        ["I'm dancing","Men raqs tushyapman","I'm dancing."],
+        ["We're watching","Biz tomosha qilyapmiz","We're watching."],
+        ["She's eating","U yeyapti","She's eating."],
+        ["They're talking","Ular gaplashyapti","They're talking."],
+        ["What are you doing?","Nima qilyapsiz?","What are you doing?"],
+        ["What's he/she doing?","U nima qilyapti?","What's she doing?"],
+      ],
+      examples:[
+        "What <b>are</b> you <b>doing</b>? I'<b>m dancing</b>.",
+        "What <b>are</b> they <b>doing</b>? They'<b>re talking</b>.",
+        "dance → danc<b>ing</b>, run → runn<b>ing</b>",
+      ],
+      quizzes:[
+        {q:"What ___ they doing?",opts:['are','is','am','be'],a:0,exp:"They + are ✅"},
+        {q:"She's ___. (uxlayapti)",opts:['sleeping','sleep','sleeps','slept'],a:0,exp:"She's sleeping ✅"},
+        {q:"We're ___. (o'ynayapmiz)",opts:['playing','play','plays','played'],a:0,exp:"We're playing ✅"},
+        {q:"What ___ she doing?",opts:["'s",'are','am','were'],a:0,exp:"She's = She is ✅"},
+      ]}
+    ]
+   },
+   {id:'song',label:"🎵 Qo'shiq",song:{title:"What are you doing?",track:37,
+      lyrics:"What are you doing?\nI'm dancing!\nWhat's she doing?\nShe's singing!\n\n🎵 What are they doing?\nThey're laughing!\nAre you sleeping?\nNo, I'm playing!\n\nWe're getting ready for the party!\nLet's go!",
+      extra_words:[{w:'laughing',uz:'Kulish',e:'😂'},{w:'party',uz:'Bayram',e:'🎉'}]}
+   },
+   {id:'phonics',label:'🔤 Phonics',phonics:{title:'Long vowels: u + magic e',track:39,
+      chant:"June, tube, flute, cube!\nu_e, u_e, hip hooray!",
+      items:[
+        {l:'u_e',w:'June',e:'🌸'},{l:'u_e',w:'tube',e:'🧴'},{l:'u_e',w:'flute',e:'🎵'},
+        {l:'u_e',w:'cube',e:'🎲'},{l:'u_e',w:'rule',e:'📏'},{l:'u_e',w:'tune',e:'🎶'},
+        {l:'u_e',w:'cute',e:'🥰'},{l:'u_e',w:'huge',e:'🐘'},{l:'u_e',w:'mule',e:'🐴'},
+      ],
+      quiz:[
+        {q:'JUNE — unli?',opts:['u (uzun)','u (qisqa)','oo','e'],a:0},
+        {q:'CUBE — talaffuz?',opts:['kyoob','kub','kob','koob'],a:0},
+        {q:'FLUTE — qoidasi?',opts:['u + magic e','ue','oo','ou'],a:0},
+        {q:'CUTE — unli?',opts:['u (uzun)','u (qisqa)','oo','ow'],a:0},
+      ]}
+   },
+   {id:'skills',label:'📖 Skills Time',
+    reading:{title:"A descriptive email",
+      text:"From: Tom\nTo: Grandma\nSubject: The school play!\n\nDear Grandma,\n\nI'm wearing a blue costume. I'm playing a king!\n\nMy friend Sam is dancing. He's wearing a big hat.\n\nRosy is singing. She's wearing a red dress.\n\nSome children are playing music. Mrs Cooper is watching and smiling.\n\nThe play is on Friday. Come and see us!\n\nLove, Tom",
+      questions:[
+        {q:"What is Tom wearing?",opts:['a blue costume','a red dress'],a:0},
+        {q:"What is Rosy doing?",opts:['singing','dancing'],a:0},
+        {q:"What is Mrs Cooper doing?",opts:['watching and smiling','playing music'],a:0},
+        {q:"When is the play?",opts:['on Friday','on Saturday'],a:0},
+      ]
+    },
+    listening:{title:'Listening',instruction:"To'g'ri javobni tanlang:",
+      items:[
+        {q:"What's she doing?",opts:["She's dancing.","She's eating."],a:0,hint:"She's dancing!"},
+        {q:"What are they doing?",opts:["They're playing music.","They're watching a video."],a:0,hint:"Playing music!"},
+      ]
+    },
+    writing:{title:'Writing — present continuous',instruction:"-ing shaklini yozing:",
+      tasks:[
+        {sentence:"dance → She is ___ with friends.",correct:"dance → She is dancing with friends.",hint:"dance → dancing"},
+        {sentence:"run → He is ___ to the party.",correct:"run → He is running to the party.",hint:"run → running (n ikkilanadi)"},
+      ]
+    }
+   },
+   {id:'workbook',label:'✏️ Mashqlar',
+    exercises:[
+     {type:'fill_blanks',title:"1-mashq: Present Continuous",instruction:"-ing shaklini yozing:",
+      items:[
+        {sent:"She is ___ (dance).",answer:'dancing'},
+        {sent:"They are ___ (talk).",answer:'talking'},
+        {sent:"He is ___ (run).",answer:'running'},
+        {sent:"We are ___ (sing).",answer:'singing'},
+      ]
+     },
+     {type:'true_false',title:'2-mashq: T/F',
+      items:[
+        {q:"She's singing = She is singing",a:true,exp:"To'g'ri! ✅"},
+        {q:"run → runing (bitta n)",a:false,exp:"Noto'g'ri! run → runNING ❌"},
+        {q:"What are they doing? = Ular nima qilyapti?",a:true,exp:"To'g'ri! ✅"},
+        {q:"dance → danceing",a:false,exp:"Noto'g'ri! dance → dancing (e tushadi) ❌"},
+      ]
+     },
+     {type:'order',title:'3-mashq: Tartibga soling',instruction:"",
+      items:[
+        {words:['are','What','you','doing','?'],answer:'What are you doing ?'},
+        {words:["I'm","with","dancing","friends",'.'],answer:"I'm dancing with friends ."},
+        {words:["She's","the","eating","cake",'.'],answer:"She's eating the cake ."},
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {id:'unit13',num:'Unit 13',name:'Look at all the animals!',emoji:'🐄',color:'#15803D',colorL:'#F0FDF4',tracks:[40,41,42],
+  lessons:[
+   {id:'words',label:"📖 So'zlar",
+    words1:[
+      {w:'cow',uz:'Sigir',e:'🐄',s:"This <b>cow</b> is bigger than that cow."},
+      {w:'horse',uz:'Ot',e:'🐴',s:"The <b>horse</b> is bigger than the goat."},
+      {w:'goat',uz:'Echki',e:'🐐',s:"The <b>goat</b> is smaller than the horse."},
+      {w:'sheep',uz:"Qo'y",e:'🐑',s:"This <b>sheep</b> is smaller than that sheep."},
+      {w:'hen',uz:'Tovuq',e:'🐔',s:"The <b>hen</b> is louder than the chick."},
+      {w:'chick',uz:"Jo'ja",e:'🐤',s:"The <b>chick</b> is quiet on the farm."},
+    ],
+    words2:[
+      {w:'goose',uz:"G'oz",e:'🦢',s:"The <b>goose</b> is louder than the hen."},
+      {w:'loud',uz:'Baland ovozli',e:'🔊',s:"The goose is very <b>loud</b>."},
+      {w:'quiet',uz:'Jim',e:'🤫',s:"The chick is very <b>quiet</b>."},
+      {w:'nervous',uz:'Asabiy',e:'😰',s:"This goat is <b>nervous</b>."},
+      {w:'farm',uz:'Ferma',e:'🚜',s:"There are lots of animals on the <b>farm</b>."},
+      {w:'fast',uz:'Tez',e:'🏃',s:"The horse is <b>fast</b>."},
+    ],
+    dialog:[
+      {sp:'',t:"This cow is bigger than that cow.",side:'l'},
+      {sp:'',t:"This sheep is smaller than that sheep.",side:'r'},
+      {sp:'',t:"The horse is bigger than the goat.",side:'l'},
+      {sp:'',t:"The girl is taller than the boy.",side:'r'},
+      {sp:'',t:"The chick is quiet. The goose is loud.",side:'l'},
+    ]
+   },
+   {id:'grammar',label:'📝 Grammatika',
+    rules:[{title:"Comparatives: bigger / smaller / taller / shorter than",
+      table:[
+        ["bigger than","...dan kattaroq","This cow is bigger than that."],
+        ["smaller than","...dan kichikroq","This sheep is smaller than that."],
+        ["taller than","...dan balandroq","The girl is taller than the boy."],
+        ["shorter than","...dan pastroq","The boy is shorter than the girl."],
+        ["louder than","...dan ovozliroq","The goose is louder than the hen."],
+      ],
+      examples:[
+        "This cow is <b>bigger than</b> that cow.",
+        "This sheep is <b>smaller than</b> that sheep.",
+        "The girl is <b>taller than</b> the boy.",
+        "big → bigg<b>er</b> (g ikkilanadi!)",
+      ],
+      quizzes:[
+        {q:"The cow is ___ the goat. (kattaroq)",opts:['bigger than','big than','more big','bigger'],a:0,exp:"Bigger THAN ✅"},
+        {q:"The chick is ___ the hen. (kichikroq)",opts:['smaller than','small than','more small','smaller'],a:0,exp:"Smaller THAN ✅"},
+        {q:"She is ___ him. (balandroq)",opts:['taller than','tall than','more tall','taller'],a:0,exp:"Taller THAN ✅"},
+        {q:"big → ___er",opts:['bigg','big','biger','bigge'],a:0,exp:"big → bigg + er ✅"},
+      ]}
+    ]
+   },
+   {id:'song',label:"🎵 Qo'shiq",song:{title:"On the farm",track:40,
+      lyrics:"The chick is quiet on the farm.\n'Cheep, cheep, cheep,' says the chick.\n\n🎵 The hen is louder than the chick.\n'Cluck, cluck, cluck,' says the hen.\n\nThe goose is louder than the hen.\n'Honk! Honk! Honk!' says the goose.\n\n🎵 The cow is slow on the farm.\nThe goat is faster than the cow.\nThe horse is faster than the goat!",
+      extra_words:[{w:'cheep',uz:"Jiylab (jo'ja)",e:'🐤'},{w:'cluck',uz:'Qud-qud',e:'🐔'},{w:'honk',uz:"Vakil-vakil (g'oz)",e:'🦢'}]}
+   },
+   {id:'phonics',label:'🔤 Phonics',phonics:{title:'Long vowels: ee',track:42,
+      chant:"tree, cheese, green, feet!\nee, ee, what a treat!",
+      items:[
+        {l:'ee',w:'tree',e:'🌳'},{l:'ee',w:'cheese',e:'🧀'},{l:'ee',w:'green',e:'💚'},
+        {l:'ee',w:'feet',e:'🦶'},{l:'ee',w:'three',e:'3️⃣'},{l:'ee',w:'bee',e:'🐝'},
+        {l:'ee',w:'seed',e:'🌱'},{l:'ee',w:'sheep',e:'🐑'},{l:'ee',w:'sweet',e:'🍬'},
+      ],
+      quiz:[
+        {q:'TREE — tovush?',opts:['ee','e','ea','ie'],a:0},
+        {q:'CHEESE — unli?',opts:['ee','e','ea','ie'],a:0},
+        {q:'SHEEP — talaffuz?',opts:['shiyp','shep','ship','shop'],a:0},
+        {q:'GREEN — unli?',opts:['ee','e (qisqa)','ea','oa'],a:0},
+      ]}
+   },
+   {id:'skills',label:'📖 Skills Time',
+    reading:{title:"Parents' letter",
+      text:"Dear Parents,\n\nNext week we are visiting <b>Green Valley Farm</b>!\n\nThe farm has: <b>cows, horses, goats, sheep, hens</b> and chicks.\n\nThe children will learn:\n• Which animals are bigger and smaller\n• What sounds animals make\n• How farmers look after animals\n\nPlease bring: packed lunch, waterproof boots, warm jacket.\n\nKind regards,\nMrs Cooper",
+      questions:[
+        {q:"Where are they going?",opts:['Green Valley Farm','Green Park School'],a:0},
+        {q:"What animals on the farm?",opts:['cows, horses, goats, sheep','lions, tigers, bears'],a:0},
+        {q:"What to bring?",opts:['waterproof boots','swimsuit'],a:0},
+        {q:"Who wrote the letter?",opts:['Mrs Cooper','Mrs Jones'],a:0},
+      ]
+    },
+    listening:{title:'Listening',instruction:"To'g'ri javobni tanlang:",
+      items:[
+        {q:"Is the horse bigger than the goat?",opts:['Yes!',"No!"],a:0,hint:'Yes, bigger!'},
+        {q:"Is the chick louder than the hen?",opts:["No!",'Yes!'],a:0,hint:"No! The hen is louder."},
+      ]
+    },
+    writing:{title:"Writing — 'and'",instruction:"'and' bilan birlashtiring:",
+      tasks:[
+        {sentence:"This cow is big. It is fat.",correct:"This cow is big and fat.",hint:"big AND fat"},
+        {sentence:"The horse is tall. It is fast.",correct:"The horse is tall and fast.",hint:"tall AND fast"},
+      ]
+    }
+   },
+   {id:'workbook',label:'✏️ Mashqlar',
+    exercises:[
+     {type:'fill_blanks',title:"1-mashq: Comparatives",instruction:"To'g'ri yozing:",
+      items:[
+        {sent:"The horse is ___ the goat. (kattaroq)",answer:'bigger than'},
+        {sent:"The chick is ___ the hen. (kichikroq)",answer:'smaller than'},
+        {sent:"The girl is ___ the boy. (balandroq)",answer:'taller than'},
+        {sent:"The boy is ___ the girl. (pastroq)",answer:'shorter than'},
+      ]
+     },
+     {type:'true_false',title:'2-mashq: T/F',
+      items:[
+        {q:"Bigger than = ...dan kattaroq",a:true,exp:"To'g'ri! ✅"},
+        {q:"big → biger (to'g'ri)",a:false,exp:"Noto'g'ri! big → bigGER ❌"},
+        {q:"Slow = sekin",a:true,exp:"To'g'ri! ✅"},
+        {q:"Sheep = Sigir",a:false,exp:"Noto'g'ri! Sheep = QO'Y. Cow = sigir ❌"},
+      ]
+     },
+     {type:'order',title:'3-mashq: Tartibga soling',instruction:"",
+      items:[
+        {words:['is','This','bigger','cow','than','that','cow','.'],answer:'This cow is bigger than that cow .'},
+        {words:['taller','The','is','girl','than','the','boy','.'],answer:'The girl is taller than the boy .'},
+        {words:['horse','faster','The','than','is','the','goat','.'],answer:'The horse is faster than the goat .'},
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {id:'unit14',num:'Unit 14',name:'Look at the photos!',emoji:'📷',color:'#1D4ED8',colorL:'#EFF6FF',tracks:[43,44,45],
+  lessons:[
+   {id:'words',label:"📖 So'zlar",
+    words1:[
+      {w:'was',uz:'Edi (bitta)',e:'📸',s:"I <b>was</b> happy."},
+      {w:"wasn't",uz:'Emas edi',e:'❌',s:"She <b>wasn't</b> wet."},
+      {w:'were',uz:'Edilar/Eding',e:'👥',s:"You <b>were</b> kind."},
+      {w:"weren't",uz:'Emas edilar',e:'❌',s:"They <b>weren't</b> sad."},
+      {w:'tidy up',uz:'Tartibga solish',e:'🧹',s:"I <b>tidied up</b> my room."},
+      {w:'messy',uz:'Tartibsiz',e:'🗑️',s:"His room was very <b>messy</b>."},
+    ],
+    words2:[
+      {w:'kind',uz:'Mehribon',e:'💖',s:"She was very <b>kind</b>."},
+      {w:'naughty',uz:'Yaramazcha',e:'😈',s:"He was <b>naughty</b>."},
+      {w:'wet',uz:"Ho'l",e:'💧',s:"They weren't <b>wet</b>."},
+      {w:'dry',uz:'Quruq',e:'☀️',s:"You weren't <b>dry</b>."},
+      {w:'photos',uz:'Suratlar',e:'📷',s:"Look at the old <b>photos</b>!"},
+      {w:'yesterday',uz:'Kecha',e:'📅',s:"I was tired <b>yesterday</b>."},
+    ],
+    dialog:[
+      {sp:'',t:"I was happy.",side:'l'},
+      {sp:'',t:"She wasn't wet.",side:'r'},
+      {sp:'',t:"You were kind.",side:'l'},
+      {sp:'',t:"They weren't sad.",side:'r'},
+      {sp:'',t:"Was she kind? Yes, she was.",side:'l'},
+      {sp:'',t:"Were they happy? Yes, they were!",side:'r'},
+    ]
+   },
+   {id:'grammar',label:'📝 Grammatika',
+    rules:[{title:"Past simple: was / wasn't / were / weren't",
+      table:[
+        ["I/He/She/It was","Edi","I was happy."],
+        ["I/He/She/It wasn't","Emas edi","She wasn't wet."],
+        ["You/We/They were","Edilar","You were kind."],
+        ["You/We/They weren't","Emas edilar","They weren't sad."],
+        ["Was he/she...?","Edi-mi?","Was she kind?"],
+        ["Were they...?","Edilar-mi?","Were they sad?"],
+      ],
+      examples:[
+        "I <b>was</b> happy. She <b>wasn't</b> wet.",
+        "You <b>were</b> kind. They <b>weren't</b> sad.",
+        "<b>Was</b> she kind? Yes, she <b>was</b>.",
+        "<b>Were</b> they sad? No, they <b>weren't</b>.",
+      ],
+      quizzes:[
+        {q:"He ___ a fireman.",opts:['was','were','is','are'],a:0,exp:"Was (he/she/it) ✅"},
+        {q:"They ___ happy yesterday.",opts:['were','was','are','be'],a:0,exp:"Were (they/we/you) ✅"},
+        {q:"___ she kind? Yes, she was.",opts:['Was','Were','Is','Are'],a:0,exp:"Was (she) ✅"},
+        {q:"She ___ wet.",opts:["wasn't",'weren\'t','isn\'t','aren\'t'],a:0,exp:"Wasn't (bitta kishi) ✅"},
+      ]}
+    ]
+   },
+   {id:'song',label:"🎵 Qo'shiq",song:{title:"Look at the old photos!",track:43,
+      lyrics:"Look at the photos!\nWho was this? Who was that?\nHe was a baby, she was a toddler,\nNow they're big!\n\n🎵 Were you happy? Were you sad?\nWas it fun? Was it bad?\nYesterday is gone, but memories stay!\n\nShe was kind and he was naughty,\nThey weren't sad, they were glad!",
+      extra_words:[{w:'baby',uz:'Chaqaloq',e:'👶'},{w:'toddler',uz:'Kichkina bola',e:'🧒'},{w:'memory',uz:'Xotira',e:'💭'}]}
+   },
+   {id:'phonics',label:'🔤 Phonics',phonics:{title:'Short & long vowels: cub/cube, tap/tape',track:45,
+      chant:"cub — short u! cube — long u!\ntap — short a! tape — long a!",
+      items:[
+        {l:'u/u_e',w:'cub',e:'🐻'},{l:'u/u_e',w:'cube',e:'🎲'},{l:'a/a_e',w:'tap',e:'🚰'},
+        {l:'a/a_e',w:'tape',e:'📼'},{l:'i/i_e',w:'pip',e:'🍎'},{l:'i/i_e',w:'pipe',e:'🪈'},
+        {l:'o/o_e',w:'hop',e:'🐰'},{l:'o/o_e',w:'hope',e:'🌟'},{l:'u/u_e',w:'cut',e:'✂️'},
+      ],
+      quiz:[
+        {q:'CUB vs CUBE farqi?',opts:['Cube oxirida E','Cub uzun','Bir xil','Farqi yo\'q'],a:0},
+        {q:'TAP yoki TAPE — uzun a?',opts:['TAPE (magic e)','TAP','Ikkalasi','Hech biri'],a:0},
+        {q:'PIP → qisqa i. PIPE → ?',opts:['uzun i','qisqa i','ee','ai'],a:0},
+        {q:'HOP → short o. HOPE → ?',opts:['long o','short o','oo','oa'],a:0},
+      ]}
+   },
+   {id:'skills',label:'📖 Skills Time',
+    reading:{title:"School play article",
+      text:"<b>Our school play: The Superheroes!</b>\n\nTim <b>was</b> a fireman. He <b>wasn't</b> scared — he was brave!\n\nRosy <b>was</b> a doctor. She <b>wasn't</b> nervous. She was brilliant!\n\nBilly <b>was</b> the naughty boy. He was very funny!\n\nThe parents <b>were</b> so proud. They <b>weren't</b> bored — they were amazed!\n\nWell done, Class 3C!",
+      questions:[
+        {q:"What was Tim?",opts:['a fireman','a doctor'],a:0},
+        {q:"Was Rosy nervous?",opts:["No, she wasn't.",'Yes, she was.'],a:0},
+        {q:"Who was naughty?",opts:['Billy','Tim'],a:0},
+        {q:"Were parents bored?",opts:["No, they weren't.",'Yes, they were.'],a:0},
+      ]
+    },
+    listening:{title:'Listening',instruction:"To'g'ri javobni tanlang:",
+      items:[
+        {q:"Was she happy?",opts:['Yes, she was.',"No, she wasn't."],a:0,hint:'Yes, happy!'},
+        {q:"Were they sad?",opts:["No, they weren't.",'Yes, they were.'],a:0,hint:"No, they weren't!"},
+      ]
+    },
+    writing:{title:"Writing — and / or",instruction:"'and' yoki 'or' tanlang:",
+      tasks:[
+        {sentence:"He was a fireman ___ she was a doctor.",correct:"He was a fireman and she was a doctor.",hint:"Ikki narsa → AND"},
+        {sentence:"Was she happy ___ sad?",correct:"Was she happy or sad?",hint:"Tanlov → OR"},
+      ]
+    }
+   },
+   {id:'workbook',label:'✏️ Mashqlar',
+    exercises:[
+     {type:'fill_blanks',title:"1-mashq: was/wasn't/were/weren't",instruction:"To'g'ri yozing:",
+      items:[
+        {sent:"He ___ a fireman.",answer:'was'},
+        {sent:"They ___ happy.",answer:'were'},
+        {sent:"She ___ wet.",answer:"wasn't"},
+        {sent:"___ she kind? Yes, she was.",answer:'Was'},
+      ]
+     },
+     {type:'true_false',title:'2-mashq: T/F',
+      items:[
+        {q:"Was = edi (he/she/it)",a:true,exp:"To'g'ri! ✅"},
+        {q:"Were = was (bir xil)",a:false,exp:"Noto'g'ri! Was = bitta, Were = ko'p/you ❌"},
+        {q:"Wasn't = was not",a:true,exp:"To'g'ri! ✅"},
+        {q:"Kind = Yaramazcha",a:false,exp:"Noto'g'ri! Kind = MEHRIBON ❌"},
+      ]
+     },
+     {type:'order',title:'3-mashq: Tartibga soling',instruction:"",
+      items:[
+        {words:['was','He','fireman','a','.'],answer:'He was a fireman .'},
+        {words:['were','They','happy','yesterday','.'],answer:'They were happy yesterday .'},
+        {words:['she','Was','kind','?'],answer:'Was she kind ?'},
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {id:'unit15',num:'Unit 15',name:'Well done!',emoji:'🏆',color:'#B45309',colorL:'#FFFBEB',tracks:[46,47,48],
+  lessons:[
+   {id:'words',label:"📖 So'zlar",
+    words1:[
+      {w:'first',uz:'Birinchi',e:'🥇',s:"She was <b>first</b> in the race."},
+      {w:'second',uz:'Ikkinchi',e:'🥈',s:"He was <b>second</b>."},
+      {w:'third',uz:'Uchinchi',e:'🥉',s:"I was <b>third</b>."},
+      {w:'people',uz:"Odamlar (ko'plik)",e:'👥',s:"There were some <b>people</b>."},
+      {w:'children',uz:"Bolalar (ko'plik)",e:'👧👦',s:"There were some <b>children</b>."},
+      {w:'well done',uz:'Barakalla!',e:'👏',s:"<b>Well done</b>, everyone!"},
+    ],
+    words2:[
+      {w:'there were some',uz:"Ba'zi bor edi",e:'✅',s:"<b>There were some</b> children."},
+      {w:"there weren't any",uz:"Hech yo'q edi",e:'❌',s:"<b>There weren't any</b> adults."},
+      {w:'open day',uz:'Ochiq eshiklar kuni',e:'🏫',s:"Today is the school <b>open day</b>!"},
+      {w:'celebrate',uz:'Nishonlash',e:'🎉',s:"Let's <b>celebrate</b>!"},
+      {w:'race',uz:'Poyga',e:'🏁',s:"She was first in the <b>race</b>!"},
+      {w:'prize',uz:'Mukofot',e:'🎁',s:"There were some <b>prizes</b>."},
+    ],
+    dialog:[
+      {sp:'',t:"Well done, everyone!",side:'l'},
+      {sp:'',t:"There were some children at the party.",side:'r'},
+      {sp:'',t:"There weren't any adults.",side:'l'},
+      {sp:'',t:"She was first! He was second!",side:'r'},
+      {sp:'',t:"Were there any prizes? Yes, there were!",side:'l'},
+    ]
+   },
+   {id:'grammar',label:'📝 Grammatika',
+    rules:[{title:"There were some / There weren't any + Irregular plurals",
+      table:[
+        ["There were some","Ba'zi bor edi","There were some children."],
+        ["There weren't any","Hech yo'q edi","There weren't any adults."],
+        ["Were there any?","Bor edi-mi?","Were there any prizes?"],
+        ["Yes, there were.","Ha.","Yes, there were."],
+        ["child → children","Noto'g'ri ko'plik","one child → some children"],
+        ["person → people","Noto'g'ri ko'plik","one person → some people"],
+      ],
+      examples:[
+        "<b>There were some</b> children at the party.",
+        "<b>There weren't any</b> adults.",
+        "<b>Were there any</b> prizes? Yes, there <b>were</b>.",
+        "child → <b>children</b> | person → <b>people</b>",
+      ],
+      quizzes:[
+        {q:"There ___ some children.",opts:['were','was','are','is'],a:0,exp:"There were ✅"},
+        {q:"There ___ any adults.",opts:["weren't",'wasn\'t',"aren't",'isn\'t'],a:0,exp:"Weren't ✅"},
+        {q:"child → ko'plik?",opts:['children','childs','childrens','child'],a:0,exp:"children (noto'g'ri ko'plik) ✅"},
+        {q:"person → ko'plik?",opts:['people','persons','peoples','person'],a:0,exp:"people (noto'g'ri ko'plik) ✅"},
+      ]}
+    ]
+   },
+   {id:'song',label:"🎵 Qo'shiq",song:{title:"Well done, everyone!",track:46,
+      lyrics:"Well done, well done, everyone!\nYou worked so hard and now you're done!\nFirst and second, third and more,\nYou're all winners, that's for sure!\n\n🎵 There were races, there were games,\nEverybody knew their names.\nThere were prizes, big and small,\nWell done, well done, one and all!\n\nThere weren't any losers here,\nEverybody gave a cheer!",
+      extra_words:[{w:'winner',uz:"G'olib",e:'🏆'},{w:'prize',uz:'Mukofot',e:'🎁'},{w:'proud',uz:'Faxrli',e:'😊'}]}
+   },
+   {id:'phonics',label:'🔤 Phonics',phonics:{title:'ng / nk sounds',track:48,
+      chant:"ring, king, swing, song — NG!\nbank, sink, pink, drink — NK!",
+      items:[
+        {l:'ng',w:'ring',e:'💍'},{l:'ng',w:'king',e:'👑'},{l:'ng',w:'swing',e:'🎪'},
+        {l:'ng',w:'song',e:'🎵'},{l:'ng',w:'long',e:'〰️'},{l:'ng',w:'strong',e:'💪'},
+        {l:'nk',w:'bank',e:'🏦'},{l:'nk',w:'sink',e:'🚰'},{l:'nk',w:'pink',e:'🩷'},
+        {l:'nk',w:'drink',e:'🥤'},{l:'nk',w:'think',e:'💭'},{l:'nk',w:'thank',e:'🙏'},
+      ],
+      quiz:[
+        {q:'RING — tugash?',opts:['ng','nk','n','m'],a:0},
+        {q:'DRINK — tugash?',opts:['nk','ng','ck','k'],a:0},
+        {q:'KING — tugash?',opts:['ng','nk','ck','g'],a:0},
+        {q:'THINK — tugash?',opts:['nk','ng','ck','k'],a:0},
+      ]}
+   },
+   {id:'skills',label:'📖 Skills Time',
+    reading:{title:"School open day — fairytale",
+      text:"<b>The School Open Day</b>\n\nOnce upon a time, there was a school open day.\n\nThere were some children. There were some parents. But there weren't any chairs! Oh no!\n\nThe children were helpful. They found chairs for everyone!\n\nThere were races: Rosy was <b>first</b>, Tim was <b>second</b>, Billy was <b>third</b>.\n\nThere were prizes. Everyone was happy!\n\nThere weren't any sad faces.\n\n<b>The End</b>",
+      questions:[
+        {q:"Were there any chairs at first?",opts:["No, there weren't.",'Yes, there were.'],a:0},
+        {q:"Who was first?",opts:['Rosy','Tim'],a:0},
+        {q:"Were there prizes?",opts:['Yes, there were.',"No, there weren't."],a:0},
+        {q:"Were there sad faces?",opts:["No, there weren't.",'Yes, there were.'],a:0},
+      ]
+    },
+    listening:{title:'Listening',instruction:"To'g'ri javobni tanlang:",
+      items:[
+        {q:"Were there any prizes?",opts:['Yes, there were.',"No, there weren't."],a:0,hint:"Yes, there were!"},
+        {q:"Were there any adults?",opts:["No, there weren't.",'Yes, there were.'],a:1,hint:"Yes, there were parents!"},
+      ]
+    },
+    writing:{title:"Writing — irregular plurals",instruction:"Ko'plik shaklini yozing:",
+      tasks:[
+        {sentence:"one child → some ___",correct:"one child → some children",hint:"child → children"},
+        {sentence:"one person → some ___",correct:"one person → some people",hint:"person → people"},
+      ]
+    }
+   },
+   {id:'workbook',label:'✏️ Mashqlar',
+    exercises:[
+     {type:'fill_blanks',title:"1-mashq: there were / there weren't",instruction:"To'g'ri yozing:",
+      items:[
+        {sent:"___ some children.",answer:'There were'},
+        {sent:"___ any adults.",answer:"There weren't"},
+        {sent:"___ there any prizes?",answer:'Were'},
+        {sent:"child → ___",answer:'children'},
+      ]
+     },
+     {type:'true_false',title:'2-mashq: T/F',
+      items:[
+        {q:"There were some = Ba'zi bor edi",a:true,exp:"To'g'ri! ✅"},
+        {q:"children = childs",a:false,exp:"Noto'g'ri! child → CHILDREN ❌"},
+        {q:"First=1, Second=2, Third=3",a:true,exp:"To'g'ri! ✅"},
+        {q:"There weren't any = Ba'zi bor edi",a:false,exp:"Noto'g'ri! = HECH YO'Q EDI ❌"},
+      ]
+     },
+     {type:'order',title:'3-mashq: Tartibga soling',instruction:"",
+      items:[
+        {words:['were','There','some','children','.'],answer:'There were some children .'},
+        {words:["weren't","There","any","adults",'.'],answer:"There weren't any adults ."},
+        {words:['any','Were','prizes','there','?'],answer:'Were there any prizes ?'},
+      ]
+     }
+    ]
+   }
+  ]
+ }
+];
+
+EXTRA.forEach(u=>UNITS.push(u));
+
+// ══════════════════════════════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════════════════════════════
+renderHome();
+</script>
+
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('./sw.js').then(()=>console.log('SW registered')).catch(()=>{});
+  });
+}
+</script>
+</body>
+</html>
